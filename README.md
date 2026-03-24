@@ -1,58 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CSU Aparri NROTC – Secure Information Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based web application providing hardened record-keeping and access control for the **Cagayan State University Aparri Naval Reserve Officers Training Corps (NROTC)** unit.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## General Objective
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Design and implement a secure login and role-based access system for CSU Aparri NROTC to protect system data from unauthorized access, in accordance with OWASP and NIST SP 800-63B guidelines.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Security Architecture
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1. Authentication System (OWASP A07)
+| Control | Implementation |
+|---|---|
+| Password hashing | **bcrypt** via Laravel's `hashed` cast — plain-text passwords never stored |
+| Brute-force protection | Account locked for **15 minutes** after **5** consecutive failed attempts |
+| Session fixation prevention | `session()->regenerate()` called on every successful login |
+| Session timeout | Auto-logout after **30 minutes** of inactivity (`SessionTimeout` middleware) |
+| CSRF protection | Laravel `VerifyCsrfToken` middleware on all POST/PATCH routes |
+| Input validation | Strict rules on all request inputs — prevents SQL Injection (OWASP A03) |
+| User enumeration prevention | Generic error messages for unknown email / inactive accounts |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 2. Role-Based Access Control — RBAC (OWASP A01)
+| Role | Permissions |
+|---|---|
+| **Administrator** | Create/deactivate accounts, unlock locked users, view all statistics, configure system |
+| **Officer** | View cadet roster, mark attendance (future), record grades (future) — read-only |
+| **Cadet** | View own profile, own attendance, own grades — cannot see other cadets' data |
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+RBAC is enforced by the `EnsureRole` middleware, applied per route group.
 
-## Agentic Development
+### 3. Data Protection (OWASP A02)
+- **bcrypt** password hashing (work factor 12 by default in Laravel)
+- Sessions stored in the database driver with encrypted payloads (`SESSION_ENCRYPT=true` recommended in production)
+- TLS/HTTPS must be enforced at the web server or load balancer level in production
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## Project Structure
 
-php artisan boost:install
+```
+app/
++-- Http/
+¦   +-- Controllers/
+¦   ¦   +-- Auth/AuthController.php        # Login, logout, lockout logic
+¦   ¦   +-- Admin/DashboardController.php  # Admin CRUD + account management
+¦   ¦   +-- Officer/DashboardController.php
+¦   ¦   +-- Cadet/DashboardController.php
+¦   +-- Middleware/
+¦       +-- EnsureRole.php                 # RBAC enforcement
+¦       +-- SessionTimeout.php            # Idle-session expiry
++-- Models/User.php                        # Role helpers, lockout helpers
+database/
++-- migrations/
+¦   +-- 0001_01_01_000000_create_users_table.php
+¦   +-- 2026_03_24_000001_add_nrotc_fields_to_users_table.php
++-- seeders/DatabaseSeeder.php             # Default admin/officer/cadet accounts
+resources/views/
++-- layouts/app.blade.php                  # Shared authenticated layout
++-- auth/login.blade.php                   # Secure login page
++-- admin/dashboard.blade.php
++-- admin/create-user.blade.php
++-- officer/dashboard.blade.php
++-- cadet/dashboard.blade.php
+routes/web.php                             # All routes with middleware groups
+bootstrap/app.php                          # Middleware alias registration
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Quick Start
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Prerequisites
+- PHP >= 8.2
+- Composer
+- A supported database (MySQL / PostgreSQL / SQLite)
+- Node.js + npm (for asset compilation)
 
-## Code of Conduct
+### Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+# 1. Install PHP dependencies
+composer install
 
-## Security Vulnerabilities
+# 2. Copy environment file and generate application key
+cp .env.example .env
+php artisan key:generate
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 3. Configure your database in .env
+#    DB_CONNECTION=mysql
+#    DB_DATABASE=nrotc_db
+#    DB_USERNAME=...
+#    DB_PASSWORD=...
 
-## License
+# 4. Run migrations
+php artisan migrate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 5. Seed default accounts
+php artisan db:seed
+
+# 6. (Optional) Compile front-end assets
+npm install && npm run build
+
+# 7. Start the development server
+php artisan serve
+```
+
+Open http://localhost:8000 — you will be redirected to /login.
+
+### Default Credentials (change immediately in production)
+
+| Role | Email | Password |
+|---|---|---|
+| Administrator | `admin@nrotc.csu.edu.ph` | `Admin@NROTC2026!` |
+| Officer | `officer@nrotc.csu.edu.ph` | `Officer@NROTC2026!` |
+| Cadet | `cadet@nrotc.csu.edu.ph` | `Cadet@NROTC2026!` |
+
+---
+
+## Production Hardening Checklist
+
+- [ ] `APP_ENV=production` and `APP_DEBUG=false` in `.env`
+- [ ] `SESSION_ENCRYPT=true` in `.env`
+- [ ] Enforce HTTPS/TLS at the web server (nginx / Apache)
+- [ ] Set `SECURE_COOKIES=true` and `SESSION_SAME_SITE=strict`
+- [ ] Change all default seeded passwords
+- [ ] Set up database backups
+- [ ] Configure `LOG_LEVEL=warning` and monitor `storage/logs/`
+- [ ] Review and tighten Content Security Policy headers
