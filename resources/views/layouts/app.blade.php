@@ -5,24 +5,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title', config('app.name', 'CCJE ROTC'))</title>
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <style>
+            :root {
+                --navy:  #04090f;
+                --navy2: #061020;
+                --gold:  #c8a951;
+                --gold2: #a08030;
+                --gold3: #e8c96a;
+            }
+            html, body { min-height: 100vh; }
+            body {
+                background-color: var(--navy);
+                background-image:
+                    linear-gradient(rgba(200,169,81,.022) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(200,169,81,.022) 1px, transparent 1px);
+                background-size: 44px 44px;
+                color: #e0dccf;
+                font-family: 'Rajdhani', sans-serif;
+            }
+            .app-sidebar {
+                background: rgba(4,9,15,.97);
+                border-right: 1px solid rgba(200,169,81,.12);
+                box-shadow: 2px 0 24px rgba(0,0,0,.4);
+            }
+            .app-topbar {
+                background: rgba(4,9,15,.96);
+                border-bottom: 1px solid rgba(200,169,81,.12);
+                box-shadow: 0 1px 24px rgba(0,0,0,.4);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+            }
+        </style>
     </head>
-    <body class="font-sans antialiased" style="background: #061020; color: #fff;">
+    <body class="font-sans antialiased">
         <div class="flex min-h-screen">
 
             {{-- ── Sidebar ──────────────────────────────────────────────────── --}}
-            <aside class="flex flex-col w-60 shrink-0"
-                   style="background: rgba(255,255,255,0.03); border-right: 1px solid rgba(255,255,255,0.07);">
+            <aside class="app-sidebar flex flex-col w-60 shrink-0">
                 <div class="flex flex-col flex-1 py-6 px-4">
 
                     {{-- Brand --}}
                     <div class="flex items-center gap-3 px-2 mb-8">
                         <img src="{{ asset('CCJE.png') }}" alt="CCJE ROTC Logo" class="h-10 w-auto shrink-0">
                         <div>
-                            <p class="text-sm font-bold tracking-widest uppercase" style="color: #c8a951;">CCJE ROTC</p>
-                            <p class="text-xs text-slate-500 leading-none">CSU — Aparri</p>
+                            <p style="color: #c8a951; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .14em;">NROTC</p>
+                            <p class="text-xs text-slate-500 leading-none" style="font-family: 'Share Tech Mono', monospace; letter-spacing: .1em;">CSU — Aparri</p>
                         </div>
                     </div>
 
@@ -32,7 +63,7 @@
                     </nav>
 
                     {{-- Logout --}}
-                    <div class="pt-4" style="border-top: 1px solid rgba(255,255,255,0.07);">
+                    <div class="pt-4" style="border-top: 1px solid rgba(200,169,81,.1);">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="sidebar-link w-full text-left">
@@ -52,13 +83,14 @@
             <div class="flex flex-col flex-1 min-w-0">
 
                 {{-- Top bar --}}
-                <header class="flex items-center justify-between px-8 py-4 shrink-0"
-                        style="background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.07);">
-                    <h1 class="text-base font-semibold tracking-wide text-white">@yield('page-title')</h1>
+                <header class="app-topbar flex items-center justify-between px-8 py-4 shrink-0">
+                    <h1 style="color: #c8a951; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .18em;">
+                        @yield('page-title')
+                    </h1>
                     <div class="flex items-center gap-3">
-                        <span class="text-sm text-slate-400">{{ Auth::user()->name }}</span>
-                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-                             style="background: linear-gradient(135deg, #c8a951 0%, #a08030 100%); color: #061020;">
+                        <span class="text-sm text-slate-300" style="font-family: 'Rajdhani', sans-serif;">{{ Auth::user()->name }}</span>
+                        <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold shrink-0"
+                             style="background: linear-gradient(135deg, #c8a951 0%, #a08030 100%); color: #04090f; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .04em;">
                             {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                         </div>
                     </div>

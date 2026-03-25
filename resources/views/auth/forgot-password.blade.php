@@ -1,25 +1,41 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <p style="font-family: 'Rajdhani', sans-serif; font-size: .9rem; color: #94a3b8; line-height: 1.55; margin-bottom: 1.25rem;">
+        Enter your registered email address and we will send you a password reset link.
+    </p>
 
-    <form method="POST" action="{{ route('password.email') }}">
+    @if (session('status'))
+        <div class="ac-alert ac-alert-success" role="status">
+            ✔&nbsp; {{ session('status') }}
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('password.email') }}" novalidate>
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div style="margin-bottom: 1.25rem;">
+            <label class="ac-label" for="email">Email Address</label>
+            <div class="ac-input-wrap">
+                <span class="ac-input-icon" aria-hidden="true">✉</span>
+                <input class="ac-input @error('email') is-error @enderror"
+                       type="email" id="email" name="email"
+                       value="{{ old('email') }}"
+                       placeholder="cadet@csuaparri.edu.ph"
+                       autofocus required>
+            </div>
+            @error('email')
+                <div class="ac-field-error" role="alert">⚠ {{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
+        <button type="submit" class="ac-submit">SEND RESET LINK</button>
+
+        <div style="margin-top: 1.1rem; text-align: center;">
+            <a href="{{ route('login') }}"
+               style="font-family: 'Share Tech Mono', monospace; font-size: .62rem; color: var(--gold); letter-spacing: .1em; text-decoration: none; opacity: .75;">
+                ← BACK TO SIGN IN
+            </a>
         </div>
     </form>
+
 </x-guest-layout>

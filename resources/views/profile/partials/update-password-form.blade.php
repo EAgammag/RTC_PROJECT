@@ -1,15 +1,14 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+    <header style="margin-bottom: 1.5rem;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #c8a951; margin-bottom: .35rem;">
             {{ __('Update Password') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
+        <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-5">
         @csrf
         @method('put')
 
@@ -40,7 +39,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    style="font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #4ade80; letter-spacing: .08em;"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

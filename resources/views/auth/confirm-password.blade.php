@@ -1,27 +1,43 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
 
-    <form method="POST" action="{{ route('password.confirm') }}">
+    <p style="font-family: 'Rajdhani', sans-serif; font-size: .9rem; color: #94a3b8; line-height: 1.55; margin-bottom: 1.25rem;">
+        This is a secure area. Please confirm your password before continuing.
+    </p>
+
+    @if ($errors->any())
+        <div class="ac-alert ac-alert-error" role="alert">
+            ✘&nbsp; {{ $errors->first() }}
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('password.confirm') }}" novalidate>
         @csrf
 
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div style="margin-bottom: 1.25rem;">
+            <label class="ac-label" for="password">Password</label>
+            <div class="ac-input-wrap">
+                <span class="ac-input-icon" aria-hidden="true">🔐</span>
+                <input class="ac-input @error('password') is-error @enderror"
+                       type="password" id="password" name="password"
+                       placeholder="Enter your password"
+                       autocomplete="current-password"
+                       required>
+                <button type="button" class="ac-pw-toggle" onclick="acCpToggle('password', this)" aria-label="Toggle password visibility">👁</button>
+            </div>
+            @error('password')
+                <div class="ac-field-error" role="alert">⚠ {{ $message }}</div>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <button type="submit" class="ac-submit">CONFIRM &amp; CONTINUE</button>
     </form>
+
+    <script>
+    function acCpToggle(id, btn) {
+        var inp = document.getElementById(id);
+        if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+        else { inp.type = 'password'; btn.textContent = '👁'; }
+    }
+    </script>
+
 </x-guest-layout>
