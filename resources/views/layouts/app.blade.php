@@ -10,23 +10,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <style>
-            :root {
-                --navy:  #04090f;
-                --navy2: #061020;
-                --gold:  #c8a951;
-                --gold2: #a08030;
-                --gold3: #e8c96a;
-            }
             html, body { min-height: 100vh; }
-            body {
-                background-color: var(--navy);
-                background-image:
-                    linear-gradient(rgba(200,169,81,.022) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(200,169,81,.022) 1px, transparent 1px);
-                background-size: 44px 44px;
-                color: #e0dccf;
-                font-family: 'Rajdhani', sans-serif;
-            }
+            body { font-family: 'Rajdhani', sans-serif; }
             .app-sidebar {
                 background: rgba(4,9,15,.97);
                 border-right: 1px solid rgba(200,169,81,.12);
@@ -88,7 +73,7 @@
                         @yield('page-title')
                     </h1>
                     <div class="flex items-center gap-3">
-                        <span class="text-sm text-slate-300" style="font-family: 'Rajdhani', sans-serif;">{{ Auth::user()->name }}</span>
+                        <span class="text-sm text-slate-600" style="font-family: 'Rajdhani', sans-serif;">{{ Auth::user()->name }}</span>
                         <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold shrink-0"
                              style="background: linear-gradient(135deg, #c8a951 0%, #a08030 100%); color: #04090f; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .04em;">
                             {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}

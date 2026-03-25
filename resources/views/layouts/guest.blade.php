@@ -11,35 +11,33 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <style>
-            :root {
-                --navy:      #0a1628;
-                --navy2:     #0d1e38;
-                --gold:      #c9a84c;
-                --gold2:     #e8c96a;
-                --error:     #e05252;
-                --success:   #4ade80;
-                --text:      #e0dccf;
-                --text-dim:  #7a8fa8;
+            /* Same glass navbar as landing page */
+            .nav-glass {
+                background: rgba(4,9,15,.96);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(200,169,81,.14);
+                box-shadow: 0 1px 24px rgba(0,0,0,.5);
             }
 
-            /* Background grid lines */
+            /* Hero gradient — matches welcome page hero-bg */
+            .auth-bg {
+                background:
+                    radial-gradient(ellipse 75% 55% at 50% -5%, rgba(200,169,81,.2) 0%, transparent 58%),
+                    radial-gradient(ellipse 45% 60% at 3% 55%, rgba(30,64,175,.28) 0%, transparent 55%),
+                    radial-gradient(ellipse 38% 45% at 95% 65%, rgba(200,169,81,.12) 0%, transparent 52%),
+                    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(200,169,81,.08) 0%, transparent 60%),
+                    linear-gradient(165deg, #0d1e35 0%, #071120 45%, #04090f 100%);
+                background-attachment: fixed;
+            }
+
+            /* Dot grid overlay — matches welcome page dot-grid */
             .auth-bg::before {
                 content: '';
                 position: fixed;
                 inset: 0;
-                background-image:
-                    linear-gradient(rgba(201,168,76,.035) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(201,168,76,.035) 1px, transparent 1px);
-                background-size: 44px 44px;
-                pointer-events: none;
-                z-index: 0;
-            }
-            /* Radial spotlight */
-            .auth-bg::after {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background: radial-gradient(ellipse 65% 55% at 50% 42%, rgba(201,168,76,.09) 0%, transparent 68%);
+                background-image: radial-gradient(rgba(200,169,81,.07) 1px, transparent 1px);
+                background-size: 36px 36px;
                 pointer-events: none;
                 z-index: 0;
             }
@@ -50,11 +48,11 @@
                 z-index: 1;
                 width: 100%;
                 max-width: 460px;
-                background: linear-gradient(165deg, rgba(13,30,56,.97) 0%, rgba(10,22,40,.99) 100%);
-                border: 1px solid rgba(201,168,76,.18);
+                background: rgba(255,255,255,.97);
+                border: 1px solid rgba(201,168,76,.25);
                 border-radius: 4px;
                 padding: 2.25rem 2.25rem 1.75rem;
-                box-shadow: 0 0 0 1px rgba(0,0,0,.5), 0 8px 80px rgba(0,0,0,.7), 0 0 50px rgba(201,168,76,.05);
+                box-shadow: 0 0 0 1px rgba(255,255,255,.6), 0 8px 80px rgba(0,0,0,.5), 0 0 60px rgba(201,168,76,.08);
                 animation: ac-fadeUp .55s cubic-bezier(.22,.68,0,1.1) both;
             }
             @keyframes ac-fadeUp {
@@ -119,7 +117,7 @@
             }
             .ac-crest-face {
                 position: absolute; inset: 4px; border-radius: 50%;
-                background: radial-gradient(circle, rgba(201,168,76,.13) 0%, rgba(10,22,40,.95) 68%);
+                background: radial-gradient(circle, rgba(201,168,76,.2) 0%, rgba(248,250,252,1) 68%);
                 display: flex; align-items: center; justify-content: center;
             }
             .ac-crest-face svg { width: 40px; height: 40px; filter: drop-shadow(0 0 8px rgba(201,168,76,.6)); }
@@ -132,35 +130,35 @@
                 font-family: 'Share Tech Mono', monospace;
                 font-size: .62rem;
                 letter-spacing: .16em;
-                color: var(--text-dim);
+                color: #64748b;
                 text-transform: uppercase;
                 margin-bottom: .38rem;
             }
             .ac-input-wrap { position: relative; }
             .ac-input-icon {
                 position: absolute; left: .8rem; top: 50%; transform: translateY(-50%);
-                color: var(--text-dim); font-size: .8rem; pointer-events: none; user-select: none;
+                color: #94a3b8; font-size: .8rem; pointer-events: none; user-select: none;
                 font-family: 'Share Tech Mono', monospace;
             }
             .ac-input {
                 width: 100%;
-                background: rgba(8,18,36,.75);
-                border: 1px solid rgba(201,168,76,.16);
+                background: #f8fafc;
+                border: 1px solid rgba(4,9,15,.14);
                 border-radius: 3px;
                 padding: .62rem .8rem .62rem 2.35rem;
-                color: var(--text);
+                color: #1e293b;
                 font-family: 'Rajdhani', sans-serif;
                 font-size: .95rem; font-weight: 500;
                 outline: none;
                 transition: border-color .2s, box-shadow .2s, background .2s;
             }
-            .ac-input::placeholder { color: rgba(122,143,168,.35); font-family: 'Share Tech Mono', monospace; font-size: .72rem; }
+            .ac-input::placeholder { color: rgba(100,116,139,.5); font-family: 'Share Tech Mono', monospace; font-size: .72rem; }
             .ac-input:focus {
-                border-color: rgba(201,168,76,.5);
-                background: rgba(10,22,40,.9);
-                box-shadow: 0 0 0 3px rgba(201,168,76,.06), inset 0 1px 0 rgba(201,168,76,.04);
+                border-color: rgba(201,168,76,.55);
+                background: #ffffff;
+                box-shadow: 0 0 0 3px rgba(201,168,76,.1), inset 0 1px 0 rgba(201,168,76,.04);
             }
-            .ac-input.is-error { border-color: rgba(224,82,82,.6) !important; box-shadow: 0 0 0 3px rgba(224,82,82,.05); }
+            .ac-input.is-error { border-color: rgba(224,82,82,.6) !important; box-shadow: 0 0 0 3px rgba(224,82,82,.07); }
             .ac-pw-toggle {
                 position: absolute; right: .7rem; top: 50%; transform: translateY(-50%);
                 background: none; border: none; cursor: pointer;
@@ -179,14 +177,14 @@
                 font-family: 'Share Tech Mono', monospace; font-size: .65rem; letter-spacing: .07em; line-height: 1.5;
                 border-left: 3px solid;
             }
-            .ac-alert-success { background: rgba(74,222,128,.07); border-color: var(--success); color: var(--success); }
-            .ac-alert-error   { background: rgba(224,82,82,.07);  border-color: var(--error);   color: var(--error); }
+            .ac-alert-success { background: rgba(74,222,128,.08); border-color: var(--success); color: #16a34a; }
+            .ac-alert-error   { background: rgba(224,82,82,.07);  border-color: var(--error);   color: #dc2626; }
 
             /* Extras row */
             .ac-extras { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-            .ac-check-label { display: flex; align-items: center; gap: .45rem; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-size: .85rem; font-weight: 500; color: var(--text-dim); user-select: none; }
+            .ac-check-label { display: flex; align-items: center; gap: .45rem; cursor: pointer; font-family: 'Rajdhani', sans-serif; font-size: .85rem; font-weight: 500; color: #64748b; user-select: none; }
             .ac-check-label input[type="checkbox"] { accent-color: var(--gold); width: 14px; height: 14px; cursor: pointer; flex-shrink: 0; }
-            .ac-forgot { font-family: 'Share Tech Mono', monospace; font-size: .62rem; color: var(--gold); letter-spacing: .1em; text-decoration: none; opacity: .75; transition: opacity .15s; }
+            .ac-forgot { font-family: 'Share Tech Mono', monospace; font-size: .62rem; color: var(--gold2); letter-spacing: .1em; text-decoration: none; opacity: .85; transition: opacity .15s; }
             .ac-forgot:hover { opacity: 1; text-decoration: underline; }
 
             /* Submit button */
@@ -205,14 +203,43 @@
             .ac-submit:hover { transform: translateY(-1px); box-shadow: 0 4px 28px rgba(201,168,76,.32), inset 0 1px 0 rgba(255,255,255,.15); }
             .ac-submit:active { transform: translateY(0); }
 
-            .ac-form-footer { margin-top: 1.25rem; text-align: center; font-family: 'Share Tech Mono', monospace; font-size: .56rem; color: var(--text-dim); letter-spacing: .1em; opacity: .6; text-transform: uppercase; }
+            .ac-form-footer { margin-top: 1.25rem; text-align: center; font-family: 'Share Tech Mono', monospace; font-size: .56rem; color: #94a3b8; letter-spacing: .1em; opacity: .7; text-transform: uppercase; }
 
             @media (max-width: 480px) {
                 .auth-card { padding: 1.75rem 1.25rem 1.5rem; }
             }
         </style>
     </head>
-    <body class="auth-bg font-sans antialiased" style="background: #0a1628; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem;">
+    <body class="auth-bg font-sans antialiased" style="min-height: 100vh;">
+
+        {{-- Glass navbar — same as landing page --}}
+        <nav class="nav-glass fixed top-0 inset-x-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
+                <a href="/" class="flex items-center gap-3" style="text-decoration:none;">
+                    <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
+                    <div class="leading-none">
+                        <span class="text-sm font-black tracking-wider uppercase" style="color:#c8a951;">NROTC</span>
+                        <span class="text-sm font-bold tracking-wide text-slate-400"> &middot; CSU Aparri</span>
+                        <p class="text-xs text-slate-300 hidden lg:block" style="margin-top:.125rem;">Secure Information System</p>
+                    </div>
+                </a>
+                <div class="leading-tight text-right">
+                    <div class="text-sm font-mono font-semibold" style="color:#c8a951;" id="auth-nav-time">--:--:-- --</div>
+                    <div class="text-xs text-slate-400" id="auth-nav-date">---, --- --, ----</div>
+                    <div class="text-slate-500 tracking-widest uppercase" style="font-size:0.7rem;">Philippine Standard Time</div>
+                </div>
+            </div>
+        </nav>
+
+        {{-- Atmospheric blur blobs (same depth effect as landing page) --}}
+        <div class="pointer-events-none" style="position:fixed;inset:0;z-index:0;overflow:hidden;">
+            <div style="position:absolute;top:25%;left:-10rem;width:32rem;height:32rem;border-radius:50%;background:radial-gradient(circle,rgba(200,169,81,.22) 0%,transparent 70%);filter:blur(80px);opacity:.35;"></div>
+            <div style="position:absolute;bottom:25%;right:-5rem;width:20rem;height:20rem;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.2) 0%,transparent 70%);filter:blur(60px);opacity:.25;"></div>
+            <div style="position:absolute;top:-10rem;right:0;width:48rem;height:36rem;border-radius:50%;background:radial-gradient(ellipse,rgba(30,64,175,.18) 0%,transparent 65%);filter:blur(80px);opacity:.35;"></div>
+        </div>
+
+        {{-- Centered card area with top offset for navbar --}}
+        <div style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:5.5rem 1.5rem 2rem;">
 
         <div class="auth-card">
             <div class="ac-corner-tr"></div>
@@ -252,6 +279,22 @@
 
             {{ $slot }}
         </div>
+
+        </div>{{-- end centered wrapper --}}
+
+        <script>
+            (function () {
+                function updateAuthTime() {
+                    var now = new Date();
+                    var t = document.getElementById('auth-nav-time');
+                    var d = document.getElementById('auth-nav-date');
+                    if (t) { t.textContent = now.toLocaleTimeString('en-US', { hour12: true }); }
+                    if (d) { d.textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: '2-digit', year: 'numeric' }); }
+                }
+                updateAuthTime();
+                setInterval(updateAuthTime, 1000);
+            })();
+        </script>
 
     </body>
 </html>

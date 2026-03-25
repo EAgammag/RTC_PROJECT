@@ -4,20 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CCJE ROTC · CSU Aparri</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800,900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        :root {
-            --navy:   #04090f;
-            --navy2:  #061020;
-            --gold:   #a08030;
-            --gold2:  #8a6e28;
-            --gold3:  #c8a951;
-        }
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { background: #fff; color: var(--navy); margin: 0; }
+        body { margin: 0; }
         .gold { color: var(--gold); }
 
         .nav-glass {
@@ -155,7 +149,7 @@
             <a href="/" class="flex items-center gap-3 no-underline">
                 <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
                 <div class="leading-none">
-                    <span class="text-sm font-black tracking-wider uppercase gold">NROTC</span>
+                    <span class="text-sm font-black tracking-wider uppercase gold" style="font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.15em;">NROTC</span>
                     <span class="text-sm font-bold tracking-wide text-slate-400"> · CSU Aparri</span>
                     <p class="text-xs text-slate-300 mt-0.5 hidden lg:block">Secure Information System</p>
                 </div>

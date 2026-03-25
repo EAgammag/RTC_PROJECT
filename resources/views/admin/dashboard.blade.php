@@ -39,11 +39,11 @@
             <div class="stat-card rounded-xl p-4">
                 <div class="flex items-start justify-between">
                     <div>
-                        <p class="text-xs text-slate-400 uppercase tracking-wider mb-1">{{ $card['label'] }}</p>
-                        <p class="text-3xl font-bold text-white">{{ $card['value'] }}</p>
+                        <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">{{ $card['label'] }}</p>
+                        <p class="text-3xl font-bold text-slate-900">{{ $card['value'] }}</p>
                     </div>
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                         style="background: rgba(255,255,255,0.07);">
+                         style="background: rgba(4,9,15,0.04);">
                         <svg class="w-5 h-5" fill="none" stroke="{{ $card['color'] }}" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="{{ $card['icon'] }}"/>
                         </svg>
@@ -55,8 +55,8 @@
 
     {{-- ── Recent accounts table ─────────────────────────────────────────────── --}}
     <div class="card rounded-xl overflow-hidden">
-        <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color: rgba(255,255,255,0.08);">
-            <h2 class="text-sm font-semibold text-white uppercase tracking-wider">Recent Accounts</h2>
+        <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color: rgba(4,9,15,0.08);">
+                <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider">Recent Accounts</h2>
             <a href="{{ route('admin.users.create') }}"
                class="text-xs px-3 py-1.5 rounded-lg font-semibold transition-colors"
                style="background: rgba(200,169,81,0.15); color: #c8a951; border: 1px solid rgba(200,169,81,0.3);">
@@ -67,7 +67,7 @@
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
-                    <tr style="background: rgba(255,255,255,0.03);">
+                    <tr style="background: #f8fafc;">
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Student ID</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</th>
@@ -77,12 +77,12 @@
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y" style="divide-color: rgba(255,255,255,0.05);">
+                <tbody class="divide-y divide-slate-100">
                     @forelse ($recent_users as $user)
-                        <tr class="hover:bg-white/5 transition-colors">
-                            <td class="px-6 py-4 text-white font-medium">{{ $user->name }}</td>
-                            <td class="px-6 py-4 text-slate-300 font-mono text-xs">{{ $user->student_id ?? '—' }}</td>
-                            <td class="px-6 py-4 text-slate-300">{{ $user->email }}</td>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-slate-900 font-medium">{{ $user->name }}</td>
+                            <td class="px-6 py-4 text-slate-500 font-mono text-xs">{{ $user->student_id ?? '—' }}</td>
+                            <td class="px-6 py-4 text-slate-600">{{ $user->email }}</td>
                             <td class="px-6 py-4">
                                 @php
                                     $roleColors = ['admin' => '#60a5fa', 'officer' => '#c8a951', 'cadet' => '#34d399'];
@@ -154,20 +154,20 @@
         <h3 class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: #c8a951;">
             Security Policy Summary
         </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-400">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-600">
             <div>
-                <p class="font-semibold text-slate-300 mb-1">Account Lockout</p>
-                <p>Accounts are locked for <strong class="text-white">15 minutes</strong> after
-                   <strong class="text-white">5 consecutive</strong> failed login attempts.</p>
+                <p class="font-semibold text-slate-700 mb-1">Account Lockout</p>
+                <p>Accounts are locked for <strong class="text-slate-900">15 minutes</strong> after
+                   <strong class="text-slate-900">5 consecutive</strong> failed login attempts.</p>
             </div>
             <div>
-                <p class="font-semibold text-slate-300 mb-1">Password Storage</p>
-                <p>All passwords are hashed using <strong class="text-white">bcrypt</strong>
+                <p class="font-semibold text-slate-700 mb-1">Password Storage</p>
+                <p>All passwords are hashed using <strong class="text-slate-900">bcrypt</strong>
                    (NIST SP 800-63B compliant). Plain-text passwords are never stored.</p>
             </div>
             <div>
-                <p class="font-semibold text-slate-300 mb-1">Session Security</p>
-                <p>Sessions auto-expire after <strong class="text-white">30 minutes</strong> of inactivity.
+                <p class="font-semibold text-slate-700 mb-1">Session Security</p>
+                <p>Sessions auto-expire after <strong class="text-slate-900">30 minutes</strong> of inactivity.
                    Session IDs are regenerated on every login (prevents session fixation).</p>
             </div>
         </div>

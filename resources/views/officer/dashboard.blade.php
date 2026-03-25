@@ -33,26 +33,26 @@
     {{-- ── Stats ─────────────────────────────────────────────────────────────── --}}
     <div class="grid grid-cols-2 gap-4 mb-8 max-w-sm">
         <div class="stat-card rounded-xl p-4 text-center">
-            <p class="text-3xl font-bold text-white">{{ $stats['total_cadets'] }}</p>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Total Cadets</p>
+            <p class="text-3xl font-bold text-slate-900">{{ $stats['total_cadets'] }}</p>
+            <p class="text-xs text-slate-500 uppercase tracking-wider mt-1">Total Cadets</p>
         </div>
         <div class="stat-card rounded-xl p-4 text-center">
             <p class="text-3xl font-bold" style="color: #4ade80;">{{ $stats['active_cadets'] }}</p>
-            <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Active Cadets</p>
+            <p class="text-xs text-slate-500 uppercase tracking-wider mt-1">Active Cadets</p>
         </div>
     </div>
 
     {{-- ── Cadet roster ──────────────────────────────────────────────────────── --}}
     <div class="card rounded-xl overflow-hidden">
-        <div class="px-6 py-4 border-b" style="border-color: rgba(255,255,255,0.08);">
-            <h2 class="text-sm font-semibold text-white uppercase tracking-wider">Cadet Roster</h2>
+        <div class="px-6 py-4 border-b" style="border-color: rgba(4,9,15,0.08);">
+            <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider">Cadet Roster</h2>
             <p class="text-xs text-slate-400 mt-0.5">View-only — officer access is read-only for cadet records.</p>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
-                    <tr style="background: rgba(255,255,255,0.03);">
+                    <tr style="background: #f8fafc;">
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">#</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Name</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Student ID</th>
@@ -60,13 +60,13 @@
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Last Login</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y" style="divide-color: rgba(255,255,255,0.05);">
+                <tbody class="divide-y divide-slate-100">
                     @forelse ($cadets as $index => $cadet)
-                        <tr class="hover:bg-white/5 transition-colors">
+                        <tr class="hover:bg-slate-50 transition-colors">
                             <td class="px-6 py-4 text-slate-500 text-xs">{{ $index + 1 }}</td>
-                            <td class="px-6 py-4 text-white font-medium">{{ $cadet->name }}</td>
-                            <td class="px-6 py-4 text-slate-300 font-mono text-xs">{{ $cadet->student_id ?? '—' }}</td>
-                            <td class="px-6 py-4 text-slate-300">{{ $cadet->email }}</td>
+                            <td class="px-6 py-4 text-slate-900 font-medium">{{ $cadet->name }}</td>
+                            <td class="px-6 py-4 text-slate-500 font-mono text-xs">{{ $cadet->student_id ?? '—' }}</td>
+                            <td class="px-6 py-4 text-slate-600">{{ $cadet->email }}</td>
                             <td class="px-6 py-4 text-slate-400 text-xs">
                                 {{ $cadet->last_login_at ? $cadet->last_login_at->diffForHumans() : 'Never' }}
                             </td>
@@ -86,9 +86,9 @@
         <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #c8a951;">
             Officer Access Level
         </h3>
-        <p class="text-xs text-slate-400">
-            As an officer, you may <strong class="text-slate-200">view cadet records</strong> and
-            <strong class="text-slate-200">generate unit reports</strong>. You cannot modify system
+        <p class="text-xs text-slate-600">
+            As an officer, you may <strong class="text-slate-800">view cadet records</strong> and
+            <strong class="text-slate-800">generate unit reports</strong>. You cannot modify system
             configuration, delete records, or view other officers' accounts.
             All actions are subject to audit logging.
         </p>
