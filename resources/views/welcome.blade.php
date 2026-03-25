@@ -42,14 +42,14 @@
         .btn-ghost {
             display: inline-flex; align-items: center; gap: .5rem;
             padding: .75rem 1.75rem; border-radius: .625rem;
-            font-weight: 600; font-size: .8rem;
+            font-weight: 700; font-size: .8rem;
             letter-spacing: .1em; text-transform: uppercase;
-            text-decoration: none; color: #f0d97a;
-            border: 1px solid rgba(200,169,81,.5);
-            background: rgba(200,169,81,.1);
+            text-decoration: none; color: var(--navy);
+            border: 1px solid rgba(4,9,15,.35);
+            background: rgba(4,9,15,.07);
             transition: border-color .15s, background .15s, transform .15s;
         }
-        .btn-ghost:hover { background: rgba(200,169,81,.16); border-color: rgba(200,169,81,.58); transform: translateY(-1px); }
+        .btn-ghost:hover { background: rgba(4,9,15,.13); border-color: rgba(4,9,15,.55); transform: translateY(-1px); }
         .hero-bg {
             background:
                 radial-gradient(ellipse 75% 55% at 50% -5%, rgba(200,169,81,.2) 0%, transparent 58%),
@@ -71,17 +71,17 @@
         }
         .badge-restricted {
             display: inline-flex; align-items: center; gap: .4rem;
-            padding: .35rem 1rem; border-radius: 9999px;
-            font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-            background: rgba(239,68,68,.18); color: #fca5a5;
-            border: 1px solid rgba(239,68,68,.4);
+            padding: .4rem 1.1rem; border-radius: 9999px;
+            font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            background: rgba(239,68,68,.12); color: #b91c1c;
+            border: 1px solid rgba(239,68,68,.35);
         }
         .badge-gold {
             display: inline-flex; align-items: center; gap: .4rem;
-            padding: .35rem 1rem; border-radius: 9999px;
-            font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-            background: rgba(200,169,81,.18); color: #f0d97a;
-            border: 1px solid rgba(200,169,81,.45);
+            padding: .4rem 1.1rem; border-radius: 9999px;
+            font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            background: rgba(200,169,81,.14); color: #7c5f10;
+            border: 1px solid rgba(200,169,81,.4);
         }
         .section-eyebrow {
             font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
@@ -212,7 +212,11 @@
         </div>
         <div class="relative max-w-6xl mx-auto w-full">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
+                <div class="rounded-2xl p-8 lg:p-10"
+                     style="background: rgba(255,255,255,.93);
+                            border: 1px solid rgba(200,169,81,.25);
+                            box-shadow: 0 8px 48px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.8);
+                            backdrop-filter: blur(12px);">
                     <div class="flex items-center gap-3 mb-7">
                         <span class="badge-restricted">
                             <span class="w-1.5 h-1.5 rounded-full bg-red-400 r-pulse"></span>
@@ -226,15 +230,15 @@
                         </span>
                     </div>
                     <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight mb-6">
-                        <span class="text-white">NROTC</span><br>
-                        <span style="background: linear-gradient(135deg, #f0d97a 0%, #c8a951 50%, #a08030 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secure</span>
-                        <span class="text-white"> Portal</span>
+                        <span class="text-slate-900">NROTC</span><br>
+                        <span style="background: linear-gradient(135deg, #a08030 0%, #c8a951 50%, #a08030 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secure</span>
+                        <span class="text-slate-900"> Portal</span>
                     </h1>
-                    <p class="text-white text-base lg:text-lg leading-relaxed mb-3 max-w-lg font-medium">
+                    <p class="text-slate-800 text-base lg:text-lg leading-relaxed mb-3 max-w-lg font-semibold">
                         The official digital operations system for the Reserve Officers&apos; Training Corps,
                         Cagayan State University &mdash; Aparri.
                     </p>
-                    <p class="text-slate-200 text-sm leading-relaxed max-w-md mb-10">
+                    <p class="text-slate-700 text-base leading-relaxed max-w-md mb-10">
                         Access is restricted to verified personnel. All sessions are monitored and
                         unauthorized access is subject to disciplinary action.
                     </p>
