@@ -1,49 +1,95 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    {{-- Session status (e.g. password-reset link sent) --}}
+    @if (session('status'))
+        <div class="ac-alert ac-alert-success" role="status">
+            ✔&nbsp; {{ session('status') }}
+        </div>
+    @endif
+
+    {{-- Validation errors (general) --}}
+    @if ($errors->any())
+        <div class="ac-alert ac-alert-error" role="alert">
+            ✘&nbsp; {{ $errors->first() }}
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('login') }}" novalidate>
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        {{-- Cadet ID --}}
+        <div style="margin-bottom: 1rem;">
+            <label class="ac-label" for="email">Cadet ID / Email</label>
+            <div class="ac-input-wrap">
+                <span class="ac-input-icon" aria-hidden="true">⚓</span>
+                <input class="ac-input @error('email') is-error @enderror"
+                       type="email"
+                       id="email"
+                       name="email"
+                       value="{{ old('email') }}"
+                       placeholder="cadet@csuaparri.edu.ph"
+                       autocomplete="username"
+                       aria-required="true"
+                       aria-describedby="email-err"
+                       autofocus
+                       required>
+            </div>
+            @error('email')
+                <div class="ac-field-error" id="email-err" role="alert">⚠ {{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        {{-- Password --}}
+        <div style="margin-bottom: 1rem;">
+            <label class="ac-label" for="password">Password</label>
+            <div class="ac-input-wrap">
+                <span class="ac-input-icon" aria-hidden="true">🔐</span>
+                <input class="ac-input @error('password') is-error @enderror"
+                       type="password"
+                       id="password"
+                       name="password"
+                       placeholder="Enter password"
+                       autocomplete="current-password"
+                       aria-required="true"
+                       aria-describedby="password-err"
+                       required>
+                <button type="button"
+                        class="ac-pw-toggle"
+                        onclick="acTogglePw('password', this)"
+                        aria-label="Toggle password visibility">👁</button>
+            </div>
+            @error('password')
+                <div class="ac-field-error" id="password-err" role="alert">⚠ {{ $message }}</div>
+            @enderror
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded" name="remember"
-                       style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); accent-color: #c8a951;">
-                <span class="ms-2 text-sm text-slate-400">{{ __('Remember me') }}</span>
+        {{-- Remember me + Forgot password --}}
+        <div class="ac-extras">
+            <label class="ac-check-label" for="remember_me">
+                <input type="checkbox" id="remember_me" name="remember">
+                Keep me signed in
             </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
             @if (Route::has('password.request'))
-                <a class="text-sm text-slate-400 hover:text-white transition underline"
-                   href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+                <a class="ac-forgot" href="{{ route('password.request') }}">FORGOT PASSWORD?</a>
             @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
+
+        {{-- Submit --}}
+        <button type="submit" class="ac-submit">
+            ACCESS SYSTEM
+        </button>
+
+        <p class="ac-form-footer">
+            Unauthorized access is strictly prohibited &nbsp;·&nbsp; All sessions are monitored
+        </p>
     </form>
+
+    <script>
+    function acTogglePw(id, btn) {
+        var inp = document.getElementById(id);
+        if (inp.type === 'password') { inp.type = 'text';     btn.textContent = '🙈'; }
+        else                         { inp.type = 'password'; btn.textContent = '👁'; }
+    }
+    </script>
+
 </x-guest-layout>

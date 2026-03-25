@@ -1,10 +1,9 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
+    <header style="margin-bottom: 1.5rem;">
+        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #c8a951; margin-bottom: .35rem;">
             {{ __('Profile Information') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
+        <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
@@ -13,7 +12,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-5">
         @csrf
         @method('patch')
 
@@ -29,17 +28,18 @@
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
+                <div style="margin-top: .75rem;">
+                    <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #e8c96a;">
                         {{ __('Your email address is unverified.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
+                        <button form="send-verification"
+                                style="background: none; border: none; cursor: pointer; font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #c8a951; letter-spacing: .08em; text-decoration: underline; padding: 0;">
+                            {{ __('Re-send verification email') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
+                        <p style="margin-top: .5rem; font-family: 'Rajdhani', sans-serif; font-size: .85rem; color: #4ade80;">
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
@@ -56,7 +56,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
+                    style="font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #4ade80; letter-spacing: .08em;"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
