@@ -1,55 +1,58 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
-use App\Http\Controllers\Officer\DashboardController as OfficerDashboard;
-use App\Http\Controllers\Cadet\DashboardController as CadetDashboard;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Cadet\DashboardController as CadetDashboardController;
+use App\Http\Controllers\Officer\DashboardController as OfficerDashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// ── Root ─────────────────────────────────────────────────────────────────────
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
-// ── Authentication (unauthenticated users only) ───────────────────────────────
-Route::middleware('guest')->group(function () {
-    Route::get('/login',  [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-});
+// Authenticated users are redirected to their role-specific dashboard.
+Route::get('/dashboard', function () {
+    /** @var User $user */
+    $user = Auth::user();
 
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth');
+    return redirect($user->dashboardRoute());
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// ── Protected routes (authenticated + session timeout) ────────────────────────
+// ── Admin routes ──────────────────────────────────────────────────────────────
+Route::middleware(['auth', 'verified', 'session.timeout', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
+        Route::post('users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
+        Route::post('users/{user}/unlock', [AdminDashboardController::class, 'unlockAccount'])->name('users.unlock');
+        Route::post('users/{user}/toggle', [AdminDashboardController::class, 'toggleActive'])->name('users.toggle');
+    });
+
+// ── Officer routes ────────────────────────────────────────────────────────────
+Route::middleware(['auth', 'verified', 'session.timeout', 'role:officer'])
+    ->prefix('officer')
+    ->name('officer.')
+    ->group(function () {
+        Route::get('dashboard', [OfficerDashboardController::class, 'index'])->name('dashboard');
+    });
+
+// ── Cadet routes ──────────────────────────────────────────────────────────────
+Route::middleware(['auth', 'verified', 'session.timeout', 'role:cadet'])
+    ->prefix('cadet')
+    ->name('cadet.')
+    ->group(function () {
+        Route::get('dashboard', [CadetDashboardController::class, 'index'])->name('dashboard');
+    });
+
+// ── Profile routes (accessible by all authenticated roles) ────────────────────
 Route::middleware(['auth', 'session.timeout'])->group(function () {
-
-    // ── Admin ─────────────────────────────────────────────────────────────────
-    Route::middleware('role:admin')
-        ->prefix('admin')
-        ->name('admin.')
-        ->group(function () {
-            Route::get('/dashboard',          [AdminDashboard::class, 'index'])->name('dashboard');
-            Route::get('/users/create',       [AdminDashboard::class, 'createUser'])->name('users.create');
-            Route::post('/users',             [AdminDashboard::class, 'storeUser'])->name('users.store');
-            Route::patch('/users/{user}/unlock', [AdminDashboard::class, 'unlockAccount'])->name('users.unlock');
-            Route::patch('/users/{user}/toggle', [AdminDashboard::class, 'toggleActive'])->name('users.toggle');
-        });
-
-    // ── Officer ───────────────────────────────────────────────────────────────
-    Route::middleware('role:officer')
-        ->prefix('officer')
-        ->name('officer.')
-        ->group(function () {
-            Route::get('/dashboard', [OfficerDashboard::class, 'index'])->name('dashboard');
-        });
-
-    // ── Cadet ─────────────────────────────────────────────────────────────────
-    Route::middleware('role:cadet')
-        ->prefix('cadet')
-        ->name('cadet.')
-        ->group(function () {
-            Route::get('/dashboard', [CadetDashboard::class, 'index'])->name('dashboard');
-        });
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+require __DIR__.'/auth.php';
