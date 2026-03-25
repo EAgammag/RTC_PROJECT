@@ -171,7 +171,7 @@
     </nav>
 
     {{-- HERO --}}
-    <section class="hero-bg dot-grid relative min-h-screen flex flex-col justify-center pt-24 pb-20 px-6 overflow-hidden">
+    <section class="hero-bg dot-grid relative min-h-screen flex flex-col justify-center pt-20 pb-14 px-6 overflow-hidden">
         {{-- Atmospheric light blobs --}}
         <div class="absolute top-1/4 -left-40 w-[520px] h-[520px] rounded-full blur-3xl pointer-events-none opacity-40"
              style="background: radial-gradient(circle, rgba(200,169,81,.3) 0%, transparent 70%);"></div>
@@ -325,7 +325,7 @@
 
     {{-- OBJECTIVE STRIP --}}
     <section class="section-strip">
-        <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach ([
                 ['icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z', 'label' => 'Cadet Records', 'desc' => 'Enrollment & personal information'],
                 ['icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01', 'label' => 'Attendance Logs', 'desc' => 'Drill & formation tracking'],
@@ -349,8 +349,8 @@
     </section>
 
     {{-- ABOUT / SYSTEM PURPOSE --}}
-    <section class="max-w-6xl mx-auto px-6 lg:px-10 py-28">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
+    <section class="max-w-6xl mx-auto px-6 lg:px-10 py-20">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
             <div data-reveal="left">
                 <p class="section-eyebrow mb-4">System Objective</p>
                 <h2 class="text-3xl lg:text-4xl font-black leading-[1.15] tracking-tight mb-6">
@@ -360,7 +360,7 @@
                     This platform replaces paper-based ROTC record-keeping with a secure, role-aware digital system
                     &mdash; enforcing strict chain-of-identity before any military or academic data is accessed or modified.
                 </p>
-                <p class="text-slate-700 text-base leading-relaxed mb-9">
+                <p class="text-slate-700 text-base leading-relaxed mb-6">
                     Every session is authenticated, scoped to the minimum privilege required, and automatically
                     invalidated after 30 minutes of inactivity &mdash; keeping sensitive records out of unauthorized hands.
                 </p>
@@ -413,8 +413,8 @@
     <hr class="divider max-w-6xl mx-auto">
 
     {{-- ACCESS TIERS --}}
-    <section id="access-tiers" class="max-w-6xl mx-auto px-6 lg:px-10 py-28">
-        <div class="text-center mb-16" data-reveal>
+    <section id="access-tiers" class="max-w-6xl mx-auto px-6 lg:px-10 py-20">
+        <div class="text-center mb-12" data-reveal>
             <p class="section-eyebrow mb-3">Role-Based Access Control</p>
             <h2 class="text-3xl lg:text-4xl font-black tracking-tight">
                 Three Tiers of <span class="gold">Authorized Access</span>
@@ -508,8 +508,8 @@
     <hr class="divider max-w-6xl mx-auto">
 
     {{-- SECURITY CONTROLS --}}
-    <section class="max-w-6xl mx-auto px-6 lg:px-10 py-28">
-        <div class="text-center mb-16" data-reveal>
+    <section class="max-w-6xl mx-auto px-6 lg:px-10 py-20">
+        <div class="text-center mb-12" data-reveal>
             <p class="section-eyebrow mb-3">Security Architecture</p>
             <h2 class="text-3xl lg:text-4xl font-black tracking-tight">
                 Hardened Against <span class="gold">Every Threat Layer</span>
@@ -547,7 +547,7 @@
 
     {{-- CTA --}}
     @guest
-    <section class="px-6 py-6 mb-6">
+    <section class="px-6 py-6 mb-5">
         <div class="max-w-5xl mx-auto rounded-3xl p-10 lg:p-14 overflow-hidden relative text-center"
              data-reveal
              style="background: linear-gradient(135deg, rgba(200,169,81,.1) 0%, rgba(200,169,81,.05) 60%, #fff 100%);
@@ -565,7 +565,7 @@
                 <h2 class="text-3xl lg:text-4xl font-black tracking-tight mb-4">
                     Authorized <span class="gold">Personnel</span> Only
                 </h2>
-                <p class="text-slate-700 text-base mb-9 leading-relaxed max-w-md mx-auto">
+                <p class="text-slate-700 text-base mb-6 leading-relaxed max-w-md mx-auto">
                     If you have been issued credentials by a system administrator,
                     use them to access your assigned portal.
                 </p>
@@ -593,43 +593,45 @@
     @endguest
 
     {{-- FOOTER --}}
-    <footer style="border-top: 1px solid rgba(4,9,15,.08); background: #faf9f6;">
-        <div class="max-w-6xl mx-auto px-6 lg:px-10 py-12" data-reveal>
-            <div class="grid md:grid-cols-3 gap-10 mb-10">
+    <footer style="background: rgba(4,9,15,.96);
+                   border-top: 1px solid rgba(200,169,81,.14);
+                   box-shadow: 0 -1px 24px rgba(0,0,0,.5);">
+        <div class="max-w-6xl mx-auto px-6 lg:px-10 py-10" data-reveal>
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <div class="flex items-center gap-3 mb-4">
                         <img src="{{ asset('csulogo.png') }}" alt="CSU Logo" class="h-8 w-auto shrink-0">
                         <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-8 w-auto shrink-0">
                         <span class="text-sm font-black tracking-wider uppercase gold">NROTC &middot; CSU Aparri</span>
                     </div>
-                    <p class="text-sm text-slate-600 leading-relaxed">
+                    <p class="text-sm text-slate-300 leading-relaxed">
                         College of Criminal Justice Education<br>
                         Cagayan State University &mdash; Aparri Campus<br>
                         Reserve Officers&apos; Training Corps
                     </p>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-widest text-slate-700 mb-4">Portal Access</p>
+                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #c8a951;">Portal Access</p>
                     <div class="flex flex-col gap-2.5">
-                        <a href="{{ route('login') }}" class="text-sm text-slate-600 hover:text-slate-900 transition-colors">Authorized Sign In</a>
-                        <a href="{{ route('password.request') }}" class="text-sm text-slate-600 hover:text-slate-900 transition-colors">Password Reset</a>
+                        <a href="{{ route('login') }}" class="text-sm text-slate-300 hover:text-white transition-colors">Authorized Sign In</a>
+                        <a href="{{ route('password.request') }}" class="text-sm text-slate-300 hover:text-white transition-colors">Password Reset</a>
                     </div>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-widest text-slate-700 mb-4">System Policy</p>
-                    <p class="text-sm text-slate-600 leading-relaxed">
+                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #c8a951;">System Policy</p>
+                    <p class="text-sm text-slate-300 leading-relaxed">
                         Unauthorized access to this system is strictly prohibited.
                         All sessions are subject to monitoring and logging.
                         Violations will be reported to the unit commander.
                     </p>
                 </div>
             </div>
-            <hr class="divider mb-6">
+            <hr style="border: none; height: 1px; background: rgba(200,169,81,.14); margin-bottom: 1.5rem;">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p class="text-sm text-slate-500">
+                <p class="text-sm text-slate-400">
                     &copy; {{ date('Y') }} CCrJE ROTC &mdash; Cagayan State University Aparri. All rights reserved.
                 </p>
-                <p class="text-sm text-slate-500 tracking-wider">
+                <p class="text-sm tracking-wider" style="color: #c8a951;">
                     Integrity &bull; Discipline &bull; Service
                 </p>
             </div>
