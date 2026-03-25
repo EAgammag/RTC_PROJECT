@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Brand colour tokens (mirrors welcome.blade.php) ─────────────────────── */
+:root {
+    --navy:  #04090f;
+    --navy2: #061020;
+    --gold:  #c8a951;
+    --gold2: #a08030;
+    --gold3: #e8c96a;
+}
+
 /* ── Custom NROTC component classes ─────────────────────────────────────── */
 
 .stat-card {

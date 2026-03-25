@@ -42,7 +42,7 @@
                 </span>
             </div>
             <h2 class="text-lg font-bold text-white">{{ $cadet->name }}</h2>
-            <p class="text-sm mt-1" style="color: #c8a951;">Navy Cadet</p>
+            <p class="text-sm mt-1" style="color: #c8a951;">ROTC Cadet</p>
             <p class="text-xs text-slate-400 mt-1 font-mono">{{ $cadet->student_id ?? 'No ID assigned' }}</p>
         </div>
 

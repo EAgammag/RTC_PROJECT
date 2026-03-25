@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title', config('app.name', 'NROTC'))</title>
+        <title>@yield('title', config('app.name', 'CCJE ROTC'))</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -19,15 +19,10 @@
 
                     {{-- Brand --}}
                     <div class="flex items-center gap-3 px-2 mb-8">
-                        <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0"
-                             style="background: linear-gradient(135deg, #c8a951 0%, #a08030 100%);">
-                            <svg class="w-5 h-5" fill="none" stroke="#061020" viewBox="0 0 24 24" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v20M2 12h20"/>
-                            </svg>
-                        </div>
+                        <img src="{{ asset('CCJE.png') }}" alt="CCJE ROTC Logo" class="h-10 w-auto shrink-0">
                         <div>
-                            <p class="text-sm font-bold tracking-widest uppercase" style="color: #c8a951;">NROTC</p>
-                            <p class="text-xs text-slate-500 leading-none">Cadet Portal</p>
+                            <p class="text-sm font-bold tracking-widest uppercase" style="color: #c8a951;">CCJE ROTC</p>
+                            <p class="text-xs text-slate-500 leading-none">CSU — Aparri</p>
                         </div>
                     </div>
 

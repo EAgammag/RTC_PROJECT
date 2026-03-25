@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
@@ -16,13 +16,13 @@ class DashboardController extends Controller
     public function index(): View
     {
         $stats = [
-            'total_users'     => User::count(),
-            'total_officers'  => User::where('role', User::ROLE_OFFICER)->count(),
-            'total_cadets'    => User::where('role', User::ROLE_CADET)->count(),
-            'active_users'    => User::where('is_active', true)->count(),
+            'total_users' => User::count(),
+            'total_officers' => User::where('role', User::ROLE_OFFICER)->count(),
+            'total_cadets' => User::where('role', User::ROLE_CADET)->count(),
+            'active_users' => User::where('is_active', true)->count(),
             'locked_accounts' => User::whereNotNull('locked_until')
-                                     ->where('locked_until', '>', now())
-                                     ->count(),
+                ->where('locked_until', '>', now())
+                ->count(),
         ];
 
         $recent_users = User::latest()->take(10)->get();
@@ -42,31 +42,17 @@ class DashboardController extends Controller
      * Store a new user account.
      * Passwords are hashed automatically by the `hashed` cast on the User model.
      */
-    public function storeUser(Request $request)
+    public function storeUser(StoreUserRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name'       => ['required', 'string', 'max:255'],
-            'student_id' => ['required', 'string', 'max:50', 'unique:users,student_id'],
-            'email'      => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password'   => [
-                'required',
-                'string',
-                'min:12',
-                'confirmed',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/',
-            ],
-            'role'       => ['required', 'in:admin,officer,cadet'],
-        ], [
-            'password.regex' => 'Password must contain uppercase, lowercase, a number, and a special character.',
-        ]);
+        $validated = $request->validated();
 
         User::create([
-            'name'       => $validated['name'],
+            'name' => $validated['name'],
             'student_id' => $validated['student_id'],
-            'email'      => $validated['email'],
-            'password'   => Hash::make($validated['password']),
-            'role'       => $validated['role'],
-            'is_active'  => true,
+            'email' => $validated['email'],
+            'password' => $validated['password'],
+            'role' => $validated['role'],
+            'is_active' => true,
         ]);
 
         return redirect()->route('admin.dashboard')
@@ -76,11 +62,11 @@ class DashboardController extends Controller
     /**
      * Unlock a locked account and reset its failed-attempt counter.
      */
-    public function unlockAccount(User $user)
+    public function unlockAccount(User $user): RedirectResponse
     {
         $user->update([
             'login_attempts' => 0,
-            'locked_until'   => null,
+            'locked_until' => null,
         ]);
 
         return back()->with('success', "{$user->name}'s account has been unlocked.");
@@ -89,9 +75,9 @@ class DashboardController extends Controller
     /**
      * Toggle the active / inactive state of an account.
      */
-    public function toggleActive(User $user)
+    public function toggleActive(User $user): RedirectResponse
     {
-        $user->update(['is_active' => !$user->is_active]);
+        $user->update(['is_active' => ! $user->is_active]);
 
         $state = $user->is_active ? 'activated' : 'deactivated';
 
