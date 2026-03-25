@@ -9,6 +9,74 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.3.0] — 2026-03-25
+
+### Changed
+
+#### `resources/views/welcome.blade.php` — Landing Page UI Overhaul
+
+**Navbar**
+- Replaced static auth/guest buttons with a live **Philippine Standard Time (PHT) clock** widget (`Asia/Manila` timezone) using vanilla JS `Intl` API with `setInterval` tick
+- Clock displays time (`HH:MM:SS AM/PM`), date (e.g. `Wed, Mar 25, 2026`), and "Philippine Standard Time" label
+- Removed clock SVG icon; tightened line spacing with `leading-tight`
+- Increased clock time font from `text-xs` to `text-sm`; timezone label bumped from `0.6rem` to `0.7rem`
+- "Secure Information System" navbar subtitle: `text-slate-500` → `text-slate-300` for legibility on dark navbar
+
+**Hero Section — Dark Navy Justice Theme**
+- Replaced plain white hero background with a deep navy atmospheric gradient (`#0d1e35 → #071120 → #04090f`) with multi-layered radial gold/blue glows and a gold dot-grid pattern
+- Added Scales of Justice SVG watermark (top-right, `opacity: 0.04`)
+- Added CCJE monogram SVG watermark (bottom-left, `opacity: 0.028`)
+- Added smooth white fade-out gradient at the bottom of the hero transitioning into the light content sections
+- Hero heading: `text-slate-900` → `text-white`; "Secure" word uses bright gold gradient text
+- Both hero paragraphs: upgraded to `text-white` / full white for maximum contrast on dark background
+- Scroll indicator: `text-slate-300`
+
+**Hero Left Column — Frosted Glass Card**
+- Wrapped the hero left column content in a **white frosted-glass card** (`rgba(255,255,255,.93)`, gold border, deep shadow, `backdrop-filter: blur`) to ensure dark text reads correctly against it
+- `.badge-restricted`: font `0.65rem` → `0.8rem`, stronger red background, text `#b91c1c`
+- `.badge-gold`: font `0.65rem` → `0.8rem`, stronger gold background, text `#7c5f10`
+- Heading: `text-white` → `text-slate-900`; "Secure" gold gradient adjusted for light surface
+- Main description paragraph: `text-white` → `text-slate-800 font-semibold`
+- Secondary paragraph: `text-white` → `text-slate-700`
+- `.btn-ghost` "View Access Tiers": changed to dark navy text and border to suit light card background
+
+**Hero Right Column — Stat Cards & Status Card**
+- Stat cards ("3 Access Roles", "6 Security Layers", "100% Encrypted"): replaced light-tinted backgrounds (`rgba(...,.12)`) with deep dark backgrounds (`rgba(10,16,24,.75)`) for solid dark panel look
+- Removed `opacity: .7` from stat sub-labels; changed `font-medium` → `font-semibold` for better weight
+- Status card ("All Systems Operational"): background darkened to `rgba(6,12,20,.82)`
+- "All Systems Operational" label: `text-xs` → `text-sm`
+- "Authentication · Records · Session Control": `text-xs text-slate-400` → `text-sm text-slate-300`
+
+**Content Sections — Contrast & Readability Fixes**
+- Objective strip: descriptions upgraded from `text-xs text-slate-500` to `text-sm text-slate-600`; labels `text-xs text-slate-500` → `text-sm font-semibold text-slate-800`
+- About section: body paragraphs `text-slate-600 text-sm` → `text-slate-700 text-base`; checklist items `text-slate-700` → `text-sm font-medium text-slate-800`
+- Threat Response Matrix: threat/response text `text-xs` → `text-sm text-slate-700`
+- Access Tiers intro paragraph: `text-slate-600 text-sm` → `text-slate-700 text-base`
+- Role card descriptions: `text-xs text-slate-600` → `text-sm text-slate-700`
+- Role permission list items: `text-xs text-slate-600` → `text-sm text-slate-700`
+- Security Controls card titles: `text-sm` → `text-base`; body descriptions: `text-xs text-slate-600` → `text-sm text-slate-700`
+- CTA section body: `text-slate-600 text-sm` → `text-slate-700 text-base`; footnote: `text-xs text-slate-500` → `text-sm text-slate-600`
+
+**Spacing Adjustments**
+- All major content sections: `py-28` → `py-20` (reduced excessive vertical gaps)
+- Section heading margin bottoms: `mb-16` → `mb-12`
+- About grid gap: `gap-20` → `gap-14`; About 2nd paragraph: `mb-9` → `mb-6`
+- Objective strip: `py-10` → `py-8`; CTA: `py-6 mb-6` → `py-6 mb-5`
+- Footer: `py-12 gap-10 mb-10` → `py-10 gap-8 mb-8`
+
+**Footer — Dark Navy Theme**
+- Footer background changed from `#faf9f6` (cream) to `rgba(4,9,15,.96)` — matching the navbar
+- Top border: thin gold `rgba(200,169,81,.14)` — mirroring navbar bottom border
+- Added upward `box-shadow` for depth
+- Footer section headings: `text-slate-700` → gold `#c8a951`
+- Footer body text: `text-slate-600` → `text-slate-300`
+- Footer links: `text-slate-600 hover:text-slate-900` → `text-slate-300 hover:text-white`
+- Divider: plain `rgba(4,9,15,.07)` → gold-tinted `rgba(200,169,81,.14)`
+- "Integrity · Discipline · Service" motto: `text-slate-500` → gold `#c8a951`
+- Copyright line: `text-slate-500` → `text-slate-400`
+
+---
+
 ## [0.2.0] — 2026-03-25
 
 ### Added
