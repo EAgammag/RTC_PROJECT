@@ -2,29 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Brand colour tokens ──────────────────────────────────────────────────── */
+/* ── Centralized Brand Color System ─────────────────────────────────────── */
 :root {
-    --navy:  #04090f;
-    --navy2: #061020;
-    --gold:  #c8a951;
-    --gold2: #a08030;
-    --gold3: #e8c96a;
+    /* Navy palette */
+    --navy:         #04090f;
+    --navy2:        #061020;
+    /* Gold palette */
+    --gold:         #c8a951;
+    --gold2:        #a08030;
+    --gold3:        #e8c96a;
+    /* UI state */
+    --error:        #e05252;
+    --success:      #4ade80;
+    /* Text on light surfaces */
+    --text:         #1e293b;
+    --text-dim:     #64748b;
+    /* Text on dark surfaces */
+    --text-inv:     #e0dccf;
+    --text-inv-dim: #7a8fa8;
+    /* Backgrounds */
+    --bg:           #ffffff;
+    --bg-subtle:    #f8fafc;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+body {
+    background-color: var(--bg);
+    color: var(--text);
 }
 
 /* ── Custom NROTC component classes ─────────────────────────────────────── */
 
 .stat-card {
-    background: rgba(4, 9, 15, 0.65);
-    border: 1px solid rgba(200, 169, 81, 0.14);
-    transition: border-color .2s;
+    background: #ffffff;
+    border: 1px solid rgba(200, 169, 81, 0.2);
+    box-shadow: 0 1px 8px rgba(4, 9, 15, 0.06);
+    transition: border-color .2s, box-shadow .2s;
 }
 .stat-card:hover {
-    border-color: rgba(200, 169, 81, 0.28);
+    border-color: rgba(200, 169, 81, 0.4);
+    box-shadow: 0 4px 16px rgba(4, 9, 15, 0.1);
 }
 
 .card {
-    background: rgba(4, 9, 15, 0.55);
-    border: 1px solid rgba(200, 169, 81, 0.1);
+    background: #ffffff;
+    border: 1px solid rgba(4, 9, 15, 0.09);
+    box-shadow: 0 1px 6px rgba(4, 9, 15, 0.05);
 }
 
 .sidebar-link {

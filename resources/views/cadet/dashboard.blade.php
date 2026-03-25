@@ -41,18 +41,18 @@
                     {{ strtoupper(substr($cadet->name, 0, 1)) }}
                 </span>
             </div>
-            <h2 class="text-lg font-bold text-white">{{ $cadet->name }}</h2>
+            <h2 class="text-lg font-bold text-slate-900">{{ $cadet->name }}</h2>
             <p class="text-sm mt-1" style="color: #c8a951;">ROTC Cadet</p>
             <p class="text-xs text-slate-400 mt-1 font-mono">{{ $cadet->student_id ?? 'No ID assigned' }}</p>
         </div>
 
         {{-- Account details --}}
         <div class="card rounded-xl p-6">
-            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Account Details</h3>
+            <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Account Details</h3>
             <dl class="space-y-3 text-sm">
                 <div class="flex justify-between">
-                    <dt class="text-slate-400">Email</dt>
-                    <dd class="text-white">{{ $cadet->email }}</dd>
+                    <dt class="text-slate-500">Email</dt>
+                    <dd class="text-slate-900">{{ $cadet->email }}</dd>
                 </div>
                 <div class="flex justify-between">
                     <dt class="text-slate-400">Role</dt>
@@ -73,8 +73,8 @@
                     </dd>
                 </div>
                 <div class="flex justify-between">
-                    <dt class="text-slate-400">Last Login</dt>
-                    <dd class="text-white">
+                    <dt class="text-slate-500">Last Login</dt>
+                    <dd class="text-slate-900">
                         {{ $cadet->last_login_at ? $cadet->last_login_at->format('d M Y, H:i') : 'First login' }}
                     </dd>
                 </div>
@@ -83,7 +83,7 @@
 
         {{-- Access level --}}
         <div class="card rounded-xl p-6">
-            <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Your Access Level</h3>
+            <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Your Access Level</h3>
             <ul class="space-y-2 text-sm">
                 @php
                     $perms = [
@@ -102,7 +102,7 @@
                             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#4ade80" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                             </svg>
-                            <span class="text-slate-300">{{ $perm['label'] }}</span>
+                            <span class="text-slate-700">{{ $perm['label'] }}</span>
                         @else
                             <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="#f87171" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -120,9 +120,9 @@
         <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #c8a951;">
             Security Notice
         </h3>
-        <p class="text-xs text-slate-400">
-            Your session is protected and will <strong class="text-slate-200">expire after 30 minutes</strong>
-            of inactivity. Always click <strong class="text-slate-200">Secure Logout</strong> when finished,
+        <p class="text-xs text-slate-600">
+            Your session is protected and will <strong class="text-slate-800">expire after 30 minutes</strong>
+            of inactivity. Always click <strong class="text-slate-800">Secure Logout</strong> when finished,
             especially on shared devices. Never share your password with anyone, including unit staff.
         </p>
     </div>
