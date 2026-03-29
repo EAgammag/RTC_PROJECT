@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Create Account')
 @section('page-title', 'Create New Account')
@@ -32,13 +32,31 @@
             @csrf
 
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Full Name</label>
-                    <input type="text" name="name" value="{{ old('name') }}" required
-                           class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
-                           style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
-                           placeholder="e.g. Juan dela Cruz">
-                    @error('name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                <div class="grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">First Name</label>
+                        <input type="text" name="first_name" value="{{ old('first_name') }}" required
+                               class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
+                               style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
+                               placeholder="First name">
+                        @error('first_name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Middle Name</label>
+                        <input type="text" name="middle_name" value="{{ old('middle_name') }}"
+                               class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
+                               style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
+                               placeholder="Middle name">
+                        @error('middle_name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Last Name</label>
+                        <input type="text" name="last_name" value="{{ old('last_name') }}" required
+                               class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
+                               style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
+                               placeholder="Last name">
+                        @error('last_name') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
                 </div>
 
                 <div>
@@ -94,12 +112,12 @@
             <div class="flex gap-3 mt-6">
                 <button type="submit"
                         class="px-6 py-2.5 rounded-lg text-sm font-semibold"
-                        style="background: linear-gradient(135deg, #FFD700, #C7A600); color: #200608;">
+                        style="background: linear-gradient(135deg, #c8a951, #a08030); color: #061020;">
                     Create Account
                 </button>
                 <a href="{{ route('admin.dashboard') }}"
                    class="px-6 py-2.5 rounded-lg text-sm font-medium text-slate-600 transition-colors"
-                   style="background: #f1f5f9; border: 1px solid rgba(15,4,4,0.1);">
+                   style="background: #f1f5f9; border: 1px solid rgba(4,9,15,0.1);">
                     Cancel
                 </a>
             </div>

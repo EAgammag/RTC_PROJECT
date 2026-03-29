@@ -46,8 +46,14 @@ class DashboardController extends Controller
     {
         $validated = $request->validated();
 
+        $fullName = trim(implode(' ', array_filter([
+            $validated['first_name'],
+            $validated['middle_name'] ?? null,
+            $validated['last_name'],
+        ])));
+
         User::create([
-            'name' => $validated['name'],
+            'name' => $fullName,
             'student_id' => $validated['student_id'],
             'email' => $validated['email'],
             'password' => $validated['password'],
@@ -56,7 +62,7 @@ class DashboardController extends Controller
         ]);
 
         return redirect()->route('admin.dashboard')
-            ->with('success', "Account for {$validated['name']} created successfully.");
+            ->with('success', "Account for {$fullName} created successfully.");
     }
 
     /**

@@ -2,52 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Centralized Brand Color System ─────────────────────────────────────── */
+/* ── Brand colour tokens ─────────────────────────────────────────────────── */
 :root {
-    /* Maroon palette */
-    --navy:         #0f0404;
-    --navy2:        #200608;
-    /* Gold palette */
-    --gold:         #FFD700;
-    --gold2:        #C7A600;
-    --gold3:        #FFE44D;
-    /* UI state */
-    --error:        #e05252;
-    --success:      #4ade80;
-    /* Text on light surfaces */
-    --text:         #1e293b;
-    --text-dim:     #64748b;
-    /* Text on dark surfaces */
-    --text-inv:     #f0ece0;
-    --text-inv-dim: #b8a08a;
-    /* Backgrounds */
-    --bg:           #ffffff;
-    --bg-subtle:    #f8fafc;
+    --navy:  #04090f;
+    --navy2: #061020;
+    --gold:  #c8a951;
+    --gold2: #a08030;
+    --gold3: #e8c96a;
 }
 
-/* ── Base ─────────────────────────────────────────────────────────────────── */
-body {
-    background-color: var(--bg);
-    color: var(--text);
+/* ── Layout shell ────────────────────────────────────────────────────────── */
+
+html, body { min-height: 100vh; }
+
+.app-sidebar {
+    background: var(--navy);
+    border-right: 1px solid rgba(200, 169, 81, 0.1);
+}
+
+.app-topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 /* ── Custom NROTC component classes ─────────────────────────────────────── */
 
 .stat-card {
     background: #ffffff;
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    box-shadow: 0 1px 8px rgba(15, 4, 4, 0.06);
-    transition: border-color .2s, box-shadow .2s;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
+
 .stat-card:hover {
-    border-color: rgba(255, 215, 0, 0.4);
-    box-shadow: 0 4px 16px rgba(15, 4, 4, 0.1);
+    border-color: rgba(200, 169, 81, 0.4);
+    box-shadow: 0 2px 8px rgba(200, 169, 81, 0.08);
 }
 
 .card {
     background: #ffffff;
-    border: 1px solid rgba(15, 4, 4, 0.09);
-    box-shadow: 0 1px 6px rgba(15, 4, 4, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    border-color: rgba(200, 169, 81, 0.3);
+    box-shadow: 0 2px 8px rgba(200, 169, 81, 0.06);
 }
 
 .sidebar-link {
@@ -56,22 +56,21 @@ body {
     gap: 0.625rem;
     padding: 0.5rem 0.875rem;
     border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
     font-weight: 500;
-    color: #94a3b8;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
 }
 
 .sidebar-link:hover {
-    background: rgba(255, 215, 0, 0.08);
-    color: #f0ece0;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .sidebar-link.active {
-    background: rgba(255, 215, 0, 0.14);
-    color: #FFD700;
-    border-left: 2px solid #FFD700;
-    padding-left: calc(0.875rem - 2px);
+    background: rgba(200, 169, 81, 0.12);
+    color: var(--gold);
+    font-weight: 600;
 }
