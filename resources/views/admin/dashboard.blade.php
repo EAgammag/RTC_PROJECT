@@ -28,7 +28,7 @@
         @php
             $statCards = [
                 ['label' => 'Total Accounts',    'value' => $stats['total_users'],     'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z', 'color' => '#60a5fa'],
-                ['label' => 'Officers',           'value' => $stats['total_officers'],  'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',                                                                                                                                                                                                                                                                                                                    'color' => '#c8a951'],
+                ['label' => 'Officers',           'value' => $stats['total_officers'],  'icon' => 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',                                                                                                                                                                                                                                                                                                                    'color' => '#FFD700'],
                 ['label' => 'Cadets',             'value' => $stats['total_cadets'],    'icon' => 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z',                                                                                                                                                                                                                                                                        'color' => '#34d399'],
                 ['label' => 'Active Users',       'value' => $stats['active_users'],    'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',                                                                                                                                                                                                                                                                                                                                         'color' => '#4ade80'],
                 ['label' => 'Locked Accounts',    'value' => $stats['locked_accounts'], 'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',                                                                                                                                                                                                                                                                                'color' => '#f87171'],
@@ -43,7 +43,7 @@
                         <p class="text-3xl font-bold text-slate-900">{{ $card['value'] }}</p>
                     </div>
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                         style="background: rgba(4,9,15,0.04);">
+                         style="background: rgba(15,4,4,0.04);">
                         <svg class="w-5 h-5" fill="none" stroke="{{ $card['color'] }}" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="{{ $card['icon'] }}"/>
                         </svg>
@@ -55,11 +55,11 @@
 
     {{-- ── Recent accounts table ─────────────────────────────────────────────── --}}
     <div class="card rounded-xl overflow-hidden">
-        <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color: rgba(4,9,15,0.08);">
+        <div class="flex items-center justify-between px-6 py-4 border-b" style="border-color: rgba(15,4,4,0.08);">
                 <h2 class="text-sm font-semibold text-slate-800 uppercase tracking-wider">Recent Accounts</h2>
             <a href="{{ route('admin.users.create') }}"
                class="text-xs px-3 py-1.5 rounded-lg font-semibold transition-colors"
-               style="background: rgba(200,169,81,0.15); color: #c8a951; border: 1px solid rgba(200,169,81,0.3);">
+               style="background: rgba(255,215,0,0.15); color: #FFD700; border: 1px solid rgba(255,215,0,0.3);">
                 + New Account
             </a>
         </div>
@@ -85,7 +85,7 @@
                             <td class="px-6 py-4 text-slate-600">{{ $user->email }}</td>
                             <td class="px-6 py-4">
                                 @php
-                                    $roleColors = ['admin' => '#60a5fa', 'officer' => '#c8a951', 'cadet' => '#34d399'];
+                                    $roleColors = ['admin' => '#60a5fa', 'officer' => '#FFD700', 'cadet' => '#34d399'];
                                     $color = $roleColors[$user->role] ?? '#94a3b8';
                                 @endphp
                                 <span class="text-xs px-2 py-0.5 rounded-full font-semibold uppercase"
@@ -122,7 +122,7 @@
                                             @method('PATCH')
                                             <button type="submit"
                                                     class="text-xs px-2 py-1 rounded font-medium transition-colors"
-                                                    style="background: rgba(200,169,81,0.15); color: #c8a951; border: 1px solid rgba(200,169,81,0.3);">
+                                                    style="background: rgba(255,215,0,0.15); color: #FFD700; border: 1px solid rgba(255,215,0,0.3);">
                                                 Unlock
                                             </button>
                                         </form>
@@ -151,7 +151,7 @@
 
     {{-- ── Security info panel ───────────────────────────────────────────────── --}}
     <div class="mt-6 card rounded-xl p-5">
-        <h3 class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: #c8a951;">
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-3" style="color: #FFD700;">
             Security Policy Summary
         </h3>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-600">

@@ -1,6 +1,6 @@
 <section>
     <header style="margin-bottom: 1.5rem;">
-        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #c8a951; margin-bottom: .35rem;">
+        <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #FFD700; margin-bottom: .35rem;">
             {{ __('Update Password') }}
         </h2>
         <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">

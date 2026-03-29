@@ -1,6 +1,6 @@
 <section>
     <header style="margin-bottom: 1.5rem;">
-        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #c8a951; margin-bottom: .35rem;">
+        <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #FFD700; margin-bottom: .35rem;">
             {{ __('Profile Information') }}
         </h2>
         <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
@@ -29,11 +29,11 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div style="margin-top: .75rem;">
-                    <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #e8c96a;">
+                    <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #FFE44D;">
                         {{ __('Your email address is unverified.') }}
 
                         <button form="send-verification"
-                                style="background: none; border: none; cursor: pointer; font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #c8a951; letter-spacing: .08em; text-decoration: underline; padding: 0;">
+                                style="background: none; border: none; cursor: pointer; font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #FFD700; letter-spacing: .08em; text-decoration: underline; padding: 0;">
                             {{ __('Re-send verification email') }}
                         </button>
                     </p>

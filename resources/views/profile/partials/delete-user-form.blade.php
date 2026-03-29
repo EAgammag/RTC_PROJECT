@@ -1,6 +1,6 @@
 <section class="space-y-6">
     <header>
-        <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .35rem;">
+        <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .35rem;">
             {{ __('Delete Account') }}
         </h2>
         <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
@@ -18,7 +18,7 @@
             @csrf
             @method('delete')
 
-            <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .5rem;">
+            <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .5rem;">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 

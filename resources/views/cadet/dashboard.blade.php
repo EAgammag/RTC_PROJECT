@@ -36,13 +36,13 @@
         {{-- Profile --}}
         <div class="stat-card rounded-xl p-6 flex flex-col items-center text-center">
             <div class="w-16 h-16 rounded-full flex items-center justify-center mb-3"
-                 style="background: linear-gradient(135deg, #c8a951 0%, #a08030 100%);">
-                <span class="text-2xl font-bold" style="color: #061020;">
+                 style="background: linear-gradient(135deg, #FFD700 0%, #C7A600 100%);">
+                <span class="text-2xl font-bold" style="color: #200608;">
                     {{ strtoupper(substr($cadet->name, 0, 1)) }}
                 </span>
             </div>
             <h2 class="text-lg font-bold text-slate-900">{{ $cadet->name }}</h2>
-            <p class="text-sm mt-1" style="color: #c8a951;">ROTC Cadet</p>
+            <p class="text-sm mt-1" style="color: #FFD700;">ROTC Cadet</p>
             <p class="text-xs text-slate-400 mt-1 font-mono">{{ $cadet->student_id ?? 'No ID assigned' }}</p>
         </div>
 
@@ -117,7 +117,7 @@
 
     {{-- ── Notice ─────────────────────────────────────────────────────────────── --}}
     <div class="card rounded-xl p-5">
-        <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #c8a951;">
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #FFD700;">
             Security Notice
         </h3>
         <p class="text-xs text-slate-600">
