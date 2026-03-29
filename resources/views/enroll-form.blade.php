@@ -220,7 +220,7 @@
                         <div class="fl"><label class="lbl" for="dob">Date of Birth <span class="req">*</span></label>
                             <input id="dob" name="date_of_birth" type="date" class="inp" required></div>
                         <div class="fl"><label class="lbl" for="age">Age <span class="req">*</span></label>
-                            <input id="age" name="age" type="number" min="15" max="35" class="inp" placeholder="19" required></div>
+                            <input id="age" name="age" type="number" min="15" max="35" class="inp" placeholder="Auto-calculated" readonly required style="background:#f3f4f6;cursor:default;color:#6b7280;"></div>
                         <div class="fl"><label class="lbl" for="gender">Gender <span class="req">*</span></label>
                             <select id="gender" name="gender" class="inp" required>
                                 <option value="" disabled selected>Select</option>
@@ -528,8 +528,11 @@
                 <p class="lbl mb-2">Blood Type</p>
                 <div class="pill-group">
                     @foreach (['O','A','AB','A+','B+','Other'] as $bt)
-                    <label class="pill-opt"><input type="checkbox" name="rids_blood_type[]" value="{{ $bt }}"><span>{{ $bt }}</span></label>
+                    <label class="pill-opt"><input type="checkbox" name="rids_blood_type[]" value="{{ $bt }}"{{ $bt === 'Other' ? ' id="bt_other_cb"' : '' }}><span>{{ $bt }}</span></label>
                     @endforeach
+                </div>
+                <div id="blood-other-wrap" class="hidden mt-2">
+                    <input id="blood_type_other" name="blood_type_other" type="text" class="inp" placeholder="Please specify blood type...">
                 </div>
             </div>
 
@@ -586,6 +589,9 @@
                     @foreach (['6"','7"','8"','9"','10"','Other'] as $cs)
                     <label class="pill-opt"><input type="radio" name="combat_size" value="{{ $cs }}"><span>{{ $cs }}</span></label>
                     @endforeach
+                </div>
+                <div id="combat-other-wrap" class="hidden mt-2">
+                    <input id="combat_size_other" name="combat_size_other" type="text" class="inp" placeholder="Please specify combat size...">
                 </div>
             </div>
 
@@ -1257,6 +1263,39 @@ function populateReview() {
                 done.classList.remove('hidden');
                 fn.textContent = file.name.length > 28 ? file.name.substring(0,26)+'...' : file.name;
                 zone.classList.add('has-file');
+            }
+        });
+    });
+}());
+// "Other" — Blood Type checkbox
+(function () {
+    var cb = document.getElementById('bt_other_cb');
+    var wrap = document.getElementById('blood-other-wrap');
+    if (!cb || !wrap) return;
+    cb.addEventListener('change', function () {
+        if (cb.checked) {
+            wrap.classList.remove('hidden');
+            document.getElementById('blood_type_other').focus();
+        } else {
+            wrap.classList.add('hidden');
+            document.getElementById('blood_type_other').value = '';
+        }
+    });
+}());
+
+// "Other" — Combat Size radio
+(function () {
+    var radios = document.querySelectorAll('input[name="combat_size"]');
+    var wrap = document.getElementById('combat-other-wrap');
+    if (!radios.length || !wrap) return;
+    radios.forEach(function (r) {
+        r.addEventListener('change', function () {
+            if (r.value === 'Other' && r.checked) {
+                wrap.classList.remove('hidden');
+                document.getElementById('combat_size_other').focus();
+            } else {
+                wrap.classList.add('hidden');
+                document.getElementById('combat_size_other').value = '';
             }
         });
     });
