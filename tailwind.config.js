@@ -16,8 +16,8 @@ export default {
             },
             colors: {
                 navy: {
-                    DEFAULT: '#0f0404',
-                    dark: '#200608',
+                    DEFAULT: '#04090f',
+                    dark: '#071120',
                 },
                 gold: {
                     DEFAULT: '#FFD700',

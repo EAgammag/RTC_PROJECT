@@ -12,6 +12,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/enroll', function () {
+    return view('enroll');
+})->name('enroll');
+
+Route::get('/enroll/form', function () {
+    return view('enroll-form');
+})->name('enroll.form');
+
+Route::post('/enroll/form', function () {
+    // TODO: handle enrollment submission (store to DB, notify admin, etc.)
+    return back()->with('success', 'Your application has been submitted. The ROTC office will review it shortly.');
+})->name('enroll.form.submit');
+
 // Authenticated users are redirected to their role-specific dashboard.
 Route::get('/dashboard', function () {
     /** @var User $user */
@@ -46,6 +59,7 @@ Route::middleware(['auth', 'verified', 'session.timeout', 'role:cadet'])
     ->name('cadet.')
     ->group(function () {
         Route::get('dashboard', [CadetDashboardController::class, 'index'])->name('dashboard');
+        Route::get('profile', [CadetDashboardController::class, 'profile'])->name('profile');
     });
 
 // ── Profile routes (accessible by all authenticated roles) ────────────────────

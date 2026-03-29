@@ -1,9 +1,9 @@
 <section class="space-y-6">
     <header>
-        <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .35rem;">
+        <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #f87171; margin-bottom: .35rem;">
             {{ __('Delete Account') }}
         </h2>
-        <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
+        <p style="font-size: .88rem; color: #6b7280; line-height: 1.5;">
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
     </header>
@@ -18,11 +18,11 @@
             @csrf
             @method('delete')
 
-            <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #f87171; margin-bottom: .5rem;">
+            <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #f87171; margin-bottom: .5rem;">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
-            <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1.25rem;">
+            <p style="font-size: .88rem; color: #6b7280; line-height: 1.5; margin-bottom: 1.25rem;">
                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm.') }}
             </p>
 

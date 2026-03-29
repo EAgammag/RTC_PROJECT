@@ -1,9 +1,9 @@
 <section>
     <header style="margin-bottom: 1.5rem;">
-        <h2 style="font-family: 'Anton', sans-serif; font-size: 1rem; letter-spacing: .14em; color: #FFD700; margin-bottom: .35rem;">
+        <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #800000; margin-bottom: .35rem;">
             {{ __('Update Password') }}
         </h2>
-        <p style="font-family: 'Rajdhani', sans-serif; font-size: .88rem; color: #7a8fa8; line-height: 1.5;">
+        <p style="font-size: .88rem; color: #6b7280; line-height: 1.5;">
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
         </p>
     </header>
@@ -39,7 +39,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    style="font-family: 'Share Tech Mono', monospace; font-size: .65rem; color: #4ade80; letter-spacing: .08em;"
+                    style="font-size: .75rem; color: #16a34a; letter-spacing: .02em;"
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

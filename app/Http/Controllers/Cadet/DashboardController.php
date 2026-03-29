@@ -18,4 +18,14 @@ class DashboardController extends Controller
 
         return view('cadet.dashboard', compact('cadet'));
     }
+
+    /**
+     * Show the cadet's profile management page.
+     */
+    public function profile(): View
+    {
+        return view('cadet.profile', [
+            'user' => Auth::user(),
+        ]);
+    }
 }

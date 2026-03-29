@@ -4,29 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title', config('app.name', 'CCJE ROTC'))</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+        <title>@yield('title', config('app.name', 'CCJE ROTC')) — NROTC Portal</title>
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800,900&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <style>
-            html, body { min-height: 100vh; }
-            body { font-family: 'Rajdhani', sans-serif; }
-            .app-sidebar {
-                background: rgba(15,4,4,.97);
-                border-right: 1px solid rgba(255,215,0,.12);
-                box-shadow: 2px 0 24px rgba(0,0,0,.4);
-            }
-            .app-topbar {
-                background: rgba(15,4,4,.96);
-                border-bottom: 1px solid rgba(255,215,0,.12);
-                box-shadow: 0 1px 24px rgba(0,0,0,.4);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-            }
-        </style>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased" style="background: var(--navy); color: #1e293b;">
         <div class="flex min-h-screen">
 
             {{-- ── Sidebar ──────────────────────────────────────────────────── --}}
@@ -35,10 +18,16 @@
 
                     {{-- Brand --}}
                     <div class="flex items-center gap-3 px-2 mb-8">
-                        <img src="{{ asset('CCJE.png') }}" alt="CCJE ROTC Logo" class="h-10 w-auto shrink-0">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                             style="background: linear-gradient(135deg, var(--gold3) 0%, var(--gold) 60%, var(--gold2) 100%); box-shadow: 0 0 16px rgba(200,169,81,.3);">
+                            <svg class="w-5 h-5" fill="none" stroke="#04090f" viewBox="0 0 24 24" stroke-width="2.3">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                        </div>
                         <div>
-                            <p style="color: #FFD700; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .14em;">NROTC</p>
-                            <p class="text-xs text-slate-500 leading-none" style="font-family: 'Share Tech Mono', monospace; letter-spacing: .1em;">CSU — Aparri</p>
+                            <p class="font-black text-sm tracking-widest uppercase" style="color: var(--gold);">NROTC</p>
+                            <p class="text-xs text-slate-500 leading-none tracking-wide">CSU — Aparri</p>
                         </div>
                     </div>
 
@@ -47,8 +36,25 @@
                         @yield('sidebar-nav')
                     </nav>
 
+                    {{-- User identity chip --}}
+                    <div class="px-3 py-2.5 rounded-xl mb-3"
+                         style="background: rgba(200,169,81,.05); border: 1px solid rgba(200,169,81,.1);">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs shrink-0"
+                                 style="background: linear-gradient(135deg, var(--gold3), var(--gold)); color: var(--navy);">
+                                {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-white truncate">{{ Auth::user()->name }}</p>
+                                <p class="uppercase tracking-widest font-bold" style="color: var(--gold); font-size: .6rem;">
+                                    {{ Auth::user()->role }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     {{-- Logout --}}
-                    <div class="pt-4" style="border-top: 1px solid rgba(255,215,0,.1);">
+                    <div class="pt-3" style="border-top: 1px solid rgba(255,255,255,.06);">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="sidebar-link w-full text-left">
@@ -65,21 +71,35 @@
             </aside>
 
             {{-- ── Main wrapper ─────────────────────────────────────────────── --}}
-            <div class="flex flex-col flex-1 min-w-0">
+            <div class="flex flex-col flex-1 min-w-0" style="background: #f8fafc;">
 
                 {{-- Top bar --}}
                 <header class="app-topbar flex items-center justify-between px-8 py-4 shrink-0">
-                    <h1 style="color: #FFD700; font-family: 'Bebas Neue', sans-serif; font-size: 1.05rem; letter-spacing: .18em;">
+                    <h1 class="text-xs font-bold tracking-widest uppercase" style="color: #1e293b;">
                         @yield('page-title')
                     </h1>
                     <div class="flex items-center gap-3">
-                        <span class="text-sm text-slate-600" style="font-family: 'Rajdhani', sans-serif;">{{ Auth::user()->name }}</span>
-                        <div class="w-9 h-9 rounded-full flex items-center justify-center font-bold shrink-0"
-                             style="background: linear-gradient(135deg, #FFD700 0%, #C7A600 100%); color: #0f0404; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .04em;">
+                        <span class="text-xs text-slate-500">{{ Auth::user()->name }}</span>
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs shrink-0"
+                             style="background: linear-gradient(135deg, var(--gold3), var(--gold)); color: var(--navy);">
                             {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                         </div>
                     </div>
                 </header>
+
+                {{-- Flash messages --}}
+                @if (session('success'))
+                    <div class="mx-8 mt-5 px-4 py-3 rounded-xl text-sm font-medium"
+                         style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="mx-8 mt-5 px-4 py-3 rounded-xl text-sm font-medium"
+                         style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;">
+                        {{ session('error') }}
+                    </div>
+                @endif
 
                 {{-- Page content --}}
                 <main class="flex-1 p-8 overflow-auto">
@@ -88,5 +108,6 @@
 
             </div>
         </div>
+        @stack('scripts')
     </body>
 </html>
