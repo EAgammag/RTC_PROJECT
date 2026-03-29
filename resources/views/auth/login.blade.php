@@ -3,14 +3,14 @@
     {{-- Session status (e.g. password-reset link sent) --}}
     @if (session('status'))
         <div class="ac-alert ac-alert-success" role="status">
-            ✔&nbsp; {{ session('status') }}
+            &check;&nbsp; {{ session('status') }}
         </div>
     @endif
 
     {{-- Validation errors (general) --}}
     @if ($errors->any())
         <div class="ac-alert ac-alert-error" role="alert">
-            ✘&nbsp; {{ $errors->first() }}
+            &times;&nbsp; {{ $errors->first() }}
         </div>
     @endif
 
@@ -21,7 +21,7 @@
         <div style="margin-bottom: 1rem;">
             <label class="ac-label" for="email">Cadet ID / Email</label>
             <div class="ac-input-wrap">
-                <span class="ac-input-icon" aria-hidden="true">⚓</span>
+                <span class="ac-input-icon" aria-hidden="true">&commat;</span>
                 <input class="ac-input @error('email') is-error @enderror"
                        type="email"
                        id="email"
@@ -43,7 +43,7 @@
         <div style="margin-bottom: 1rem;">
             <label class="ac-label" for="password">Password</label>
             <div class="ac-input-wrap">
-                <span class="ac-input-icon" aria-hidden="true">🔐</span>
+                <span class="ac-input-icon" aria-hidden="true">&loz;</span>
                 <input class="ac-input @error('password') is-error @enderror"
                        type="password"
                        id="password"
@@ -56,7 +56,7 @@
                 <button type="button"
                         class="ac-pw-toggle"
                         onclick="acTogglePw('password', this)"
-                        aria-label="Toggle password visibility">👁</button>
+                        aria-label="Toggle password visibility">&bull;</button>
             </div>
             @error('password')
                 <div class="ac-field-error" id="password-err" role="alert">⚠ {{ $message }}</div>
@@ -87,8 +87,8 @@
     <script>
     function acTogglePw(id, btn) {
         var inp = document.getElementById(id);
-        if (inp.type === 'password') { inp.type = 'text';     btn.textContent = '🙈'; }
-        else                         { inp.type = 'password'; btn.textContent = '👁'; }
+        if (inp.type === 'password') { inp.type = 'text';     btn.textContent = '\u25CF'; }
+        else                         { inp.type = 'password'; btn.textContent = '\u2022'; }
     }
     </script>
 

@@ -15,10 +15,10 @@
         .gold { color: var(--gold); }
 
         .nav-glass {
-            background: rgba(4,9,15,.96);
+            background: rgba(15,4,4,.96);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(200,169,81,.14);
+            border-bottom: 1px solid rgba(255,215,0,.14);
             box-shadow: 0 1px 24px rgba(0,0,0,.5);
         }
         .btn-gold {
@@ -27,39 +27,39 @@
             font-weight: 700; font-size: .8rem;
             letter-spacing: .1em; text-transform: uppercase;
             text-decoration: none;
-            background: linear-gradient(135deg, #e8c96a 0%, #c8a951 50%, #a08030 100%);
+            background: linear-gradient(135deg, #FFE44D 0%, #FFD700 50%, #C7A600 100%);
             color: var(--navy);
-            box-shadow: 0 0 24px rgba(200,169,81,.25), inset 0 1px 0 rgba(255,255,255,.2);
+            box-shadow: 0 0 24px rgba(255,215,0,.25), inset 0 1px 0 rgba(255,255,255,.2);
             transition: transform .15s, box-shadow .15s;
         }
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 32px rgba(200,169,81,.35), inset 0 1px 0 rgba(255,255,255,.2); }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 4px 32px rgba(255,215,0,.35), inset 0 1px 0 rgba(255,255,255,.2); }
         .btn-ghost {
             display: inline-flex; align-items: center; gap: .5rem;
             padding: .75rem 1.75rem; border-radius: .625rem;
             font-weight: 700; font-size: .8rem;
             letter-spacing: .1em; text-transform: uppercase;
             text-decoration: none; color: var(--navy);
-            border: 1px solid rgba(4,9,15,.35);
-            background: rgba(4,9,15,.07);
+            border: 1px solid rgba(15,4,4,.35);
+            background: rgba(15,4,4,.07);
             transition: border-color .15s, background .15s, transform .15s;
         }
-        .btn-ghost:hover { background: rgba(4,9,15,.13); border-color: rgba(4,9,15,.55); transform: translateY(-1px); }
+        .btn-ghost:hover { background: rgba(15,4,4,.13); border-color: rgba(15,4,4,.55); transform: translateY(-1px); }
         .hero-bg {
             background:
-                radial-gradient(ellipse 75% 55% at 50% -5%, rgba(200,169,81,.2) 0%, transparent 58%),
-                radial-gradient(ellipse 45% 60% at 3% 55%, rgba(30,64,175,.28) 0%, transparent 55%),
-                radial-gradient(ellipse 38% 45% at 95% 65%, rgba(200,169,81,.12) 0%, transparent 52%),
-                radial-gradient(ellipse 60% 50% at 50% 110%, rgba(200,169,81,.08) 0%, transparent 60%),
-                linear-gradient(165deg, #0d1e35 0%, #071120 45%, #04090f 100%);
+                radial-gradient(ellipse 75% 55% at 50% -5%, rgba(255,215,0,.15) 0%, transparent 58%),
+                radial-gradient(ellipse 45% 60% at 3% 55%, rgba(128,0,0,.28) 0%, transparent 55%),
+                radial-gradient(ellipse 38% 45% at 95% 65%, rgba(255,215,0,.1) 0%, transparent 52%),
+                radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255,215,0,.06) 0%, transparent 60%),
+                linear-gradient(165deg, #350d0d 0%, #200708 45%, #0f0404 100%);
         }
         .dot-grid {
-            background-image: radial-gradient(rgba(200,169,81,.07) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(255,215,0,.07) 1px, transparent 1px);
             background-size: 36px 36px;
         }
         .hero-stat-num {
             font-size: 2.5rem; font-weight: 900;
             line-height: 1; letter-spacing: -.02em;
-            background: linear-gradient(135deg, #c8a951, #a08030);
+            background: linear-gradient(135deg, #FFD700, #C7A600);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text;
         }
@@ -74,8 +74,8 @@
             display: inline-flex; align-items: center; gap: .4rem;
             padding: .4rem 1.1rem; border-radius: 9999px;
             font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-            background: rgba(200,169,81,.14); color: #7c5f10;
-            border: 1px solid rgba(200,169,81,.4);
+            background: rgba(255,215,0,.14); color: #7c5f10;
+            border: 1px solid rgba(255,215,0,.4);
         }
         .section-eyebrow {
             font-size: .65rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
@@ -83,34 +83,34 @@
         }
         .glass-card {
             background: #fff;
-            border: 1px solid rgba(4,9,15,.08);
+            border: 1px solid rgba(15,4,4,.08);
             border-radius: 1rem;
-            box-shadow: 0 1px 8px rgba(4,9,15,.04);
+            box-shadow: 0 1px 8px rgba(15,4,4,.04);
             transition: background .2s, border-color .2s, box-shadow .2s;
         }
-        .glass-card:hover { background: #fdfdf9; border-color: rgba(200,169,81,.35); box-shadow: 0 4px 16px rgba(4,9,15,.08); }
+        .glass-card:hover { background: #fdfdf9; border-color: rgba(255,215,0,.35); box-shadow: 0 4px 16px rgba(15,4,4,.08); }
         .feature-card {
             background: #fff;
-            border: 1px solid rgba(4,9,15,.08);
+            border: 1px solid rgba(15,4,4,.08);
             border-radius: 1.25rem;
-            box-shadow: 0 1px 8px rgba(4,9,15,.04);
+            box-shadow: 0 1px 8px rgba(15,4,4,.04);
             transition: background .2s, border-color .2s, transform .2s, box-shadow .2s;
         }
-        .feature-card:hover { background: #fdfdf9; border-color: rgba(200,169,81,.3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(4,9,15,.08); }
+        .feature-card:hover { background: #fdfdf9; border-color: rgba(255,215,0,.3); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(15,4,4,.08); }
         .role-card {
             border-radius: 1.25rem;
-            border: 1px solid rgba(4,9,15,.08);
+            border: 1px solid rgba(15,4,4,.08);
             background: #fff;
-            box-shadow: 0 1px 8px rgba(4,9,15,.04);
+            box-shadow: 0 1px 8px rgba(15,4,4,.04);
             transition: transform .25s, border-color .25s, box-shadow .25s;
             overflow: hidden;
         }
-        .role-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(4,9,15,.1); }
-        .divider { border: none; height: 1px; background: rgba(4,9,15,.07); }
+        .role-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(15,4,4,.1); }
+        .divider { border: none; height: 1px; background: rgba(15,4,4,.07); }
         .section-strip {
-            background: rgba(200,169,81,.04);
-            border-top: 1px solid rgba(200,169,81,.14);
-            border-bottom: 1px solid rgba(200,169,81,.14);
+            background: rgba(255,215,0,.04);
+            border-top: 1px solid rgba(255,215,0,.14);
+            border-bottom: 1px solid rgba(255,215,0,.14);
         }
         @keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         @keyframes shimmer { 0%,100%{opacity:.6} 50%{opacity:1} }
@@ -137,8 +137,8 @@
         [data-reveal][data-delay="5"] { transition-delay: .60s; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #f5f5f5; }
-        ::-webkit-scrollbar-thumb { background: rgba(200,169,81,.4); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(200,169,81,.65); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,215,0,.4); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,215,0,.65); }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -156,7 +156,7 @@
             </a>
             <div class="flex items-center gap-2 text-right leading-none">
                 <div class="leading-tight">
-                    <div class="text-sm font-mono font-semibold" style="color:#c8a951;" id="rtc-time">--:--:-- --</div>
+                    <div class="text-sm font-mono font-semibold" style="color:#FFD700;" id="rtc-time">--:--:-- --</div>
                     <div class="text-xs text-slate-400" id="rtc-date">---, --- --, ----</div>
                     <div class="text-slate-500 tracking-widest uppercase" style="font-size:0.7rem;">Philippine Standard Time</div>
                 </div>
@@ -168,31 +168,31 @@
     <section class="hero-bg dot-grid relative min-h-screen flex flex-col justify-center pt-20 pb-14 px-6 overflow-hidden">
         {{-- Atmospheric light blobs --}}
         <div class="absolute top-1/4 -left-40 w-[520px] h-[520px] rounded-full blur-3xl pointer-events-none opacity-40"
-             style="background: radial-gradient(circle, rgba(200,169,81,.3) 0%, transparent 70%);"></div>
+             style="background: radial-gradient(circle, rgba(255,215,0,.3) 0%, transparent 70%);"></div>
         <div class="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-30"
-             style="background: radial-gradient(circle, rgba(96,165,250,.25) 0%, transparent 70%);"></div>
+             style="background: radial-gradient(circle, rgba(128,0,0,.25) 0%, transparent 70%);"></div>
         <div class="absolute -top-40 right-0 w-[760px] h-[560px] rounded-full blur-3xl pointer-events-none"
-             style="background: radial-gradient(ellipse, rgba(30,64,175,.18) 0%, transparent 65%); opacity:.4;"></div>
+             style="background: radial-gradient(ellipse, rgba(128,0,0,.18) 0%, transparent 65%); opacity:.4;"></div>
         {{-- Scales of Justice watermark --}}
         <div class="absolute top-0 right-0 pointer-events-none select-none hidden lg:block"
              style="opacity: 0.04; transform: translate(16%, -6%); width: 560px; height: 560px;">
             <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                <rect x="90" y="207" width="20" height="8" rx="2" fill="#c8a951"/>
-                <line x1="100" y1="20" x2="100" y2="209" stroke="#c8a951" stroke-width="3"/>
-                <circle cx="100" cy="15" r="7" fill="none" stroke="#c8a951" stroke-width="2.5"/>
-                <path d="M22 55 Q100 43 178 55" stroke="#c8a951" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-                <line x1="32" y1="55" x2="32" y2="112" stroke="#c8a951" stroke-width="2"/>
-                <line x1="168" y1="55" x2="168" y2="112" stroke="#c8a951" stroke-width="2"/>
-                <circle cx="32" cy="66" r="2.5" fill="#c8a951"/>
-                <circle cx="32" cy="78" r="2.5" fill="#c8a951"/>
-                <circle cx="32" cy="90" r="2.5" fill="#c8a951"/>
-                <circle cx="32" cy="102" r="2.5" fill="#c8a951"/>
-                <circle cx="168" cy="66" r="2.5" fill="#c8a951"/>
-                <circle cx="168" cy="78" r="2.5" fill="#c8a951"/>
-                <circle cx="168" cy="90" r="2.5" fill="#c8a951"/>
-                <circle cx="168" cy="102" r="2.5" fill="#c8a951"/>
-                <path d="M10 112 Q32 134 54 112" stroke="#c8a951" stroke-width="3" fill="none" stroke-linecap="round"/>
-                <path d="M146 112 Q168 134 190 112" stroke="#c8a951" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <rect x="90" y="207" width="20" height="8" rx="2" fill="#FFD700"/>
+                <line x1="100" y1="20" x2="100" y2="209" stroke="#FFD700" stroke-width="3"/>
+                <circle cx="100" cy="15" r="7" fill="none" stroke="#FFD700" stroke-width="2.5"/>
+                <path d="M22 55 Q100 43 178 55" stroke="#FFD700" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <line x1="32" y1="55" x2="32" y2="112" stroke="#FFD700" stroke-width="2"/>
+                <line x1="168" y1="55" x2="168" y2="112" stroke="#FFD700" stroke-width="2"/>
+                <circle cx="32" cy="66" r="2.5" fill="#FFD700"/>
+                <circle cx="32" cy="78" r="2.5" fill="#FFD700"/>
+                <circle cx="32" cy="90" r="2.5" fill="#FFD700"/>
+                <circle cx="32" cy="102" r="2.5" fill="#FFD700"/>
+                <circle cx="168" cy="66" r="2.5" fill="#FFD700"/>
+                <circle cx="168" cy="78" r="2.5" fill="#FFD700"/>
+                <circle cx="168" cy="90" r="2.5" fill="#FFD700"/>
+                <circle cx="168" cy="102" r="2.5" fill="#FFD700"/>
+                <path d="M10 112 Q32 134 54 112" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <path d="M146 112 Q168 134 190 112" stroke="#FFD700" stroke-width="3" fill="none" stroke-linecap="round"/>
             </svg>
         </div>
         {{-- CCJE monogram background watermark --}}
@@ -201,14 +201,14 @@
         >
             <svg viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg" width="360">
                 <text x="8" y="88" font-family="Georgia, serif" font-size="96" font-weight="bold"
-                      fill="#c8a951" letter-spacing="-4">CCJE</text>
+                      fill="#FFD700" letter-spacing="-4">CCJE</text>
             </svg>
         </div>
         <div class="relative max-w-6xl mx-auto w-full">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="rounded-2xl p-8 lg:p-10"
                      style="background: rgba(255,255,255,.93);
-                            border: 1px solid rgba(200,169,81,.25);
+                            border: 1px solid rgba(255,215,0,.25);
                             box-shadow: 0 8px 48px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.8);
                             backdrop-filter: blur(12px);">
                     <div class="flex items-center gap-3 mb-7">
@@ -225,7 +225,7 @@
                     </div>
                     <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight mb-6">
                         <span class="text-slate-900">NROTC</span><br>
-                        <span style="background: linear-gradient(135deg, #a08030 0%, #c8a951 50%, #a08030 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secure</span>
+                        <span style="background: linear-gradient(135deg, #C7A600 0%, #FFD700 50%, #C7A600 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Secure</span>
                         <span class="text-slate-900"> Portal</span>
                     </h1>
                     <p class="text-slate-800 text-base lg:text-lg leading-relaxed mb-3 max-w-lg font-semibold">
@@ -265,9 +265,9 @@
                     <div class="flex justify-center mb-2">
                         <div class="relative float-anim">
                             <div class="w-32 h-32 rounded-3xl flex items-center justify-center"
-                                 style="background: linear-gradient(135deg, rgba(200,169,81,.22) 0%, rgba(200,169,81,.08) 100%);
-                                        border: 1px solid rgba(200,169,81,.38);
-                                        box-shadow: 0 0 90px rgba(200,169,81,.3), inset 0 1px 0 rgba(200,169,81,.18);">
+                                 style="background: linear-gradient(135deg, rgba(255,215,0,.22) 0%, rgba(255,215,0,.08) 100%);
+                                        border: 1px solid rgba(255,215,0,.38);
+                                        box-shadow: 0 0 90px rgba(255,215,0,.3), inset 0 1px 0 rgba(255,215,0,.18);">
                                 <svg class="w-16 h-16 gold shimmer-anim" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
@@ -277,9 +277,9 @@
                     </div>
                     <div class="grid grid-cols-3 gap-3">
                         @foreach ([
-                            ['num' => '3',    'label' => 'Access Roles',    'num_color' => '#c8a951', 'bg' => 'rgba(10,16,24,.75)',   'border' => 'rgba(200,169,81,.35)',   'top' => '#c8a951'],
-                            ['num' => '6',    'label' => 'Security Layers', 'num_color' => '#60a5fa', 'bg' => 'rgba(10,16,24,.75)',   'border' => 'rgba(96,165,250,.35)',   'top' => '#60a5fa'],
-                            ['num' => '100%', 'label' => 'Encrypted',       'num_color' => '#34d399', 'bg' => 'rgba(10,16,24,.75)',   'border' => 'rgba(52,211,153,.35)',   'top' => '#34d399'],
+                            ['num' => '3',    'label' => 'Access Roles',    'num_color' => '#FFD700', 'bg' => 'rgba(15,4,4,.75)',   'border' => 'rgba(255,215,0,.35)',   'top' => '#FFD700'],
+                            ['num' => '6',    'label' => 'Security Layers', 'num_color' => '#60a5fa', 'bg' => 'rgba(15,4,4,.75)',   'border' => 'rgba(96,165,250,.35)',   'top' => '#60a5fa'],
+                            ['num' => '100%', 'label' => 'Encrypted',       'num_color' => '#34d399', 'bg' => 'rgba(15,4,4,.75)',   'border' => 'rgba(52,211,153,.35)',   'top' => '#34d399'],
                         ] as $stat)
                             <div class="p-4 text-center rounded-2xl transition-all duration-200"
                                  style="background: {{ $stat['bg'] }}; border: 1px solid {{ $stat['border'] }}; box-shadow: 0 2px 16px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.04);">
@@ -328,7 +328,7 @@
             ] as $item)
                 <div class="flex items-start gap-3.5" data-reveal data-delay="{{ $loop->index }}">
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                         style="background: rgba(200,169,81,.08); border: 1px solid rgba(200,169,81,.15);">
+                         style="background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.15);">
                         <svg class="w-4 h-4 gold" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="{{ $item['icon'] }}"/>
                         </svg>
@@ -389,7 +389,7 @@
                     <div class="flex items-center gap-4 rounded-xl p-4"
                          style="background: {{ $row['bg'] }}; border: 1px solid {{ $row['border'] }};">
                         <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                             style="background: rgba(4,9,15,.04);">
+                             style="background: rgba(15,4,4,.04);">
                             <svg class="w-5 h-5" fill="none" stroke="{{ $row['color'] }}" stroke-width="1.8" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="{{ $row['icon'] }}"/>
                             </svg>
@@ -425,10 +425,10 @@
                     'badge'  => 'System Admin',
                     'scope'  => 'Full system control',
                     'desc'   => 'Complete access over all system resources, user accounts, and unit data.',
-                    'color'  => '#c8a951',
-                    'bg'     => 'rgba(200,169,81,.06)',
-                    'top'    => 'rgba(200,169,81,.12)',
-                    'border' => 'rgba(200,169,81,.15)',
+                    'color'  => '#FFD700',
+                    'bg'     => 'rgba(255,215,0,.06)',
+                    'top'    => 'rgba(255,215,0,.12)',
+                    'border' => 'rgba(255,215,0,.15)',
                     'icon'   => 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z',
                     'perms'  => ['Create and manage all user accounts', 'Unlock or deactivate accounts', 'View unit-wide statistics and logs', 'Manage officer and cadet rosters'],
                 ],
@@ -515,7 +515,7 @@
         </div>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             @foreach ([
-                ['title' => 'Brute-Force Lockout',         'desc' => 'Accounts lock for 15 minutes after 5 failed login attempts, stopping credential-stuffing and dictionary attacks cold.',                'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => '#a08030'],
+                ['title' => 'Brute-Force Lockout',         'desc' => 'Accounts lock for 15 minutes after 5 failed login attempts, stopping credential-stuffing and dictionary attacks cold.',                'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => '#C7A600'],
                 ['title' => 'Session Timeout',             'desc' => '30-minute inactivity timeout automatically invalidates sessions, preventing reuse of unattended workstations.',                        'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'color' => '#1d4ed8'],
                 ['title' => 'Session Fixation Prevention', 'desc' => 'A fresh session ID is issued on every successful login, eliminating session fixation vulnerabilities entirely.',                       'icon' => 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15', 'color' => '#047857'],
                 ['title' => 'Role-Based Access Control',   'desc' => 'Every route and view is gated by EnsureRole middleware, enforcing least privilege &mdash; users can only reach what their role permits.', 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'color' => '#be185d'],
@@ -525,7 +525,7 @@
                 <div class="feature-card p-6" data-reveal data-delay="{{ $loop->index % 3 }}">
                     <div class="flex items-center gap-3 mb-4">
                         <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                             style="background: rgba(4,9,15,.04); border: 1px solid rgba(4,9,15,.08);">
+                             style="background: rgba(15,4,4,.04); border: 1px solid rgba(15,4,4,.08);">
                             <svg class="w-5 h-5" fill="none" stroke="{{ $ctrl['color'] }}" stroke-width="1.8" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="{{ $ctrl['icon'] }}"/>
                             </svg>
@@ -544,11 +544,11 @@
     <section class="px-6 py-6 mb-5">
         <div class="max-w-5xl mx-auto rounded-3xl p-10 lg:p-14 overflow-hidden relative text-center"
              data-reveal
-             style="background: linear-gradient(135deg, rgba(200,169,81,.1) 0%, rgba(200,169,81,.05) 60%, #fff 100%);
-                    border: 1px solid rgba(160,128,48,.2);
-                    box-shadow: 0 4px 40px rgba(200,169,81,.08);">
+             style="background: linear-gradient(135deg, rgba(255,215,0,.1) 0%, rgba(255,215,0,.05) 60%, #fff 100%);
+                    border: 1px solid rgba(199,166,0,.2);
+                    box-shadow: 0 4px 40px rgba(255,215,0,.08);">
             <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-                 style="background: radial-gradient(circle, rgba(200,169,81,.12) 0%, transparent 70%);"></div>
+                 style="background: radial-gradient(circle, rgba(255,215,0,.12) 0%, transparent 70%);"></div>
             <div class="relative">
                 <span class="badge-gold inline-flex mb-6">
                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -587,8 +587,8 @@
     @endguest
 
     {{-- FOOTER --}}
-    <footer style="background: rgba(4,9,15,.96);
-                   border-top: 1px solid rgba(200,169,81,.14);
+    <footer style="background: rgba(15,4,4,.96);
+                   border-top: 1px solid rgba(255,215,0,.14);
                    box-shadow: 0 -1px 24px rgba(0,0,0,.5);">
         <div class="max-w-6xl mx-auto px-6 lg:px-10 py-10" data-reveal>
             <div class="grid md:grid-cols-3 gap-8 mb-8">
@@ -605,14 +605,14 @@
                     </p>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #c8a951;">Portal Access</p>
+                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #FFD700;">Portal Access</p>
                     <div class="flex flex-col gap-2.5">
                         <a href="{{ route('login') }}" class="text-sm text-slate-300 hover:text-white transition-colors">Authorized Sign In</a>
                         <a href="{{ route('password.request') }}" class="text-sm text-slate-300 hover:text-white transition-colors">Password Reset</a>
                     </div>
                 </div>
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #c8a951;">System Policy</p>
+                    <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #FFD700;">System Policy</p>
                     <p class="text-sm text-slate-300 leading-relaxed">
                         Unauthorized access to this system is strictly prohibited.
                         All sessions are subject to monitoring and logging.
@@ -620,12 +620,12 @@
                     </p>
                 </div>
             </div>
-            <hr style="border: none; height: 1px; background: rgba(200,169,81,.14); margin-bottom: 1.5rem;">
+            <hr style="border: none; height: 1px; background: rgba(255,215,0,.14); margin-bottom: 1.5rem;">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                 <p class="text-sm text-slate-400">
                     &copy; {{ date('Y') }} CCrJE ROTC &mdash; Cagayan State University Aparri. All rights reserved.
                 </p>
-                <p class="text-sm tracking-wider" style="color: #c8a951;">
+                <p class="text-sm tracking-wider" style="color: #FFD700;">
                     Integrity &bull; Discipline &bull; Service
                 </p>
             </div>

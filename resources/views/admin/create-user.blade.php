@@ -94,12 +94,12 @@
             <div class="flex gap-3 mt-6">
                 <button type="submit"
                         class="px-6 py-2.5 rounded-lg text-sm font-semibold"
-                        style="background: linear-gradient(135deg, #c8a951, #a08030); color: #061020;">
+                        style="background: linear-gradient(135deg, #FFD700, #C7A600); color: #200608;">
                     Create Account
                 </button>
                 <a href="{{ route('admin.dashboard') }}"
                    class="px-6 py-2.5 rounded-lg text-sm font-medium text-slate-600 transition-colors"
-                   style="background: #f1f5f9; border: 1px solid rgba(4,9,15,0.1);">
+                   style="background: #f1f5f9; border: 1px solid rgba(15,4,4,0.1);">
                     Cancel
                 </a>
             </div>

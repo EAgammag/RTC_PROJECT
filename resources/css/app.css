@@ -4,13 +4,13 @@
 
 /* ── Centralized Brand Color System ─────────────────────────────────────── */
 :root {
-    /* Navy palette */
-    --navy:         #04090f;
-    --navy2:        #061020;
+    /* Maroon palette */
+    --navy:         #0f0404;
+    --navy2:        #200608;
     /* Gold palette */
-    --gold:         #c8a951;
-    --gold2:        #a08030;
-    --gold3:        #e8c96a;
+    --gold:         #FFD700;
+    --gold2:        #C7A600;
+    --gold3:        #FFE44D;
     /* UI state */
     --error:        #e05252;
     --success:      #4ade80;
@@ -18,8 +18,8 @@
     --text:         #1e293b;
     --text-dim:     #64748b;
     /* Text on dark surfaces */
-    --text-inv:     #e0dccf;
-    --text-inv-dim: #7a8fa8;
+    --text-inv:     #f0ece0;
+    --text-inv-dim: #b8a08a;
     /* Backgrounds */
     --bg:           #ffffff;
     --bg-subtle:    #f8fafc;
@@ -35,19 +35,19 @@ body {
 
 .stat-card {
     background: #ffffff;
-    border: 1px solid rgba(200, 169, 81, 0.2);
-    box-shadow: 0 1px 8px rgba(4, 9, 15, 0.06);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 0 1px 8px rgba(15, 4, 4, 0.06);
     transition: border-color .2s, box-shadow .2s;
 }
 .stat-card:hover {
-    border-color: rgba(200, 169, 81, 0.4);
-    box-shadow: 0 4px 16px rgba(4, 9, 15, 0.1);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 16px rgba(15, 4, 4, 0.1);
 }
 
 .card {
     background: #ffffff;
-    border: 1px solid rgba(4, 9, 15, 0.09);
-    box-shadow: 0 1px 6px rgba(4, 9, 15, 0.05);
+    border: 1px solid rgba(15, 4, 4, 0.09);
+    box-shadow: 0 1px 6px rgba(15, 4, 4, 0.05);
 }
 
 .sidebar-link {
@@ -65,13 +65,13 @@ body {
 }
 
 .sidebar-link:hover {
-    background: rgba(200, 169, 81, 0.08);
-    color: #e0dccf;
+    background: rgba(255, 215, 0, 0.08);
+    color: #f0ece0;
 }
 
 .sidebar-link.active {
-    background: rgba(200, 169, 81, 0.14);
-    color: #c8a951;
-    border-left: 2px solid #c8a951;
+    background: rgba(255, 215, 0, 0.14);
+    color: #FFD700;
+    border-left: 2px solid #FFD700;
     padding-left: calc(0.875rem - 2px);
 }

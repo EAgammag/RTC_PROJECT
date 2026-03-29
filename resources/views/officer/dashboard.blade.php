@@ -83,7 +83,7 @@
 
     {{-- ── Access reminder ───────────────────────────────────────────────────── --}}
     <div class="mt-6 card rounded-xl p-5">
-        <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #c8a951;">
+        <h3 class="text-xs font-semibold uppercase tracking-wider mb-2" style="color: #FFD700;">
             Officer Access Level
         </h3>
         <p class="text-xs text-slate-600">
