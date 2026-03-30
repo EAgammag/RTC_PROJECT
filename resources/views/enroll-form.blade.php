@@ -140,8 +140,9 @@
                 ['n'=>1,'label'=>'Personal Info'],
                 ['n'=>2,'label'=>'Family & Contact'],
                 ['n'=>3,'label'=>'RIDS Form'],
-                ['n'=>4,'label'=>'Attachments'],
-                ['n'=>5,'label'=>'Review'],
+                ['n'=>4,'label'=>'NROTC Unit'],
+                ['n'=>5,'label'=>'Attachments'],
+                ['n'=>6,'label'=>'Review'],
             ]; @endphp
             @foreach ($stepDefs as $sd)
                 <div class="step-node">
@@ -699,9 +700,196 @@
 
 
 {{-- ══════════════════════════════════════════
-     STEP 4 · Attachments
+     STEP 4 · NROTC Unit Details & Attendance
 ══════════════════════════════════════════ --}}
 <div class="form-step" id="step-4">
+
+    {{-- Section A: MS Grade Level & Unit Info --}}
+    <div class="form-card mb-5">
+        <div class="card-header" style="background:rgba(128,0,0,.02);">
+            <div class="card-icon" style="background:rgba(128,0,0,.07);border:1px solid rgba(128,0,0,.15);">
+                <svg class="w-5 h-5" fill="none" stroke="#800000" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest" style="color:#800000;">Page 3 · Section A</span>
+                <h2 class="text-lg font-black text-slate-900">NROTC Unit Details</h2>
+            </div>
+        </div>
+
+        <div class="p-6 lg:p-8 flex flex-col gap-6">
+
+            {{-- MS Grade Level --}}
+            <div>
+                <p class="lbl mb-2">MS Grade Level <span class="req">*</span></p>
+                <div class="pill-group">
+                    @foreach (['MS1','MS2'] as $ms)
+                    <label class="pill-opt"><input type="radio" name="ms_grade_level" value="{{ $ms }}" required><span>{{ $ms }}</span></label>
+                    @endforeach
+                </div>
+            </div>
+
+            {{-- Platoon & Company --}}
+            <div class="grid grid-cols-2 gap-4">
+                <div class="fl">
+                    <label class="lbl" for="platoon">Platoon <span class="req">*</span></label>
+                    <input id="platoon" name="platoon" type="text" class="inp" placeholder="e.g. 1st Platoon" required>
+                </div>
+                <div class="fl">
+                    <label class="lbl" for="company">Company (Coy) <span class="req">*</span></label>
+                    <input id="company" name="company" type="text" class="inp" placeholder="e.g. Alpha, Bravo, Charlie" required>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {{-- Section B: Attendance Table --}}
+    <div class="form-card mb-5">
+        <div class="card-header" style="background:rgba(4,120,87,.02);">
+            <div class="card-icon" style="background:rgba(4,120,87,.07);border:1px solid rgba(4,120,87,.15);">
+                <svg class="w-5 h-5" fill="none" stroke="#047857" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest" style="color:#047857;">Page 3 · Section B</span>
+                <h2 class="text-lg font-black text-slate-900">Attendance Record — Training Days 1–15</h2>
+            </div>
+        </div>
+
+        <div class="p-4 lg:p-6">
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                Fill in the details for each training day attended. Leave blank for days not yet conducted.
+            </p>
+
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;min-width:700px;">
+                    <thead>
+                        <tr style="background:rgba(128,0,0,.05);border-bottom:2px solid rgba(128,0,0,.15);">
+                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#800000;white-space:nowrap;width:48px;">Day</th>
+                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#800000;white-space:nowrap;">Date</th>
+                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#047857;white-space:nowrap;width:80px;">Merits</th>
+                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#b91c1c;white-space:nowrap;width:80px;">Demerits</th>
+                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#374151;">Remarks</th>
+                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#374151;white-space:nowrap;">Signature</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($day = 1; $day <= 15; $day++)
+                        <tr style="border-bottom:1px solid #f3f4f6;transition:background .1s;" onmouseover="this.style.background='rgba(128,0,0,.02)'" onmouseout="this.style.background=''">
+                            <td style="padding:.45rem .7rem;text-align:center;">
+                                <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:.4rem;background:rgba(128,0,0,.07);border:1px solid rgba(128,0,0,.15);font-size:.7rem;font-weight:800;color:#800000;">{{ $day }}</span>
+                            </td>
+                            <td style="padding:.45rem .7rem;">
+                                <input type="date" name="att_date[{{ $day }}]" class="inp" style="min-width:130px;padding:.4rem .6rem;font-size:.8rem;">
+                            </td>
+                            <td style="padding:.45rem .5rem;text-align:center;">
+                                <input type="number" name="att_merits[{{ $day }}]" min="0" max="99" class="inp" placeholder="0"
+                                       style="width:60px;text-align:center;padding:.4rem .4rem;font-size:.8rem;">
+                            </td>
+                            <td style="padding:.45rem .5rem;text-align:center;">
+                                <input type="number" name="att_demerits[{{ $day }}]" min="0" max="99" class="inp" placeholder="0"
+                                       style="width:60px;text-align:center;padding:.4rem .4rem;font-size:.8rem;">
+                            </td>
+                            <td style="padding:.45rem .5rem;">
+                                <input type="text" name="att_remarks[{{ $day }}]" class="inp" placeholder="e.g. Absent, Late, Excused"
+                                       style="min-width:160px;padding:.4rem .6rem;font-size:.8rem;">
+                            </td>
+                            <td style="padding:.45rem .5rem;">
+                                <input type="text" name="att_signature[{{ $day }}]" class="inp" placeholder="Initials"
+                                       style="min-width:100px;padding:.4rem .6rem;font-size:.8rem;">
+                            </td>
+                        </tr>
+                        @endfor
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {{-- Section C: Signatures & MS Grade --}}
+    <div class="form-card mb-6">
+        <div class="card-header" style="background:rgba(79,70,229,.02);">
+            <div class="card-icon" style="background:rgba(79,70,229,.07);border:1px solid rgba(79,70,229,.15);">
+                <svg class="w-5 h-5" fill="none" stroke="#4f46e5" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest" style="color:#4f46e5;">Page 3 · Section C</span>
+                <h2 class="text-lg font-black text-slate-900">Signatures & MS Grade</h2>
+            </div>
+        </div>
+
+        <div class="p-6 lg:p-8">
+
+            <div class="grid grid-cols-2 gap-6 mb-6">
+
+                {{-- Student's Signature --}}
+                <div class="flex flex-col gap-3">
+                    <label class="lbl">Student's Signature <span class="req">*</span></label>
+                    <label for="sig_student" class="photo-zone" id="zone-sig_student" style="min-height:140px;">
+                        <div id="preview-wrap-sig_student" class="hidden w-full">
+                            <img id="preview-sig_student" src="#" alt="Student Signature" class="w-full rounded-lg object-contain"
+                                 style="max-height:120px;background:#f9fafb;">
+                        </div>
+                        <div id="placeholder-sig_student" class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                                 style="background:rgba(79,70,229,.07);border:1px solid rgba(79,70,229,.2);">
+                                <svg class="w-5 h-5" fill="none" stroke="#4f46e5" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </div>
+                            <p class="text-xs font-bold text-slate-700">Upload Student's Signature</p>
+                            <p class="text-xs text-slate-400">Scanned or clear photo of wet signature</p>
+                        </div>
+                        <input id="sig_student" name="sig_student" type="file" accept="image/*,.pdf" class="sr-only" required>
+                    </label>
+                </div>
+
+                {{-- Training Staff's Signature --}}
+                <div class="flex flex-col gap-3">
+                    <label class="lbl">Training Staff's Signature</label>
+                    <label for="sig_staff" class="photo-zone" id="zone-sig_staff" style="min-height:140px;">
+                        <div id="preview-wrap-sig_staff" class="hidden w-full">
+                            <img id="preview-sig_staff" src="#" alt="Staff Signature" class="w-full rounded-lg object-contain"
+                                 style="max-height:120px;background:#f9fafb;">
+                        </div>
+                        <div id="placeholder-sig_staff" class="flex flex-col items-center gap-2">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                                 style="background:rgba(4,120,87,.07);border:1px solid rgba(4,120,87,.2);">
+                                <svg class="w-5 h-5" fill="none" stroke="#047857" stroke-width="1.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
+                            </div>
+                            <p class="text-xs font-bold text-slate-700">Upload Training Staff's Signature</p>
+                            <p class="text-xs text-slate-400">To be filled by the training staff</p>
+                        </div>
+                        <input id="sig_staff" name="sig_staff" type="file" accept="image/*,.pdf" class="sr-only">
+                    </label>
+                </div>
+
+            </div>
+
+            {{-- MS Grade --}}
+            <div class="fl max-w-xs">
+                <label class="lbl" for="ms_grade">MS Grade</label>
+                <input id="ms_grade" name="ms_grade" type="text" class="inp" placeholder="e.g. 1.25, 90, Passed">
+                <p class="text-xs text-slate-400 mt-1">Assigned by the Training Staff after evaluation.</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>{{-- /step-4 --}}
+
+
+{{-- ══════════════════════════════════════════
+     STEP 5 · Attachments
+══════════════════════════════════════════ --}}
+<div class="form-step" id="step-5">
 
     <div class="form-card mb-6">
         <div class="card-header" style="background:rgba(6,95,70,.02);">
@@ -778,13 +966,13 @@
         </div>
     </div>
 
-</div>{{-- /step-4 --}}
+</div>{{-- /step-5 --}}
 
 
 {{-- ══════════════════════════════════════════
-     STEP 5 · Review & Confirm
+     STEP 6 · Review & Confirm
 ══════════════════════════════════════════ --}}
-<div class="form-step" id="step-5">
+<div class="form-step" id="step-6">
 
     {{-- Alert banner --}}
     <div class="rounded-2xl p-4 flex items-start gap-3 mb-5"
@@ -945,6 +1133,31 @@
     </div>
 
     <div class="form-card mb-5">
+        <div class="card-header" style="background:rgba(128,0,0,.02);">
+            <div class="card-icon" style="background:rgba(128,0,0,.07);border:1px solid rgba(128,0,0,.15);">
+                <svg class="w-5 h-5" fill="none" stroke="#800000" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                </svg>
+            </div>
+            <div>
+                <span class="text-xs font-black uppercase tracking-widest" style="color:#800000;">Page 3</span>
+                <h2 class="text-lg font-black text-slate-900">NROTC Unit Details</h2>
+            </div>
+        </div>
+        <div class="p-6 lg:p-8 flex flex-col gap-4">
+            <div class="rv-section mb-0">
+                <p class="rv-section-title">Unit Information & Grade</p>
+                <div class="rv-grid" style="grid-template-columns:repeat(2,1fr);">
+                    <div><span class="rv-lbl">MS Grade Level</span><span class="rv-val rv-empty" id="rv-ms_grade_level">—</span></div>
+                    <div><span class="rv-lbl">MS Grade</span><span class="rv-val rv-empty" id="rv-ms_grade">—</span></div>
+                    <div><span class="rv-lbl">Platoon</span><span class="rv-val rv-empty" id="rv-platoon">—</span></div>
+                    <div><span class="rv-lbl">Company (Coy)</span><span class="rv-val rv-empty" id="rv-company">—</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-card mb-5">
         <div class="card-header" style="background:rgba(79,70,229,.02);">
             <div class="card-icon" style="background:rgba(79,70,229,.07);border:1px solid rgba(79,70,229,.15);">
                 <svg class="w-5 h-5" fill="none" stroke="#4f46e5" stroke-width="1.8" viewBox="0 0 24 24">
@@ -1014,7 +1227,7 @@
         </span>
     </label>
 
-</div>{{-- /step-5 --}}
+</div>{{-- /step-6 --}}
 
 
 {{-- ── Navigation Buttons ── --}}
@@ -1055,7 +1268,7 @@
 
 <script>
 var currentStep = 1;
-var totalSteps  = 5;
+var totalSteps  = 6;
 
 function showStep(n) {
     document.querySelectorAll('.form-step').forEach(function(el) { el.classList.remove('active'); });
@@ -1174,6 +1387,12 @@ function populateReview() {
     setRv('cap_size',       radioVal('cap_size'));
     setRv('bdu_size',       radioVal('bdu_size'));
 
+    // NROTC Unit
+    setRv('ms_grade_level', radioVal('ms_grade_level'));
+    setRv('platoon',        rv('platoon'));
+    setRv('company',        rv('company'));
+    setRv('ms_grade',       rv('ms_grade'));
+
     // Attachments
     var attDefs = [
         { id:'att_assessment', label:'Assessment Form' },
@@ -1217,7 +1436,7 @@ function populateReview() {
 }());
 
 // Thumb mark previews
-['thumb_left','thumb_right'].forEach(function(id) {
+['thumb_left','thumb_right','sig_student','sig_staff'].forEach(function(id) {
     var input = document.getElementById(id);
     if (!input) return;
     input.addEventListener('change', function () {
