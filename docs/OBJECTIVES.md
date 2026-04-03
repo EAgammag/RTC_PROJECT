@@ -27,7 +27,7 @@ Implement a three-tier role-based access control system for Administrators, Offi
 |---|---|
 | Administrator | Full system control — user management, unit data, audit oversight |
 | Officer | Operational access — cadet roster, attendance, records, communications |
-| Cadet | Read-only — personal profile, attendance history, announcements |
+| Cadet | Read-only — personal profile, attendance history, announcements | 
 
 ---
 
