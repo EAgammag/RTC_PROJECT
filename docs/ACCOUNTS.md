@@ -189,7 +189,7 @@ Default state creates a verified cadet with password `password` and a random stu
 
 **States:** `unverified()` — sets `email_verified_at` to null.
 
-### Seeder (`DatabaseSeeder`)
+### Seeder (`DatabaseSeeder`)...............................-=0
 
 Three default accounts seeded via `User::firstOrCreate()`:
 
