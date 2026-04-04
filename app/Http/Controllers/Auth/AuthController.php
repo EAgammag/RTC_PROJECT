@@ -63,10 +63,29 @@ class AuthController extends Controller
         // Allow inactive cadets through when returning from the enrollment page
         // so they can continue filling out their application form.
         $enrollReturn = $request->session()->has('_enroll_return');
-        if (!$user || (!$user->is_active && !($user->isCadet() && $enrollReturn))) {
+
+        // Gate 1 – unknown user
+        if (!$user) {
             throw ValidationException::withMessages([
                 'login_id' => ['The provided credentials are incorrect or the account is inactive.'],
             ]);
+        }
+
+        // Gate 2 – inactive account
+        if (!$user->is_active) {
+            // Cadets who just registered (null) or submitted their form (pending)
+            // may log in so they can complete/view their enrollment application.
+            if ($user->isCadet() && in_array($user->enrollment_status, [null, \App\Models\User::ENROLLMENT_PENDING], true)) {
+                // fall through to credential check
+            } elseif ($user->isCadet() && $user->isEnrollmentRejected()) {
+                throw ValidationException::withMessages([
+                    'login_id' => ['Your enrollment application was not approved. Please contact the ROTC office.'],
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    'login_id' => ['This account has been deactivated. Please contact the administrator.'],
+                ]);
+            }
         }
 
         // ── Account lockout check ─────────────────────────────────────────────

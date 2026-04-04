@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -24,31 +21,42 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
+     * Handle a cadet self-registration request.
      *
-     * @throws ValidationException
+     * The account is created inactive (is_active = false) and pending enrollment
+     * validation. The cadet is redirected to the login page with an enroll flag
+     * so they can sign in and proceed directly to the enrollment form.
      */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'last_name'   => ['required', 'string', 'max:100'],
+            'first_name'  => ['required', 'string', 'max:100'],
+            'middle_name' => ['nullable', 'string', 'max:100'],
+            'suffix'      => ['nullable', 'string', 'max:10'],
+            'student_id'  => ['required', 'string', 'max:50', 'unique:'.User::class.',student_id'],
+            'email'       => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password'    => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::create([
-            'name'              => $request->name,
+        $fullName = trim(implode(' ', array_filter([
+            $request->last_name . ',',
+            $request->first_name,
+            $request->middle_name ?: null,
+            ($request->suffix ?: null),
+        ])));
+
+        User::create([
+            'name'              => $fullName,
+            'student_id'        => $request->student_id,
             'email'             => $request->email,
             'password'          => Hash::make($request->password),
-            'role'              => 'cadet',
-            'is_active'         => true,
+            'role'              => User::ROLE_CADET,
+            'is_active'         => false,
             'email_verified_at' => now(),
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('cadet.dashboard', absolute: false));
+        return redirect()->route('login', ['from' => 'enroll'])
+            ->with('status', 'Account created. Sign in with your Student ID to continue with your enrollment application.');
     }
 }

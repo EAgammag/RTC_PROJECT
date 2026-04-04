@@ -89,6 +89,15 @@
         </button>
     </form>
 
+    <div style="margin-top:.875rem;text-align:center;">
+        <a href="{{ route('register') }}"
+           style="font-size:.8rem;color:#800000;text-decoration:none;font-weight:500;transition:color .15s;"
+           onmouseover="this.style.color='#5a0000';this.style.textDecoration='underline';"
+           onmouseout="this.style.color='#800000';this.style.textDecoration='none';">
+            New cadet? Create your account
+        </a>
+    </div>
+
     <script>
     function togglePw(id, btn) {
         var inp = document.getElementById(id);

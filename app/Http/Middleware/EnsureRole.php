@@ -31,7 +31,13 @@ class EnsureRole
         $user = Auth::user();
 
         // Force-logout deactivated accounts even if a valid session exists.
+        // Exception: pending-enrollment cadets are allowed to stay logged in
+        // so they can access and submit their enrollment form.
         if (!$user->is_active) {
+            if ($user->isCadet() && in_array($user->enrollment_status, [null, \App\Models\User::ENROLLMENT_PENDING], true)) {
+                return redirect()->route('enroll.form');
+            }
+
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
