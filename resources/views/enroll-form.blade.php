@@ -176,8 +176,70 @@
     </div>
 </div>
 
-{{-- FORM --}}
-<main class="max-w-4xl mx-auto px-6 lg:px-10 py-8">
+{{-- FORM WRAPPER --}}
+<div class="max-w-5xl mx-auto px-6 lg:px-10 py-8 flex gap-6 items-start">
+
+{{-- ── LEFT SIDEBAR ── --}}
+<aside style="width:190px;min-width:180px;flex-shrink:0;position:sticky;top:88px;">
+
+    {{-- User card --}}
+    @auth
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:1rem;padding:1rem;margin-bottom:.75rem;box-shadow:0 1px 3px rgba(0,0,0,.04);">
+        <div style="width:2.5rem;height:2.5rem;border-radius:9999px;background:linear-gradient(135deg,#800000,#5a0000);display:flex;align-items:center;justify-content:center;margin:0 auto .6rem;font-size:.85rem;font-weight:800;color:#fff;letter-spacing:.02em;">
+            {{ strtoupper(substr(Auth::user()->name ?? 'C', 0, 1)) }}
+        </div>
+        <p style="font-size:.75rem;font-weight:700;color:#111827;text-align:center;margin:0 0 .15rem;line-height:1.3;word-break:break-word;">{{ Auth::user()->name ?? '—' }}</p>
+        <p style="font-size:.65rem;color:#9ca3af;text-align:center;margin:0;font-family:ui-monospace,monospace;">{{ Auth::user()->student_id ?? '' }}</p>
+    </div>
+    @endauth
+
+    {{-- Step tracker --}}
+    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:1rem;padding:.9rem;margin-bottom:.75rem;box-shadow:0 1px 3px rgba(0,0,0,.04);">
+        <p style="font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#800000;margin:0 0 .65rem;">Progress</p>
+        <div id="sidebar-steps" style="display:flex;flex-direction:column;gap:.35rem;">
+            @foreach ([['n'=>1,'label'=>'Personal Info'],['n'=>2,'label'=>'Family & Contact'],['n'=>3,'label'=>'RIDS Form'],['n'=>4,'label'=>'133rd NROTC Unit'],['n'=>5,'label'=>'Attachments'],['n'=>6,'label'=>'Review']] as $sd)
+            <div id="sb-step-{{ $sd['n'] }}" style="display:flex;align-items:center;gap:.5rem;padding:.3rem .45rem;border-radius:.45rem;transition:background .2s;">
+                <span id="sb-dot-{{ $sd['n'] }}" style="width:.55rem;height:.55rem;border-radius:9999px;flex-shrink:0;background:#e5e7eb;transition:background .2s;"></span>
+                <span id="sb-lbl-{{ $sd['n'] }}" style="font-size:.7rem;font-weight:600;color:#9ca3af;transition:color .2s;line-height:1.2;">{{ $sd['label'] }}</span>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- Actions --}}
+    <div style="display:flex;flex-direction:column;gap:.5rem;">
+        {{-- Continue Later --}}
+        <a href="{{ url('/') }}"
+           style="display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem .75rem;border-radius:.625rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#374151;border:1px solid #d1d5db;background:#fff;transition:background .15s,border-color .15s;"
+           onmouseover="this.style.background='#f3f4f6';this.style.borderColor='#9ca3af';"
+           onmouseout="this.style.background='#fff';this.style.borderColor='#d1d5db';"
+           title="Leave and return later. Your submitted data is saved.">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Continue Later
+        </a>
+
+        {{-- Log Out --}}
+        @auth
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit"
+                    style="width:100%;display:flex;align-items:center;justify-content:center;gap:.45rem;padding:.6rem .75rem;border-radius:.625rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:#fff;background:#800000;border:none;transition:background .15s,transform .1s;"
+                    onmouseover="this.style.background='#5a0000';"
+                    onmouseout="this.style.background='#800000';">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </svg>
+                Log Out
+            </button>
+        </form>
+        @endauth
+    </div>
+</aside>
+
+{{-- ── MAIN FORM CONTENT ── --}}
+<main class="flex-1 min-w-0">
 
 @if (session('enroll_notice'))
 <div class="mb-6 rounded-2xl p-5 flex items-start gap-3"
@@ -1219,7 +1281,8 @@
 </div>
 
 </form>
-</main>
+</main>{{-- end .flex-1 main --}}
+</div>{{-- end flex wrapper --}}
 
 {{-- FOOTER --}}
 <footer style="background:#001f3f;border-top:1px solid #003366;">
@@ -1264,6 +1327,31 @@ function showStep(n) {
     }
     var header = document.getElementById('form-header');
     if (header) window.scrollTo({ top: header.offsetTop - 80, behavior: 'smooth' });
+    syncSidebar(n);
+}
+
+function syncSidebar(n) {
+    for (var i = 1; i <= totalSteps; i++) {
+        var row  = document.getElementById('sb-step-' + i);
+        var dot  = document.getElementById('sb-dot-'  + i);
+        var lbl  = document.getElementById('sb-lbl-'  + i);
+        if (!row) continue;
+        if (i < n) {
+            dot.style.background = '#047857';
+            lbl.style.color      = '#047857';
+            row.style.background = 'rgba(4,120,87,.05)';
+        } else if (i === n) {
+            dot.style.background = '#800000';
+            lbl.style.color      = '#800000';
+            lbl.style.fontWeight = '700';
+            row.style.background = 'rgba(128,0,0,.06)';
+        } else {
+            dot.style.background = '#e5e7eb';
+            lbl.style.color      = '#9ca3af';
+            lbl.style.fontWeight = '600';
+            row.style.background = 'transparent';
+        }
+    }
 }
 
 function nextStep() {
@@ -1484,6 +1572,7 @@ function populateReview() {
             }
         });
     });
+    syncSidebar(1);
 }());
 </script>
 </body>

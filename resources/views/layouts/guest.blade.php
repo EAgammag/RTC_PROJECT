@@ -201,7 +201,7 @@
             <div class="auth-card">
                 {{-- Header --}}
                 <div class="auth-header">
-                    <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="auth-header-logo">
+                    <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="auth-header-logo" style="border-radius:50%;object-fit:cover;">
                     <h1>133rd NROTC Information System</h1>
                     <p>CSU Aparri &middot; 133rd NROTC Portal</p>
                 </div>

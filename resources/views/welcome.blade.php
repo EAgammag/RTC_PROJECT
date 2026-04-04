@@ -137,9 +137,9 @@
     <nav class="nav-glass fixed top-0 inset-x-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
             <a href="/" class="flex items-center gap-3 no-underline">
-                <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
+                <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="h-10 w-10 rounded-full object-cover shrink-0">
                 <div class="leading-none">
-                    <span class="text-base font-black tracking-wider uppercase" style="color: #ffffff;">NROTC</span>
+                    <span class="text-base font-black tracking-wider uppercase" style="color: #ffffff;">133rd NROTC</span>
                     <span class="text-sm font-bold tracking-wide text-slate-300"> · CSU Aparri</span>
                     <p class="text-xs text-slate-400 mt-0.5 hidden lg:block">Secure Information System</p>
                 </div>
@@ -241,11 +241,12 @@
                                 </svg>
                                 Authorized Sign In
                             </a>
-                            <a href="#access-tiers" class="btn-ghost flex-1 justify-center">
+                            <a href="{{ route('register') }}" class="btn-ghost flex-1 justify-center">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                                          d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                                 </svg>
-                                View Access Tiers
+                                Create Account
                             </a>
                         </div>
                     @endauth
@@ -484,7 +485,7 @@
             @endforeach
         </div>
         <p class="text-center text-sm text-slate-600 mt-8">
-            Accounts are issued exclusively by system administrators. Self-registration is disabled.
+            Cadets may self-register an account to begin enrollment. Admin and officer accounts are issued by system administrators.
         </p>
     </section>
 
@@ -549,8 +550,7 @@
                     Authorized <span class="gold">Personnel</span> Only
                 </h2>
                 <p class="text-slate-700 text-base mb-6 leading-relaxed max-w-md mx-auto">
-                    If you have been issued credentials by a system administrator,
-                    use them to access your assigned portal.
+                    Sign in with your credentials, or create a cadet account to begin your enrollment application.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ route('login') }}" class="btn-gold">
@@ -560,15 +560,16 @@
                         </svg>
                         Sign In to the System
                     </a>
-                    <a href="{{ route('password.request') }}" class="btn-ghost">
+                    <a href="{{ route('register') }}" class="btn-ghost">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
                         </svg>
-                        Reset Password
+                        Create Cadet Account
                     </a>
                 </div>
                 <p class="text-sm text-slate-600 mt-7">
-                    No credentials? Contact your unit administrator. Self-registration is not available.
+                    New cadet? <a href="{{ route('enroll') }}" style="color:#800000;text-decoration:none;font-weight:600;">View enrollment requirements</a> before creating your account.
                 </p>
             </div>
         </div>
@@ -596,6 +597,7 @@
                     <p class="text-sm font-semibold uppercase tracking-widest mb-4" style="color: #ffffff;">Portal Access</p>
                     <div class="flex flex-col gap-2.5">
                         <a href="{{ route('login') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Authorized Sign In</a>
+                        <a href="{{ route('register') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Create Cadet Account</a>
                         <a href="{{ route('password.request') }}" class="text-sm text-slate-400 hover:text-white transition-colors">Password Reset</a>
                     </div>
                 </div>

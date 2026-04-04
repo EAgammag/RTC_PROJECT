@@ -119,6 +119,11 @@ class User extends Authenticatable
      */
     public function dashboardRoute(): string
     {
+        if ($this->isCadet() && !$this->is_active &&
+            in_array($this->enrollment_status, [null, self::ENROLLMENT_PENDING], true)) {
+            return route('enroll.form');
+        }
+
         return match ($this->role) {
             self::ROLE_ADMIN   => route('admin.dashboard'),
             self::ROLE_OFFICER => route('officer.dashboard'),
