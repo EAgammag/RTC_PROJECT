@@ -17,7 +17,7 @@ class AuthController extends Controller
      * Show the login form.
      * Redirects already-authenticated users directly to their dashboard.
      */
-    public function showLoginForm(): View|RedirectResponse
+    public function showLoginForm(Request $request): View|RedirectResponse
     {
         if (Auth::check()) {
             /** @var \App\Models\User $user */
@@ -25,7 +25,16 @@ class AuthController extends Controller
             return redirect($user->dashboardRoute());
         }
 
-        return view('auth.login');
+        // When arriving from the enrollment page, store the intended destination
+        // and mark the session so a notice can be shown after successful login.
+        $enrollMode = false;
+        if ($request->get('from') === 'enroll') {
+            session()->put('url.intended', route('enroll.form'));
+            session()->put('_enroll_return', true);
+            $enrollMode = true;
+        }
+
+        return view('auth.login', compact('enrollMode'));
     }
 
     /**
@@ -51,7 +60,10 @@ class AuthController extends Controller
 
         // Reject unknown e-mails and deactivated accounts with a generic message
         // to avoid user enumeration (OWASP recommendation).
-        if (!$user || !$user->is_active) {
+        // Allow inactive cadets through when returning from the enrollment page
+        // so they can continue filling out their application form.
+        $enrollReturn = $request->session()->has('_enroll_return');
+        if (!$user || (!$user->is_active && !($user->isCadet() && $enrollReturn))) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect or the account is inactive.'],
             ]);
@@ -111,7 +123,12 @@ class AuthController extends Controller
         // Seed last_activity for the SessionTimeout middleware.
         $request->session()->put('last_activity', time());
 
-        return redirect($user->dashboardRoute());
+        // If the student came from the enrollment page, flash a notice for the form.
+        if ($request->session()->pull('_enroll_return')) {
+            $request->session()->flash('enroll_notice', true);
+        }
+
+        return redirect()->intended($user->dashboardRoute());
     }
 
     /**

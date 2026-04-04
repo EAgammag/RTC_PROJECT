@@ -1,4 +1,5 @@
 <section>
+    @unless(isset($hidePartialHeader) && $hidePartialHeader)
     <header style="margin-bottom: 1.5rem;">
         <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #800000; margin-bottom: .35rem;">
             {{ __('Profile Information') }}
@@ -7,6 +8,7 @@
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
+    @endunless
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf

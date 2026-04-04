@@ -4,12 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('title', config('app.name', 'CCJE ROTC')) — NROTC Portal</title>
+        <title>@yield('title', config('app.name', 'CCJE ROTC')) — 133rd NROTC Portal</title>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700,800,900&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased" style="background: var(--navy); color: #1e293b;">
+        @include('partials.page-loader')
+
         <div class="flex min-h-screen">
 
             {{-- ── Sidebar ──────────────────────────────────────────────────── --}}
@@ -18,15 +20,10 @@
 
                     {{-- Brand --}}
                     <div class="flex items-center gap-3 px-2 mb-8">
-                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                             style="background: linear-gradient(135deg, var(--gold3) 0%, var(--gold) 60%, var(--gold2) 100%); box-shadow: 0 0 16px rgba(200,169,81,.3);">
-                            <svg class="w-5 h-5" fill="none" stroke="#04090f" viewBox="0 0 24 24" stroke-width="2.3">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                            </svg>
-                        </div>
+                        <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="w-10 h-10 rounded-full shrink-0 object-cover"
+                             style="box-shadow: 0 0 12px rgba(200,169,81,.4);">
                         <div>
-                            <p class="font-black text-sm tracking-widest uppercase" style="color: var(--gold);">NROTC</p>
+                            <p class="font-black text-sm tracking-widest uppercase" style="color: var(--gold);">133rd NROTC</p>
                             <p class="text-xs text-slate-500 leading-none tracking-wide">CSU — Aparri</p>
                         </div>
                     </div>
@@ -108,6 +105,11 @@
 
             </div>
         </div>
+        {{-- Announcement popup modal (cadets only) --}}
+        @if (Auth::check() && Auth::user()->isCadet())
+            @include('cadet.partials.announcement-modal')
+        @endif
+
         @stack('scripts')
     </body>
 </html>

@@ -17,6 +17,11 @@ class User extends Authenticatable
     const ROLE_OFFICER = 'officer';
     const ROLE_CADET   = 'cadet';
 
+    // ── Enrollment status constants ───────────────────────────────────────────
+    const ENROLLMENT_PENDING   = 'pending';
+    const ENROLLMENT_VALIDATED = 'validated';
+    const ENROLLMENT_REJECTED  = 'rejected';
+
     // ── Lockout policy ────────────────────────────────────────────────────────
     const MAX_LOGIN_ATTEMPTS = 5;
     const LOCKOUT_MINUTES    = 15;
@@ -32,6 +37,22 @@ class User extends Authenticatable
         'login_attempts',
         'locked_until',
         'last_login_at',
+        // Cadet profile fields
+        'date_of_birth',
+        'gender',
+        'blood_type',
+        'religion',
+        'contact_number',
+        'course_year',
+        'address',
+        'height',
+        'weight',
+        'emergency_name',
+        'emergency_relationship',
+        'emergency_contact',
+        // Enrollment
+        'enrollment_status',
+        'enrollment_remarks',
     ];
 
     // ── Hidden from serialization ─────────────────────────────────────────────
@@ -49,6 +70,7 @@ class User extends Authenticatable
             'is_active'         => 'boolean',
             'locked_until'      => 'datetime',
             'last_login_at'     => 'datetime',
+            'date_of_birth'     => 'date',
         ];
     }
 
@@ -74,6 +96,22 @@ class User extends Authenticatable
     public function isLocked(): bool
     {
         return $this->locked_until !== null && $this->locked_until->isFuture();
+    }
+
+    // ── Enrollment helpers ────────────────────────────────────────────────────
+    public function isPendingEnrollment(): bool
+    {
+        return $this->enrollment_status === self::ENROLLMENT_PENDING;
+    }
+
+    public function isEnrollmentValidated(): bool
+    {
+        return $this->enrollment_status === self::ENROLLMENT_VALIDATED;
+    }
+
+    public function isEnrollmentRejected(): bool
+    {
+        return $this->enrollment_status === self::ENROLLMENT_REJECTED;
     }
 
     /**
