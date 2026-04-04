@@ -74,7 +74,9 @@ Route::middleware(['auth', 'verified', 'session.timeout', 'role:admin'])
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('users/create', [AdminDashboardController::class, 'createUser'])->name('users.create');
         Route::post('users', [AdminDashboardController::class, 'storeUser'])->name('users.store');
+        Route::get('users/{user}/unlock', fn() => redirect()->route('admin.dashboard'));
         Route::post('users/{user}/unlock', [AdminDashboardController::class, 'unlockAccount'])->name('users.unlock');
+        Route::get('users/{user}/toggle', fn() => redirect()->route('admin.dashboard'));
         Route::post('users/{user}/toggle', [AdminDashboardController::class, 'toggleActive'])->name('users.toggle');
         // Announcements
         Route::get('announcements', [AdminAnnouncementController::class, 'index'])->name('announcements.index');

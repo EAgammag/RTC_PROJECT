@@ -132,15 +132,14 @@
     </style>
 </head>
 <body class="font-sans antialiased">
-    @include('partials.page-loader')
 
     {{-- NAVBAR --}}
     <nav class="nav-glass fixed top-0 inset-x-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
             <a href="/" class="flex items-center gap-3 no-underline">
-                <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="h-9 w-9 shrink-0 rounded-full object-cover">
+                <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
                 <div class="leading-none">
-                    <span class="text-base font-black tracking-wider uppercase" style="color: #ffffff;">133rd NROTC</span>
+                    <span class="text-base font-black tracking-wider uppercase" style="color: #ffffff;">NROTC</span>
                     <span class="text-sm font-bold tracking-wide text-slate-300"> · CSU Aparri</span>
                     <p class="text-xs text-slate-400 mt-0.5 hidden lg:block">Secure Information System</p>
                 </div>
@@ -214,7 +213,7 @@
                         </span>
                     </div>
                     <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight mb-6">
-                        <span class="text-slate-900">133rd NROTC</span><br>
+                        <span class="text-slate-900">NROTC</span><br>
                         <span style="color: #800000;">Secure</span>
                         <span class="text-slate-900"> Portal</span>
                     </h1>
@@ -242,11 +241,11 @@
                                 </svg>
                                 Authorized Sign In
                             </a>
-                            <a href="{{ route('enroll') }}" class="btn-ghost flex-1 justify-center">
+                            <a href="#access-tiers" class="btn-ghost flex-1 justify-center">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                                 </svg>
-                                Enroll here!
+                                View Access Tiers
                             </a>
                         </div>
                     @endauth
@@ -338,7 +337,7 @@
             <div data-reveal="left">
                 <p class="section-eyebrow mb-4">System Objective</p>
                 <h2 class="text-3xl lg:text-4xl font-black leading-[1.15] tracking-tight mb-6">
-                    A Hardened Digital Layer<br>Around <span class="gold">133rd NROTC Data</span>
+                    A Hardened Digital Layer<br>Around <span class="gold">NROTC Data</span>
                 </h2>
                 <p class="text-slate-700 text-base leading-relaxed mb-4">
                     This platform replaces paper-based ROTC record-keeping with a secure, role-aware digital system
@@ -585,7 +584,7 @@
                     <div class="flex items-center gap-3 mb-4">
                         <img src="{{ asset('csulogo.png') }}" alt="CSU Logo" class="h-8 w-auto shrink-0">
                         <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-8 w-auto shrink-0">
-                        <span class="text-sm font-black tracking-wider uppercase" style="color: #ffffff;">133rd NROTC &middot; CSU Aparri</span>
+                        <span class="text-sm font-black tracking-wider uppercase" style="color: #ffffff;">NROTC &middot; CSU Aparri</span>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed">
                         College of Criminal Justice Education<br>
@@ -612,7 +611,7 @@
             <hr style="border: none; height: 1px; background: #003366; margin-bottom: 1.5rem;">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
                 <p class="text-sm text-slate-500">
-                    &copy; {{ date('Y') }} 133rd CCrJE ROTC &mdash; Cagayan State University Aparri. All rights reserved.
+                    &copy; {{ date('Y') }} CCrJE ROTC &mdash; Cagayan State University Aparri. All rights reserved.
                 </p>
                 <p class="text-sm font-semibold tracking-wider" style="color: #ffffff;">
                     Integrity &bull; Discipline &bull; Service

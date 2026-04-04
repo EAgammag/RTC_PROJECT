@@ -38,52 +38,69 @@
 @section('content')
 <div class="space-y-4">
 
-    {{-- ── On-hold enrollment banner ──────────────────────────────────────────── --}}
+    {{-- ── On-hold enrollment modal (blocks dashboard access) ────────────────── --}}
     @unless($cadet->student_id)
-    <div class="rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 1px solid #fde68a;">
-        <div class="h-1" style="background: linear-gradient(90deg, #f59e0b, #d97706, #f59e0b);"></div>
-        <div class="p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                 style="background: rgba(245,158,11,.15);">
-                <svg class="w-5 h-5" style="color:#d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 9v2m0 4h.01M12 3l9.09 16.91H2.91L12 3z"/>
-                </svg>
-            </div>
-            <div class="flex-1 min-w-0">
-                <h3 class="text-sm font-bold text-amber-900 mb-0.5">Account On Hold</h3>
-                <p class="text-xs text-amber-700 leading-relaxed">
-                    Your account has been created successfully, but it is currently <strong>on hold</strong>.
-                    Please complete the enrollment process to activate your account and gain full access to the portal.
-                </p>
-            </div>
-            <div class="shrink-0 flex flex-col sm:flex-row gap-2">
-                <a href="{{ route('enroll.form') }}"
-                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold text-white transition-all"
-                   style="background: #d97706; box-shadow: 0 2px 8px rgba(217,119,6,.25);"
-                   onmouseover="this.style.background='#b45309'" onmouseout="this.style.background='#d97706'">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+    <div id="enrollModal" style="position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(4,9,15,.75);backdrop-filter:blur(6px);">
+        <div style="background:#fff;border-radius:1rem;max-width:420px;width:92%;box-shadow:0 24px 64px rgba(0,0,0,.25);overflow:hidden;animation:modalIn .4s ease;">
+
+            {{-- Gold accent bar --}}
+            <div style="height:4px;background:linear-gradient(90deg,var(--gold2),var(--gold3),var(--gold));"></div>
+
+            <div style="padding:2rem 1.75rem 1.5rem;text-align:center;">
+
+                {{-- Warning icon --}}
+                <div style="width:56px;height:56px;border-radius:50%;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;background:rgba(245,158,11,.1);border:2px solid rgba(245,158,11,.2);">
+                    <svg style="width:28px;height:28px;color:#d97706;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M12 3l9.09 16.91H2.91L12 3z"/>
                     </svg>
-                    Enroll Here
-                </a>
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold transition-all w-full justify-center"
-                            style="background: rgba(120,113,108,.1); color: #57534e; border: 1px solid rgba(120,113,108,.2);"
-                            onmouseover="this.style.background='rgba(120,113,108,.18)'" onmouseout="this.style.background='rgba(120,113,108,.1)'">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                </div>
+
+                {{-- Title --}}
+                <h2 style="font-size:1.15rem;font-weight:800;color:#1e293b;margin:0 0 .35rem;">Account On Hold</h2>
+                <p style="font-size:.8rem;color:#64748b;line-height:1.6;margin:0 0 1.5rem;">
+                    Your account has been created successfully but is currently <strong style="color:#d97706;">on hold</strong>.
+                    You must complete the enrollment process before you can access the portal.
+                </p>
+
+                {{-- Status badge --}}
+                <div style="display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border-radius:9999px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(245,158,11,.08);color:#b45309;border:1px solid rgba(245,158,11,.25);margin-bottom:1.5rem;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:#f59e0b;display:inline-block;animation:pulse-dot 1.5s ease-in-out infinite;"></span>
+                    Pending Enrollment
+                </div>
+
+                {{-- Buttons --}}
+                <div style="display:flex;flex-direction:column;gap:.6rem;">
+                    <a href="{{ route('enroll.form') }}"
+                       style="display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.75rem 1.25rem;border-radius:.5rem;font-size:.85rem;font-weight:700;color:#fff;background:#d97706;text-decoration:none;transition:background .15s;box-shadow:0 2px 8px rgba(217,119,6,.25);"
+                       onmouseover="this.style.background='#b45309'" onmouseout="this.style.background='#d97706'">
+                        <svg style="width:18px;height:18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                         </svg>
-                        Log Out & Continue Later
-                    </button>
-                </form>
+                        Proceed to Enrollment
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit"
+                                style="display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;padding:.65rem 1.25rem;border-radius:.5rem;font-size:.8rem;font-weight:600;color:#78716c;background:rgba(120,113,108,.08);border:1px solid rgba(120,113,108,.15);cursor:pointer;transition:background .15s;"
+                                onmouseover="this.style.background='rgba(120,113,108,.15)'" onmouseout="this.style.background='rgba(120,113,108,.08)'">
+                            <svg style="width:16px;height:16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                            </svg>
+                            Log Out & Continue Later
+                        </button>
+                    </form>
+                </div>
+
+                <p style="font-size:.65rem;color:#94a3b8;margin:1.25rem 0 0;line-height:1.5;">
+                    Need help? Contact the ROTC office at CSU Aparri.
+                </p>
             </div>
         </div>
     </div>
+    <style>
+        @keyframes modalIn { from { opacity:0; transform:scale(.92) translateY(12px); } to { opacity:1; transform:none; } }
+        @keyframes pulse-dot { 0%,100% { opacity:.5; } 50% { opacity:1; } }
+    </style>
     @endunless
 
     {{-- ── Top row ────────────────────────────────────────────────────────────── --}}

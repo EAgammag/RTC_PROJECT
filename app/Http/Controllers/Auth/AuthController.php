@@ -51,21 +51,21 @@ class AuthController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'email'    => ['required', 'string', 'email', 'max:255'],
+            'login_id' => ['required', 'string', 'max:50'],
             'password' => ['required', 'string', 'min:8',  'max:255'],
         ]);
 
         /** @var User|null $user */
-        $user = User::where('email', $validated['email'])->first();
+        $user = User::where('student_id', $validated['login_id'])->first();
 
-        // Reject unknown e-mails and deactivated accounts with a generic message
+        // Reject unknown IDs and deactivated accounts with a generic message
         // to avoid user enumeration (OWASP recommendation).
         // Allow inactive cadets through when returning from the enrollment page
         // so they can continue filling out their application form.
         $enrollReturn = $request->session()->has('_enroll_return');
         if (!$user || (!$user->is_active && !($user->isCadet() && $enrollReturn))) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect or the account is inactive.'],
+                'login_id' => ['The provided credentials are incorrect or the account is inactive.'],
             ]);
         }
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
         if ($user->isLocked()) {
             $minutesRemaining = (int) now()->diffInMinutes($user->locked_until, false);
             throw ValidationException::withMessages([
-                'email' => [
+                'login_id' => [
                     "This account has been temporarily locked due to multiple failed login attempts. "
                     . "Please try again in {$minutesRemaining} minute(s).",
                 ],
@@ -91,7 +91,7 @@ class AuthController extends Controller
                 ]);
 
                 throw ValidationException::withMessages([
-                    'email' => [
+                    'login_id' => [
                         'Too many failed login attempts. This account has been locked for '
                         . User::LOCKOUT_MINUTES . ' minutes.',
                     ],
@@ -102,7 +102,7 @@ class AuthController extends Controller
 
             $remaining = User::MAX_LOGIN_ATTEMPTS - $attempts;
             throw ValidationException::withMessages([
-                'email' => [
+                'login_id' => [
                     "Invalid credentials. {$remaining} attempt(s) remaining before the account is locked.",
                 ],
             ]);
