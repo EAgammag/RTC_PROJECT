@@ -195,20 +195,21 @@
         </style>
     </head>
     <body class="auth-page antialiased">
+        @include('partials.page-loader')
 
         <div class="flex items-center justify-center min-h-screen px-4 py-8">
             <div class="auth-card">
                 {{-- Header --}}
                 <div class="auth-header">
                     <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="auth-header-logo">
-                    <h1>NROTC Information System</h1>
-                    <p>CSU Aparri &middot; Sign in to your account</p>
+                    <h1>133rd NROTC Information System</h1>
+                    <p>CSU Aparri &middot; 133rd NROTC Portal</p>
                 </div>
 
                 {{ $slot }}
 
                 <p class="auth-footer">
-                    &copy; {{ date('Y') }} CSU Aparri NROTC &middot; All sessions are monitored
+                    &copy; {{ date('Y') }} CSU Aparri 133rd NROTC &middot; All sessions are monitored
                 </p>
             </div>
         </div>

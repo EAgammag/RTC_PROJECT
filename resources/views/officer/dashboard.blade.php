@@ -11,20 +11,27 @@
         </svg>
         Unit Oversight
     </a>
-    <div class="sidebar-link cursor-default opacity-40">
+    <a href="{{ route('officer.enrollments.index') }}" class="sidebar-link">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        Enrollments
+    </a>
+    <a href="{{ route('officer.attendance.index') }}" class="sidebar-link">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
         </svg>
-        Attendance <span class="text-xs ml-auto opacity-60">soon</span>
-    </div>
-    <div class="sidebar-link cursor-default opacity-40">
+        Attendance
+    </a>
+    <a href="{{ route('officer.grades') }}" class="sidebar-link">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
         </svg>
-        Grades <span class="text-xs ml-auto opacity-60">soon</span>
-    </div>
+        Grades
+    </a>
 @endsection
 
 @section('content')

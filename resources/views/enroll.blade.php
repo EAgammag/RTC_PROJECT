@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Enrollment Requirements · NROTC CSU Aparri</title>
+    <title>Enrollment Requirements · 133rd NROTC CSU Aparri</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -89,14 +89,15 @@
     </style>
 </head>
 <body class="font-sans antialiased">
+    @include('partials.page-loader')
 
     {{-- NAVBAR --}}
     <nav class="nav-glass fixed top-0 inset-x-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
             <a href="{{ url('/') }}" class="flex items-center gap-3 no-underline">
-                <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
+                <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="h-9 w-9 shrink-0 rounded-full object-cover">
                 <div class="leading-none">
-                    <span class="text-base font-black tracking-wider uppercase" style="color:#ffffff;">NROTC</span>
+                    <span class="text-base font-black tracking-wider uppercase" style="color:#ffffff;">133rd NROTC</span>
                     <span class="text-sm font-bold tracking-wide text-slate-300"> · CSU Aparri</span>
                     <p class="text-xs text-slate-400 mt-0.5 hidden lg:block">Secure Information System</p>
                 </div>
@@ -436,11 +437,11 @@
             @php
             $steps = [
                 ['step' => '1', 'label' => 'Review Requirements',  'desc' => 'Read all eligibility criteria, documentary, and grooming standards on this page.',    'color' => '#800000', 'bg' => 'rgba(128,0,0,.06)',  'border' => 'rgba(128,0,0,.18)',  'icon' => 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01'],
-                ['step' => '2', 'label' => 'Fill Application Form', 'desc' => 'Complete the Information Sheet online — personal details, family, and RIDS form.',    'color' => '#1d4ed8', 'bg' => 'rgba(29,78,216,.06)', 'border' => 'rgba(29,78,216,.15)', 'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
-                ['step' => '3', 'label' => 'Upload Attachments',   'desc' => 'Attach scanned copies of all required documents — assessment form, medical cert, and IDs.', 'color' => '#047857', 'bg' => 'rgba(4,120,87,.06)',  'border' => 'rgba(4,120,87,.15)',  'icon' => 'M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13'],
-                ['step' => '4', 'label' => 'Visit ROTC Office',    'desc' => 'Bring originals to the ROTC office for verification and physical assessment.',            'color' => '#be185d', 'bg' => 'rgba(190,24,93,.06)', 'border' => 'rgba(190,24,93,.15)', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
-                ['step' => '5', 'label' => 'Receive Credentials',  'desc' => 'Upon approval, the admin creates your portal account and issues your login credentials.', 'color' => '#92400e', 'bg' => 'rgba(146,64,14,.06)', 'border' => 'rgba(251,191,36,.2)', 'icon' => 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'],
-                ['step' => '6', 'label' => 'Access the Portal',    'desc' => 'Sign in with your issued credentials and access your cadet dashboard.',                  'color' => '#065f46', 'bg' => 'rgba(6,95,70,.06)',   'border' => 'rgba(6,95,70,.15)',   'icon' => 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'],
+                ['step' => '2', 'label' => 'Create Your Account',  'desc' => 'Register with your name, email, and password. Your account will be set to cadet and activated by the admin after review.', 'color' => '#4f46e5', 'bg' => 'rgba(79,70,229,.06)', 'border' => 'rgba(79,70,229,.15)', 'icon' => 'M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z'],
+                ['step' => '3', 'label' => 'Fill Application Form', 'desc' => 'Complete the online Information Sheet — personal details, family background, and RIDS form.',    'color' => '#1d4ed8', 'bg' => 'rgba(29,78,216,.06)', 'border' => 'rgba(29,78,216,.15)', 'icon' => 'M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z'],
+                ['step' => '4', 'label' => 'Upload Attachments',   'desc' => 'Attach scanned copies of all required documents — assessment form, medical cert, and IDs.', 'color' => '#047857', 'bg' => 'rgba(4,120,87,.06)',  'border' => 'rgba(4,120,87,.15)',  'icon' => 'M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13'],
+                ['step' => '5', 'label' => 'Visit ROTC Office',    'desc' => 'Bring originals to the ROTC office for verification and physical assessment.',            'color' => '#be185d', 'bg' => 'rgba(190,24,93,.06)', 'border' => 'rgba(190,24,93,.15)', 'icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4'],
+                ['step' => '6', 'label' => 'Access the Portal',    'desc' => 'Once the admin activates your account, sign in with your credentials and access your cadet dashboard.',                  'color' => '#065f46', 'bg' => 'rgba(6,95,70,.06)',   'border' => 'rgba(6,95,70,.15)',   'icon' => 'M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1'],
             ];
             @endphp
 
@@ -546,16 +547,31 @@
             <p class="section-eyebrow mb-3">Ready to Enlist?</p>
             <h3 class="text-2xl font-black text-slate-900 mb-3">Begin Your Enrollment Application</h3>
             <p class="text-slate-600 text-sm leading-relaxed mb-7 max-w-lg mx-auto">
-                Once you have reviewed all requirements, proceed to fill out the enrollment form online.
+                Create your account first, then fill out the online enrollment form.
                 Bring your documents to the ROTC office for final verification.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                <a href="{{ route('enroll.form') }}" class="btn-gold">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                    </svg>
-                    Proceed to the Enrollment Process
-                </a>
+                @auth
+                    <a href="{{ route('enroll.form') }}" class="btn-gold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                        </svg>
+                        Continue to Enrollment Form
+                    </a>
+                @else
+                    <a href="{{ route('register') }}" class="btn-gold">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                        </svg>
+                        Create Account &amp; Enroll
+                    </a>
+                    <a href="{{ route('login', ['from' => 'enroll']) }}" class="btn-ghost">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                        Already Have an Account?
+                    </a>
+                @endauth
                 <a href="{{ url('/') }}" class="btn-ghost">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>

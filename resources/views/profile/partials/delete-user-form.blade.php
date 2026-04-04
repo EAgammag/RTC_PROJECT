@@ -1,4 +1,5 @@
 <section class="space-y-6">
+    @unless(isset($hidePartialHeader) && $hidePartialHeader)
     <header>
         <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #f87171; margin-bottom: .35rem;">
             {{ __('Delete Account') }}
@@ -7,6 +8,7 @@
             {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
         </p>
     </header>
+    @endunless
 
     <x-danger-button
         x-data=""

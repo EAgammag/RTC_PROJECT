@@ -1,5 +1,17 @@
 <x-guest-layout>
 
+    {{-- Enrollment context banner --}}
+    @if (!empty($enrollMode))
+        <div style="background:rgba(79,70,229,.07);border:1px solid rgba(79,70,229,.2);border-radius:.6rem;padding:.7rem 1rem;margin-bottom:1.1rem;display:flex;align-items:flex-start;gap:.6rem;">
+            <svg style="width:16px;height:16px;color:#4f46e5;shrink:0;margin-top:.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <p style="font-size:.78rem;color:#3730a3;line-height:1.5;margin:0;">
+                <strong>Continuing enrollment?</strong> Sign in with your existing account and you'll be taken straight to the enrollment form.
+            </p>
+        </div>
+    @endif
+
     {{-- Session status --}}
     @if (session('status'))
         <div class="auth-alert auth-alert-success" role="status">

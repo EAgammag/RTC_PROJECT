@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Enrollment Application · NROTC CSU Aparri</title>
+    <title>Enrollment Application · 133rd NROTC CSU Aparri</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -104,14 +104,15 @@
     </style>
 </head>
 <body class="font-sans antialiased">
+@include('partials.page-loader')
 
 {{-- NAVBAR --}}
 <nav class="nav-glass fixed top-0 inset-x-0 z-50">
     <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
         <a href="{{ url('/') }}" class="flex items-center gap-3 no-underline">
-            <img src="{{ asset('CCJE.png') }}" alt="CCJE Logo" class="h-9 w-auto shrink-0">
+            <img src="{{ asset('133rd NROTC_logo.jpg') }}" alt="133rd NROTC Logo" class="h-9 w-9 shrink-0 rounded-full object-cover">
             <div class="leading-none">
-                <span class="text-base font-black tracking-wider uppercase" style="color:#fff;">NROTC</span>
+                <span class="text-base font-black tracking-wider uppercase" style="color:#fff;">133rd NROTC</span>
                 <span class="text-sm font-bold tracking-wide text-slate-300"> · CSU Aparri</span>
                 <p class="text-xs text-slate-400 mt-0.5 hidden lg:block">Enrollment Application Form</p>
             </div>
@@ -127,20 +128,36 @@
 
 {{-- PAGE HEADER --}}
 <div id="form-header" class="pt-24 pb-8 px-6 bg-white" style="border-bottom: 1px solid #f3f4f6;">
+
+    {{-- Notice when redirected from login --}}
+    @if (session('enroll_notice'))
+        <div class="max-w-3xl mx-auto mb-5">
+            <div class="rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #93c5fd;">
+                <div class="h-0.5" style="background: linear-gradient(90deg, #3b82f6, #2563eb, #3b82f6);"></div>
+                <div class="p-4 flex items-start gap-3">
+                    <svg class="w-5 h-5 shrink-0 mt-0.5" style="color:#2563eb;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <p class="text-xs text-blue-800 leading-relaxed">
+                        <strong>Welcome back!</strong> You've been signed in successfully. Please complete the enrollment form below to activate your account.
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="max-w-3xl mx-auto text-center mb-7">
         <p class="section-eyebrow mb-2">CCJE ROTC · CSU Aparri</p>
         <h1 class="text-3xl font-black text-slate-900 mb-1">Enrollment <span style="color:#800000;">Application Form</span></h1>
         <p class="text-slate-500 text-sm max-w-md mx-auto">Complete all four sections. Your application will be reviewed by the ROTC office.</p>
     </div>
-
-    {{-- Step Progress --}}
     <div class="max-w-lg mx-auto">
         <div class="step-track">
             @php $stepDefs = [
                 ['n'=>1,'label'=>'Personal Info'],
                 ['n'=>2,'label'=>'Family & Contact'],
                 ['n'=>3,'label'=>'RIDS Form'],
-                ['n'=>4,'label'=>'NROTC Unit'],
+                ['n'=>4,'label'=>'133rd NROTC Unit'],
                 ['n'=>5,'label'=>'Attachments'],
                 ['n'=>6,'label'=>'Review'],
             ]; @endphp
@@ -161,6 +178,19 @@
 
 {{-- FORM --}}
 <main class="max-w-4xl mx-auto px-6 lg:px-10 py-8">
+
+@if (session('enroll_notice'))
+<div class="mb-6 rounded-2xl p-5 flex items-start gap-3"
+     style="background:rgba(29,78,216,.05); border:1px solid rgba(29,78,216,.2);">
+    <svg class="w-5 h-5 mt-0.5 shrink-0" fill="none" stroke="#1d4ed8" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <div>
+        <p class="text-sm font-bold" style="color:#1e40af;">Welcome back, {{ Auth::user()->name ?? 'Cadet' }}!</p>
+        <p class="text-sm mt-0.5" style="color:#1e3a8a;">You're signed in. Please complete the enrollment form below to finalize your application. Your account will be activated once the ROTC office reviews your submission.</p>
+    </div>
+</div>
+@endif
 
 @if (session('success'))
 <div class="mb-6 rounded-2xl p-5 flex items-start gap-3"
@@ -700,7 +730,7 @@
 
 
 {{-- ══════════════════════════════════════════
-     STEP 4 · NROTC Unit Details & Attendance
+     STEP 4 · 133rd NROTC Unit Details
 ══════════════════════════════════════════ --}}
 <div class="form-step" id="step-4">
 
@@ -714,7 +744,7 @@
             </div>
             <div>
                 <span class="text-xs font-black uppercase tracking-widest" style="color:#800000;">Page 3 · Section A</span>
-                <h2 class="text-lg font-black text-slate-900">NROTC Unit Details</h2>
+                <h2 class="text-lg font-black text-slate-900">133rd NROTC Unit Details</h2>
             </div>
         </div>
 
@@ -745,71 +775,7 @@
         </div>
     </div>
 
-    {{-- Section B: Attendance Table --}}
-    <div class="form-card mb-5">
-        <div class="card-header" style="background:rgba(4,120,87,.02);">
-            <div class="card-icon" style="background:rgba(4,120,87,.07);border:1px solid rgba(4,120,87,.15);">
-                <svg class="w-5 h-5" fill="none" stroke="#047857" stroke-width="1.8" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-            </div>
-            <div>
-                <span class="text-xs font-black uppercase tracking-widest" style="color:#047857;">Page 3 · Section B</span>
-                <h2 class="text-lg font-black text-slate-900">Attendance Record — Training Days 1–15</h2>
-            </div>
-        </div>
-
-        <div class="p-4 lg:p-6">
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
-                Fill in the details for each training day attended. Leave blank for days not yet conducted.
-            </p>
-
-            <div style="overflow-x:auto;">
-                <table style="width:100%;border-collapse:collapse;min-width:700px;">
-                    <thead>
-                        <tr style="background:rgba(128,0,0,.05);border-bottom:2px solid rgba(128,0,0,.15);">
-                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#800000;white-space:nowrap;width:48px;">Day</th>
-                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#800000;white-space:nowrap;">Date</th>
-                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#047857;white-space:nowrap;width:80px;">Merits</th>
-                            <th style="padding:.55rem .7rem;text-align:center;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#b91c1c;white-space:nowrap;width:80px;">Demerits</th>
-                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#374151;">Remarks</th>
-                            <th style="padding:.55rem .7rem;text-align:left;font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#374151;white-space:nowrap;">Signature</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for ($day = 1; $day <= 15; $day++)
-                        <tr style="border-bottom:1px solid #f3f4f6;transition:background .1s;" onmouseover="this.style.background='rgba(128,0,0,.02)'" onmouseout="this.style.background=''">
-                            <td style="padding:.45rem .7rem;text-align:center;">
-                                <span style="display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:.4rem;background:rgba(128,0,0,.07);border:1px solid rgba(128,0,0,.15);font-size:.7rem;font-weight:800;color:#800000;">{{ $day }}</span>
-                            </td>
-                            <td style="padding:.45rem .7rem;">
-                                <input type="date" name="att_date[{{ $day }}]" class="inp" style="min-width:130px;padding:.4rem .6rem;font-size:.8rem;">
-                            </td>
-                            <td style="padding:.45rem .5rem;text-align:center;">
-                                <input type="number" name="att_merits[{{ $day }}]" min="0" max="99" class="inp" placeholder="0"
-                                       style="width:60px;text-align:center;padding:.4rem .4rem;font-size:.8rem;">
-                            </td>
-                            <td style="padding:.45rem .5rem;text-align:center;">
-                                <input type="number" name="att_demerits[{{ $day }}]" min="0" max="99" class="inp" placeholder="0"
-                                       style="width:60px;text-align:center;padding:.4rem .4rem;font-size:.8rem;">
-                            </td>
-                            <td style="padding:.45rem .5rem;">
-                                <input type="text" name="att_remarks[{{ $day }}]" class="inp" placeholder="e.g. Absent, Late, Excused"
-                                       style="min-width:160px;padding:.4rem .6rem;font-size:.8rem;">
-                            </td>
-                            <td style="padding:.45rem .5rem;">
-                                <input type="text" name="att_signature[{{ $day }}]" class="inp" placeholder="Initials"
-                                       style="min-width:100px;padding:.4rem .6rem;font-size:.8rem;">
-                            </td>
-                        </tr>
-                        @endfor
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    {{-- Section C: Signatures & MS Grade --}}
+    {{-- Section B: Signatures & MS Grade --}}
     <div class="form-card mb-6">
         <div class="card-header" style="background:rgba(79,70,229,.02);">
             <div class="card-icon" style="background:rgba(79,70,229,.07);border:1px solid rgba(79,70,229,.15);">
@@ -818,7 +784,7 @@
                 </svg>
             </div>
             <div>
-                <span class="text-xs font-black uppercase tracking-widest" style="color:#4f46e5;">Page 3 · Section C</span>
+                <span class="text-xs font-black uppercase tracking-widest" style="color:#4f46e5;">Page 3 · Section B</span>
                 <h2 class="text-lg font-black text-slate-900">Signatures & MS Grade</h2>
             </div>
         </div>
@@ -1141,7 +1107,7 @@
             </div>
             <div>
                 <span class="text-xs font-black uppercase tracking-widest" style="color:#800000;">Page 3</span>
-                <h2 class="text-lg font-black text-slate-900">NROTC Unit Details</h2>
+                <h2 class="text-lg font-black text-slate-900">133rd NROTC Unit Details</h2>
             </div>
         </div>
         <div class="p-6 lg:p-8 flex flex-col gap-4">
@@ -1387,7 +1353,7 @@ function populateReview() {
     setRv('cap_size',       radioVal('cap_size'));
     setRv('bdu_size',       radioVal('bdu_size'));
 
-    // NROTC Unit
+    // 133rd NROTC Unit
     setRv('ms_grade_level', radioVal('ms_grade_level'));
     setRv('platoon',        rv('platoon'));
     setRv('company',        rv('company'));

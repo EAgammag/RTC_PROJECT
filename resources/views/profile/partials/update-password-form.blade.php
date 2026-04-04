@@ -1,4 +1,5 @@
 <section>
+    @unless(isset($hidePartialHeader) && $hidePartialHeader)
     <header style="margin-bottom: 1.5rem;">
         <h2 style="font-size: 1rem; font-weight: 700; letter-spacing: .04em; color: #800000; margin-bottom: .35rem;">
             {{ __('Update Password') }}
@@ -7,6 +8,7 @@
             {{ __('Ensure your account is using a long, random password to stay secure.') }}
         </p>
     </header>
+    @endunless
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-5">
         @csrf

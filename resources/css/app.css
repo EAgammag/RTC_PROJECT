@@ -25,7 +25,7 @@ html, body { min-height: 100vh; }
     border-bottom: 1px solid #e2e8f0;
 }
 
-/* ── Custom NROTC component classes ─────────────────────────────────────── */
+/* ── Custom 133rd NROTC component classes ───────────────────────────────── */
 
 .stat-card {
     background: #ffffff;
@@ -73,4 +73,85 @@ html, body { min-height: 100vh; }
     background: rgba(200, 169, 81, 0.12);
     color: var(--gold);
     font-weight: 600;
+}
+
+/* ── Page loader ────────────────────────────────────────────────────────── */
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy);
+    transition: opacity .45s ease, visibility .45s ease;
+}
+
+.page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* logo image */
+.page-loader__logo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 24px rgba(200, 169, 81, .35);
+    position: relative;
+    z-index: 2;
+}
+
+/* outer spinner ring */
+.page-loader__ring {
+    position: relative;
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-loader__ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2.5px solid rgba(200, 169, 81, .12);
+}
+
+.page-loader__ring::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2.5px solid transparent;
+    border-top-color: var(--gold);
+    border-right-color: var(--gold3);
+    animation: loader-spin 1s cubic-bezier(.6, .15, .35, .85) infinite;
+}
+
+@keyframes loader-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* brand text */
+.page-loader__text {
+    margin-top: 1.25rem;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: .7;
+    animation: loader-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes loader-pulse {
+    0%, 100% { opacity: .4; }
+    50%      { opacity: 1; }
 }
