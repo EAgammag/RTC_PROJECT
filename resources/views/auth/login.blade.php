@@ -29,22 +29,22 @@
     <form method="POST" action="{{ route('login') }}" id="loginForm" novalidate>
         @csrf
 
-        {{-- Email --}}
+        {{-- ID Number --}}
         <div style="margin-bottom: 1.125rem;">
-            <label class="auth-label" for="email">Email Address</label>
-            <input class="auth-input @error('email') is-error @enderror"
-                   type="email"
-                   id="email"
-                   name="email"
-                   value="{{ old('email') }}"
-                   placeholder="you@csuaparri.edu.ph"
+            <label class="auth-label" for="login_id">ID Number</label>
+            <input class="auth-input @error('login_id') is-error @enderror"
+                   type="text"
+                   id="login_id"
+                   name="login_id"
+                   value="{{ old('login_id') }}"
+                   placeholder="e.g. 2024-00001"
                    autocomplete="username"
                    autofocus
                    required>
-            @error('email')
-                <div class="auth-field-error" id="email-error" role="alert">{{ $message }}</div>
+            @error('login_id')
+                <div class="auth-field-error" id="login_id-error" role="alert">{{ $message }}</div>
             @enderror
-            <div class="auth-field-error" id="email-client-error" role="alert" style="display:none;"></div>
+            <div class="auth-field-error" id="login_id-client-error" role="alert" style="display:none;"></div>
         </div>
 
         {{-- Password --}}
@@ -106,11 +106,10 @@
     }
 
     (function () {
-        var emailInput = document.getElementById('email');
+        var idInput = document.getElementById('login_id');
         var passwordInput = document.getElementById('password');
-        var emailErr = document.getElementById('email-client-error');
+        var idErr = document.getElementById('login_id-client-error');
         var passwordErr = document.getElementById('password-client-error');
-        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         function showError(input, errEl, msg) {
             input.classList.add('is-error');
@@ -124,21 +123,17 @@
             errEl.style.display = 'none';
         }
 
-        function validateEmail() {
-            var val = emailInput.value.trim();
+        function validateId() {
+            var val = idInput.value.trim();
             if (!val) {
-                showError(emailInput, emailErr, 'Email address is required.');
+                showError(idInput, idErr, 'ID Number is required.');
                 return false;
             }
-            if (val.length > 255) {
-                showError(emailInput, emailErr, 'Email must not exceed 255 characters.');
+            if (val.length > 50) {
+                showError(idInput, idErr, 'ID Number must not exceed 50 characters.');
                 return false;
             }
-            if (!emailPattern.test(val)) {
-                showError(emailInput, emailErr, 'Please enter a valid email address.');
-                return false;
-            }
-            clearError(emailInput, emailErr);
+            clearError(idInput, idErr);
             return true;
         }
 
@@ -156,9 +151,9 @@
             return true;
         }
 
-        emailInput.addEventListener('blur', validateEmail);
-        emailInput.addEventListener('input', function () {
-            if (emailInput.classList.contains('is-error')) { validateEmail(); }
+        idInput.addEventListener('blur', validateId);
+        idInput.addEventListener('input', function () {
+            if (idInput.classList.contains('is-error')) { validateId(); }
         });
 
         passwordInput.addEventListener('blur', validatePassword);
@@ -167,11 +162,11 @@
         });
 
         document.getElementById('loginForm').addEventListener('submit', function (e) {
-            var emailOk = validateEmail();
+            var idOk = validateId();
             var passwordOk = validatePassword();
-            if (!emailOk || !passwordOk) {
+            if (!idOk || !passwordOk) {
                 e.preventDefault();
-                if (!emailOk) { emailInput.focus(); }
+                if (!idOk) { idInput.focus(); }
                 else { passwordInput.focus(); }
             }
         });

@@ -83,7 +83,7 @@
                 <thead>
                     <tr style="background: #f8fafc;">
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Name</th>
-                        <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Student ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">ID Number</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Email</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Role</th>
                         <th class="px-6 py-3 text-left text-xs font-semibold text-slate-400 uppercase tracking-wider">Status</th>
@@ -133,7 +133,6 @@
                                     @if ($user->isLocked())
                                         <form method="POST" action="{{ route('admin.users.unlock', $user) }}">
                                             @csrf
-                                            @method('PATCH')
                                             <button type="submit"
                                                     class="text-xs px-2 py-1 rounded font-medium transition-colors"
                                                     style="background: rgba(200,169,81,0.15); color: #c8a951; border: 1px solid rgba(200,169,81,0.3);">
@@ -143,7 +142,6 @@
                                     @endif
                                     <form method="POST" action="{{ route('admin.users.toggle', $user) }}">
                                         @csrf
-                                        @method('PATCH')
                                         <button type="submit"
                                                 class="text-xs px-2 py-1 rounded font-medium transition-colors"
                                                 style="background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2);">

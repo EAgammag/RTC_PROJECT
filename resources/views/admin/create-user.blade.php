@@ -28,7 +28,7 @@
             and include uppercase, lowercase, numbers, and a special character.
         </p>
 
-        <form method="POST" action="{{ route('admin.users.store') }}">
+        <form method="POST" action="{{ route('admin.users.store') }}" x-data="{ role: '{{ old('role', '') }}' }">
             @csrf
 
             <div class="space-y-4">
@@ -60,26 +60,8 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Student / Service ID</label>
-                    <input type="text" name="student_id" value="{{ old('student_id') }}" required maxlength="50"
-                           class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900 font-mono"
-                           style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
-                           placeholder="e.g. 2024-00001">
-                    @error('student_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Email Address</label>
-                    <input type="email" name="email" value="{{ old('email') }}" required maxlength="255"
-                           class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
-                           style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
-                           placeholder="user@csu.edu.ph">
-                    @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
-                </div>
-
-                <div>
                     <label class="block text-sm font-medium text-slate-700 mb-1.5">Role</label>
-                    <select name="role" required
+                    <select name="role" x-model="role" required
                             class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
                             style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);">
                         <option value="">— Select Role —</option>
@@ -88,6 +70,27 @@
                         <option value="cadet"   {{ old('role') === 'cadet'   ? 'selected' : '' }}>Cadet</option>
                     </select>
                     @error('role') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5"
+                           x-text="role === 'admin' ? 'Admin ID' : (role === 'officer' ? 'Staff ID' : 'Student ID')">
+                        Student ID
+                    </label>
+                    <input type="text" name="student_id" value="{{ old('student_id') }}" required maxlength="50"
+                           class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900 font-mono"
+                           style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
+                           :placeholder="role === 'admin' ? 'e.g. ADM-2024-001' : (role === 'officer' ? 'e.g. OFC-2024-001' : 'e.g. 2024-00001')">
+                    @error('student_id') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">Email Address <span class="text-slate-400 font-normal">(for password reset)</span></label>
+                    <input type="email" name="email" value="{{ old('email') }}" required maxlength="255"
+                           class="w-full px-4 py-2.5 rounded-lg text-sm text-slate-900"
+                           style="background: #f8fafc; border: 1px solid rgba(4,9,15,0.14);"
+                           placeholder="user@csu.edu.ph">
+                    @error('email') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
