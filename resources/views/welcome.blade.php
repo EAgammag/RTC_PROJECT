@@ -146,7 +146,7 @@
             </a>
             <div class="flex items-center gap-2 text-right leading-none">
                 <div class="leading-tight">
-                    <div class="text-sm font-semibold" style="color:#ffffff;" id="rtc-time">--:--:-- --</div>
+                    <div class="text-sm font-semibold" style="color:#ffffff;" id="rtc-time">----:-- --</div>
                     <div class="text-xs text-slate-400" id="rtc-date">---, --- --, ----</div>
                     <div class="text-slate-400 tracking-widest uppercase" style="font-size:0.7rem;">Philippine Standard Time</div>
                 </div>

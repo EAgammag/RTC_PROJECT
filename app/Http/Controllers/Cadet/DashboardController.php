@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cadet;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cadet\CadetInfoUpdateRequest;
+use App\Models\Announcement;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -17,8 +18,9 @@ class DashboardController extends Controller
     public function index(): View
     {
         $cadet = Auth::user();
+        $announcements = Announcement::visible()->ordered()->get();
 
-        return view('cadet.dashboard', compact('cadet'));
+        return view('cadet.dashboard', compact('cadet', 'announcements'));
     }
 
     /**

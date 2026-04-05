@@ -281,4 +281,119 @@
     </div>
 
 </div>
+
+{{-- ── Announcements popup modal ───────────────────────────────────────────── --}}
+@if ($announcements->isNotEmpty())
+<div id="ann-modal"
+     style="position:fixed;inset:0;z-index:8500;display:flex;align-items:center;justify-content:center;
+            padding:1.25rem;background:rgba(4,9,15,.6);backdrop-filter:blur(5px);">
+    <div style="background:#fff;border-radius:1.25rem;max-width:460px;width:100%;
+                max-height:80vh;display:flex;flex-direction:column;
+                box-shadow:0 24px 64px rgba(0,0,0,.22);overflow:hidden;
+                animation:annModalIn .35s cubic-bezier(.34,1.4,.64,1);">
+
+        {{-- Gold header bar --}}
+        <div style="height:3px;background:linear-gradient(90deg,var(--gold2),var(--gold3),var(--gold));flex-shrink:0;"></div>
+
+        {{-- Header --}}
+        <div style="display:flex;align-items:center;justify-content:space-between;
+                    padding:1.1rem 1.4rem .8rem;flex-shrink:0;
+                    border-bottom:1px solid #f1f5f9;">
+            <div style="display:flex;align-items:center;gap:.6rem;">
+                <div style="width:2rem;height:2rem;border-radius:.5rem;display:flex;align-items:center;justify-content:center;
+                            background:rgba(200,169,81,.1);border:1px solid rgba(200,169,81,.2);">
+                    <svg style="width:1rem;height:1rem;" fill="none" stroke="var(--gold)" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p style="font-size:.8rem;font-weight:800;color:var(--navy);margin:0;letter-spacing:.01em;">Unit Announcements</p>
+                    <p style="font-size:.65rem;color:#94a3b8;margin:0;">{{ $announcements->count() }} active {{ Str::plural('announcement', $announcements->count()) }}</p>
+                </div>
+            </div>
+            <button onclick="dismissAnnouncements()"
+                    style="width:1.75rem;height:1.75rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;
+                           border:1px solid #e5e7eb;background:#f9fafb;cursor:pointer;transition:background .15s;"
+                    onmouseover="this.style.background='#f3f4f6';" onmouseout="this.style.background='#f9fafb';"
+                    title="Dismiss">
+                <svg style="width:.85rem;height:.85rem;" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        {{-- Scrollable announcements list --}}
+        <div style="overflow-y:auto;flex:1;padding:.75rem 1.4rem;">
+            @foreach ($announcements as $ann)
+            <div style="padding:.9rem 0;{{ !$loop->last ? 'border-bottom:1px solid #f1f5f9;' : '' }}">
+                @if ($ann->is_pinned)
+                <div style="display:inline-flex;align-items:center;gap:.3rem;
+                             font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+                             color:var(--gold);margin-bottom:.4rem;">
+                    <svg style="width:.65rem;height:.65rem;" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M16 3a1 1 0 011 1v1h1a1 1 0 110 2h-.172l.823 7.407A2 2 0 0116.67 16H13v5a1 1 0 11-2 0v-5H7.33a2 2 0 01-1.981-1.593L5.172 7H5a1 1 0 110-2h1V4a1 1 0 011-1h9z"/>
+                    </svg>
+                    Pinned
+                </div>
+                @endif
+                <p style="font-size:.85rem;font-weight:700;color:#1e293b;margin:0 0 .35rem;line-height:1.4;">
+                    {{ $ann->title }}
+                </p>
+                <p style="font-size:.78rem;color:#475569;line-height:1.6;margin:0 0 .5rem;white-space:pre-line;">
+                    {{ Str::limit($ann->content, 180) }}
+                </p>
+                <div style="display:flex;align-items:center;justify-content:space-between;font-size:.65rem;color:#94a3b8;">
+                    <span>{{ $ann->author->name }}</span>
+                    <span>{{ $ann->published_at->format('d M Y') }}</span>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        {{-- Footer buttons --}}
+        <div style="padding:.9rem 1.4rem;border-top:1px solid #f1f5f9;flex-shrink:0;
+                    display:flex;gap:.6rem;">
+            <a href="{{ route('cadet.announcements') }}"
+               style="flex:1;display:flex;align-items:center;justify-content:center;gap:.4rem;
+                      padding:.65rem 1rem;border-radius:.625rem;font-size:.78rem;font-weight:700;
+                      letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+                      background:var(--gold);color:var(--navy);
+                      box-shadow:0 2px 6px rgba(200,169,81,.3);transition:background .15s;"
+               onmouseover="this.style.background='var(--gold2)';" onmouseout="this.style.background='var(--gold)';">
+                View All
+            </a>
+            <button onclick="dismissAnnouncements()"
+                    style="flex:1;padding:.65rem 1rem;border-radius:.625rem;font-size:.78rem;font-weight:600;
+                           letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+                           color:#475569;border:1px solid #e2e8f0;background:#f8fafc;transition:background .15s;"
+                    onmouseover="this.style.background='#f1f5f9';" onmouseout="this.style.background='#f8fafc';">
+                Dismiss
+            </button>
+        </div>
+    </div>
+</div>
+<style>
+@keyframes annModalIn {
+    from { opacity:0; transform:scale(.93) translateY(14px); }
+    to   { opacity:1; transform:none; }
+}
+</style>
+<script>
+(function () {
+    var modal = document.getElementById('ann-modal');
+    var seenKey = 'ann_seen_{{ $announcements->max("id") }}';
+    if (sessionStorage.getItem(seenKey)) {
+        modal.style.display = 'none';
+    }
+})();
+function dismissAnnouncements() {
+    var modal = document.getElementById('ann-modal');
+    var seenKey = 'ann_seen_{{ $announcements->max("id") }}';
+    modal.style.display = 'none';
+    sessionStorage.setItem(seenKey, '1');
+}
+</script>
+@endif
+
 @endsection

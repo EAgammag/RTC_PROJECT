@@ -1284,6 +1284,115 @@
 </main>{{-- end .flex-1 main --}}
 </div>{{-- end flex wrapper --}}
 
+{{-- ── PENDING VALIDATION MODAL ── --}}
+@if (session('success'))
+<div id="pending-modal"
+     style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem;
+            background:rgba(0,0,0,.55);backdrop-filter:blur(4px);">
+    <div style="background:#fff;border-radius:1.5rem;max-width:420px;width:100%;
+                box-shadow:0 24px 64px rgba(0,0,0,.2);overflow:hidden;animation:modalIn .35s cubic-bezier(.34,1.56,.64,1);">
+        {{-- accent bar --}}
+        <div style="height:4px;background:linear-gradient(90deg,#800000,#c0392b,#e67e22);"></div>
+        <div style="padding:2.5rem 2.25rem 2rem;">
+
+            {{-- Icon --}}
+            <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+                <div style="width:5rem;height:5rem;border-radius:9999px;
+                            background:rgba(251,191,36,.1);border:2px solid rgba(251,191,36,.35);
+                            display:flex;align-items:center;justify-content:center;">
+                    <svg style="width:2.5rem;height:2.5rem;animation:pendingSpin 3s linear infinite;"
+                         fill="none" stroke="#d97706" stroke-width="1.6" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            {{-- Title --}}
+            <h2 style="font-size:1.3rem;font-weight:900;color:#111827;text-align:center;margin:0 0 .5rem;letter-spacing:-.01em;">
+                Application Submitted
+            </h2>
+            <p style="font-size:.85rem;color:#6b7280;text-align:center;margin:0 0 1.5rem;line-height:1.6;">
+                Your enrollment application has been successfully submitted and is now
+                <strong style="color:#d97706;">pending validation</strong> by the ROTC office.
+            </p>
+
+            {{-- Status pill --}}
+            <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+                <span style="display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1.1rem;
+                              border-radius:9999px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+                              background:rgba(251,191,36,.1);color:#92400e;border:1px solid rgba(251,191,36,.35);">
+                    <span style="width:.5rem;height:.5rem;border-radius:9999px;background:#d97706;
+                                 animation:rPulse 2s ease-in-out infinite;display:inline-block;"></span>
+                    Pending Validation
+                </span>
+            </div>
+
+            {{-- Info list --}}
+            <div style="background:rgba(128,0,0,.03);border:1px solid rgba(128,0,0,.1);
+                        border-radius:.875rem;padding:1rem 1.1rem;margin-bottom:1.75rem;">
+                <p style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+                           color:#800000;margin:0 0 .65rem;">What Happens Next</p>
+                @foreach ([
+                    'The ROTC office will review your submitted application.',
+                    'You will be notified once your enrollment is validated.',
+                    'Bring original documents to the ROTC office for final verification.',
+                    'Your account will be activated after successful validation.',
+                ] as $step)
+                <div style="display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.45rem;">
+                    <svg style="width:.7rem;height:.7rem;margin-top:.25rem;flex-shrink:0;" fill="none"
+                         stroke="#800000" stroke-width="3" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <span style="font-size:.8rem;color:#374151;line-height:1.5;">{{ $step }}</span>
+                </div>
+                @endforeach
+            </div>
+
+            {{-- Buttons --}}
+            <div style="display:flex;flex-direction:column;gap:.6rem;">
+                <a href="{{ url('/') }}"
+                   style="display:flex;align-items:center;justify-content:center;gap:.5rem;
+                          padding:.8rem 1.5rem;border-radius:.75rem;font-weight:700;font-size:.83rem;
+                          letter-spacing:.07em;text-transform:uppercase;text-decoration:none;
+                          background:#800000;color:#fff;border:none;cursor:pointer;
+                          box-shadow:0 2px 8px rgba(128,0,0,.25);transition:background .15s;"
+                   onmouseover="this.style.background='#5a0000';"
+                   onmouseout="this.style.background='#800000';">
+                    <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    Back to Home
+                </a>
+                <button onclick="document.getElementById('pending-modal').style.display='none';"
+                        style="padding:.65rem 1.5rem;border-radius:.75rem;font-weight:600;font-size:.8rem;
+                               letter-spacing:.06em;text-transform:uppercase;cursor:pointer;
+                               color:#374151;border:1px solid #d1d5db;background:#f9fafb;
+                               transition:background .15s;"
+                        onmouseover="this.style.background='#f3f4f6';"
+                        onmouseout="this.style.background='#f9fafb';">
+                    Stay on This Page
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+@keyframes modalIn {
+    from { opacity:0; transform:scale(.92) translateY(16px); }
+    to   { opacity:1; transform:scale(1)  translateY(0); }
+}
+@keyframes pendingSpin {
+    0%,100% { transform:rotate(0deg); }
+    25%     { transform:rotate(90deg); }
+    50%     { transform:rotate(180deg); }
+    75%     { transform:rotate(270deg); }
+}
+</style>
+@endif
+
 {{-- FOOTER --}}
 <footer style="background:#001f3f;border-top:1px solid #003366;">
     <div class="max-w-6xl mx-auto px-6 lg:px-10 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
